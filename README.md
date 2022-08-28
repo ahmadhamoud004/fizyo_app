@@ -41,9 +41,9 @@ i.	employees_model.ts
 ii.	employees_controller.ts
 iii.	employees_routes.ts
 •	For ServiceProviders:
-i.	service_provider_model.ts
-ii.	service_provider_controller.ts
-iii.	service_provider_routes.ts
+i.	service_providers_model.ts
+ii.	service_providers_controller.ts
+iii.	service_providers_routes.ts
 
 The attributes names of the last models are the same with Fizyo App ERD file.
 
@@ -57,10 +57,10 @@ For example:
 5-	/employees/delete/:employeeId
 •	For ServiceProviders:
 1-	/serviceProviders
-2-	/ serviceProviders /:serviceProviderId
-3-	/ serviceProviders /create
-4-	/ serviceProviders /update/:serviceProviderId
-5-	/ serviceProviders /delete/:serviceProviderId
+2-	/ serviceProviders/:serviceProviderId
+3-	/ serviceProviders/create
+4-	/ serviceProviders/update/:serviceProviderId
+5-	/ serviceProviders/delete/:serviceProviderId
 The names of functions:
 For example:
 •	for Employees:
