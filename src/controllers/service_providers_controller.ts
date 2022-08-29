@@ -57,7 +57,7 @@ export default class ServiceProvidersController {
   @Response(422, 'Validation Failed')
   @SuccessResponse('200', 'Created')
   @Example<IServiceProviders>({
-    uID: '    ',
+    uID: '_',
     bio: 'this is the best',
     specialities: 'Physiotherapist',
     preferredServiceType: ['online', 'home', 'office'],
@@ -72,7 +72,7 @@ export default class ServiceProvidersController {
     verificationStatus: 'notSubmitted',
 
     verificationDate: new Date('2022-09-10'),
-    verifiedByUID: ' ',
+    verifiedByUID: '_',
   })
   @Post('create')
   public async createServiceProvider(
