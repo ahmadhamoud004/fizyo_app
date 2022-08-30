@@ -32,8 +32,8 @@ export interface ISessions {
   doctorReferral:string;
 }
 
-export interface IAnouncements{
-_id ?: Types.ObjectId;
+export interface IAnnouncements{
+_id ?: Types.ObjectId|string;
 referenceType?:'Session'|'Advertisment';//enum
 referenceID?:string|null;
 statues: string|'draft'|'published';//enum
@@ -41,7 +41,7 @@ topic:string;
 details:string;
 sentDate:Date;
 attachments:object[];
-receiversUIDs?:string[]|Types.ObjectId[]|IClents[];
+receiversUIDs?:string[]|Types.ObjectId[]|IUsers[];
 
 }
 export interface IAlarms{
@@ -56,7 +56,7 @@ export interface IAlarms{
     endDate:Date;
 
 }
-interface INotifications{
+export interface INotifications{
 _id?: Types.ObjectId|string;
 referenceType:string|'sessions'|'agreements'|'disputes'|'alarm'|'announcements'|'users'|'communications';//enum
 referenceID:string;

@@ -69,3 +69,4 @@ const SessionsSchema = new Schema<ISessions>({
 
 
 });
+module.exports = model<ISessions>('ISessions', SessionsSchema);
