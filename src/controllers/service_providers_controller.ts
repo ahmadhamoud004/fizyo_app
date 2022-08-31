@@ -9,18 +9,18 @@ import {
   Response,
   Example,
   Path,
-} from 'tsoa';
-import { Model } from 'mongoose';
-import { IServiceProviders } from '../types/interfaces';
+} from "tsoa";
+import { Model } from "mongoose";
+import { IServiceProviders } from "../types/interfaces";
 
-const ServiceProvidersModel: Model<IServiceProviders> = require('../models/service_providers_model');
+const ServiceProvidersModel: Model<IServiceProviders> = require("../models/service_providers_model");
 
-@Route('serviceProviders')
+@Route("serviceProviders")
 export default class ServiceProvidersController {
   /**
    * Get List of All serviceProviders
    */
-  @Get('/')
+  @Get("/")
   public async getServiceProviders(): Promise<IServiceProviders[]> {
     return await ServiceProvidersModel.find();
   }
@@ -29,8 +29,8 @@ export default class ServiceProvidersController {
    * Get a serviceProvider details
    * @example serviceProviderId "       "
    */
-  @Response(404, 'The requested serviceProvider is not found')
-  @Get('{serviceProviderId}')
+  @Response(404, "The requested serviceProvider is not found")
+  @Get("{serviceProviderId}")
   public async getServiceProvider(
     serviceProviderId: string
   ): Promise<IServiceProviders | null> {
@@ -39,11 +39,11 @@ export default class ServiceProvidersController {
 
   /**
    * Delete a serverProvider
-   * @example serviceProviderId "       "
+   * @example serviceProviderId "ertwerwryer45"
    */
-  @Response(404, 'The requested serviceProvider is not found')
-  @SuccessResponse('200', 'Deleted')
-  @Delete('{serviceProviderId}')
+  @Response(404, "The requested serviceProvider is not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{serviceProviderId}")
   public async deleteServiceProvider(
     serviceProviderId: string
   ): Promise<IServiceProviders | null> {
@@ -54,27 +54,27 @@ export default class ServiceProvidersController {
    * Create a serviceProvider
    */
 
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Created')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
   @Example<IServiceProviders>({
-    uID: '_',
-    bio: 'this is the best',
-    specialities: 'Physiotherapist',
-    preferredServiceType: ['online', 'home', 'office'],
+    uID: "43234erwrdfserwr",
+    bio: "this is the best",
+    specialities: "Physiotherapist",
+    // preferredServiceType: ["online", "home", "office"],
     minSessionFee: 100.0,
     maxSessionFee: 150.0,
-    documents: {
-      url: 'http://localhost:8000/documents',
-      name: 'certificate',
-      type: 'pdf',
-    },
-    reviewerUIDs: ['123456123457', '123456'],
-    verificationStatus: 'notSubmitted',
+    // documents: {
+    //   url: "http://localhost:8000/documents",
+    //   name: "certificate",
+    //   type: "pdf",
+    // },
+    reviewerUIDs: ["123456123457", "123456"],
+    verificationStatus: "notSubmitted",
 
-    verificationDate: new Date('2022-09-10'),
-    verifiedByUID: '_',
+    verificationDate: new Date("2022-09-10"),
+    verifiedByUID: "43234erwrdfserwr",
   })
-  @Post('create')
+  @Post("create")
   public async createServiceProvider(
     @Body() serviceProvider: IServiceProviders
   ): Promise<IServiceProviders> {
@@ -84,9 +84,9 @@ export default class ServiceProvidersController {
   /**
    * Update a ServiceProvider
    */
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Updated')
-  @Put('update/{serviceProviderId}')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Updated")
+  @Put("update/{serviceProviderId}")
   public async updateServiceProvider(
     @Path() serviceProviderId: string,
     @Body() serviceProvider: Partial<IServiceProviders>
@@ -101,15 +101,15 @@ export default class ServiceProvidersController {
         serviceProvider.bio ?? serviceProviderDocument.bio;
       serviceProviderDocument.specialities =
         serviceProvider.specialities ?? serviceProviderDocument.specialities;
-      serviceProviderDocument.preferredServiceType =
-        serviceProvider.preferredServiceType ??
-        serviceProviderDocument.preferredServiceType;
+      // serviceProviderDocument.preferredServiceType =
+      //   serviceProvider.preferredServiceType ??
+      //   serviceProviderDocument.preferredServiceType;
       serviceProviderDocument.minSessionFee =
         serviceProvider.minSessionFee ?? serviceProviderDocument.minSessionFee;
       serviceProviderDocument.maxSessionFee =
         serviceProvider.maxSessionFee ?? serviceProviderDocument.maxSessionFee;
-      serviceProviderDocument.documents =
-        serviceProvider.documents ?? serviceProviderDocument.documents;
+      // serviceProviderDocument.documents =
+      //   serviceProvider.documents ?? serviceProviderDocument.documents;
       serviceProviderDocument.reviewerUIDs =
         serviceProvider.reviewerUIDs ?? serviceProviderDocument.reviewerUIDs;
       serviceProviderDocument.verificationStatus =
