@@ -1,9 +1,9 @@
-import express from 'express';
-import AgreementsController from '../controllers/agreements_controller';
+import express from "express";
+import AgreementsController from "../controllers/agreements_controller";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const controller = new AgreementsController();
   controller
     .getAgreements()
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:agreementId', (req, res) => {
+router.get("/:agreementId", (req, res) => {
   const controller = new AgreementsController();
   controller
     .getAgreement(req.params.agreementId)
@@ -23,7 +23,7 @@ router.get('/:agreementId', (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
-router.delete('/:agreementId', (req, res) => {
+router.delete("/:agreementId", (req, res) => {
   const controller = new AgreementsController();
   controller
     .deleteAgreement(req.params.agreementId)
@@ -31,7 +31,7 @@ router.delete('/:agreementId', (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
-router.post('/create', (req, res) => {
+router.post("/create", (req, res) => {
   const controller = new AgreementsController();
   controller
     .createAgreement(req.body)
@@ -39,7 +39,7 @@ router.post('/create', (req, res) => {
     .catch((err) => res.status(422).send(err));
 });
 
-router.put('/update/:agreementId', (req, res) => {
+router.put("/update/:agreementId", (req, res) => {
   const controller = new AgreementsController();
   controller
     .updateAgreement(req.params.agreementId, req.body)

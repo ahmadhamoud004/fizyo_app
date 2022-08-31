@@ -9,18 +9,18 @@ import {
   Response,
   Example,
   Path,
-} from 'tsoa';
-import { Model } from 'mongoose';
-import { IDispute } from '../types/interfaces';
+} from "tsoa";
+import { Model } from "mongoose";
+import { IDispute } from "../types/interfaces";
 
-const DisputeModel: Model<IDispute> = require('../models/dispute_model');
+const DisputeModel: Model<IDispute> = require("../models/dispute_model");
 
-@Route('disputes')
+@Route("disputes")
 export default class DisputeController {
   /**
    * Get List of All disputes
    */
-  @Get('/')
+  @Get("/")
   public async getDisputes(): Promise<IDispute[]> {
     return await DisputeModel.find();
   }
@@ -29,8 +29,8 @@ export default class DisputeController {
    * Get a dispute details
    * @example disputeId "       "
    */
-  @Response(404, 'The requested dispute is not found')
-  @Get('{disputeId}')
+  @Response(404, "The requested dispute is not found")
+  @Get("{disputeId}")
   public async getDispute(disputeId: string): Promise<IDispute | null> {
     return DisputeModel.findById(disputeId);
   }
@@ -39,9 +39,9 @@ export default class DisputeController {
    * Delete a dispute
    * @example disputeId "       "
    */
-  @Response(404, 'The requested dispute is not found')
-  @SuccessResponse('200', 'Deleted')
-  @Delete('{disputeId}')
+  @Response(404, "The requested dispute is not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{disputeId}")
   public async deleteDispute(disputeId: string): Promise<IDispute | null> {
     return DisputeModel.findByIdAndDelete(disputeId);
   }
@@ -49,25 +49,25 @@ export default class DisputeController {
   /**
    * Create a dispute
    */
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Created')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
   @Example<IDispute>({
-    sessionID: 'yuuruyyudde',
-    firstPartyUID: '_',
-    secondUID: '_',
-    topic: 'treatment',
-    details: 'more details',
+    sessionID: "yuuruyyudde",
+    firstPartyUID: "_",
+    secondUID: "_",
+    topic: "treatment",
+    details: "more details",
     attachments: [
-      { url: 'http://localhost:8000/disputes', name: 'file', type: 'pdf' },
+      { url: "http://localhost:8000/disputes", name: "file", type: "pdf" },
     ], // name, url, type
-    status: 'sent',
-    resolverUID: '_',
-    inProgressDate: new Date('2022-09-10'),
-    receivedDate: new Date('2022-09-10'),
-    suspendedDate: new Date('2022-09-10'),
-    closedDate: new Date('2022-09-10'),
+    status: "sent",
+    resolverUID: "_",
+    inProgressDate: new Date("2022-09-10"),
+    receivedDate: new Date("2022-09-10"),
+    suspendedDate: new Date("2022-09-10"),
+    closedDate: new Date("2022-09-10"),
   })
-  @Post('create')
+  @Post("create")
   public async createDispute(@Body() dispute: IDispute): Promise<IDispute> {
     return new DisputeModel({ ...dispute }).save();
   }
@@ -75,9 +75,9 @@ export default class DisputeController {
   /**
    * Update a dispute
    */
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Updated')
-  @Put('update/{disputeId}')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Updated")
+  @Put("update/{disputeId}")
   public async updateDispute(
     @Path() disputeId: string,
     @Body() dispute: Partial<IDispute>

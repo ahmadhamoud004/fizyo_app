@@ -37,7 +37,7 @@ export default class AgreementsController {
 
   /**
    * Delete a agreement
-   * @example agreementId "_"
+   * @example agreementId "3452ter23wt"
    */
   @Response(404, 'The requested agreement is not found')
   @SuccessResponse('200', 'Deleted')
@@ -59,7 +59,7 @@ export default class AgreementsController {
     startDate: new Date('2022-09-10'),
     endDate: new Date('2022-09-10'),
     details: 'first Agreement',
-    attachments: [{ name: 'personal information' }],
+    // attachments: [{ name: 'personal information' }],
     reminder: true,
   })
   @Post('create')
@@ -90,8 +90,8 @@ export default class AgreementsController {
         agreement.endDate ?? agreementDocument.endDate;
       agreementDocument.details =
         agreement.details ?? agreementDocument.details;
-      agreementDocument.attachments =
-        agreement.attachments ?? agreementDocument.attachments;
+      // agreementDocument.attachments =
+      //   agreement.attachments ?? agreementDocument.attachments;
       agreementDocument.reminder =
         agreement.reminder ?? agreementDocument.reminder;
 

@@ -1,8 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 beforeAll(async () => {
   // put your client connection code here, example with mongoose:
-  await mongoose.connect(process.env['MONGO_URI'] ?? '');
+
+  await mongoose.connect(process.env["MONGO_URI"] ?? "");
 });
 
 afterAll(async () => {

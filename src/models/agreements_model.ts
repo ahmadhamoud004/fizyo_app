@@ -7,12 +7,12 @@ const AgreementsSchema = new Schema<IAgreements>({
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   details: { type: String, required: true },
-  attachments: [{ type: Object, required: true }],
+  // attachments: [{ type: Object, required: true }],
   reminder: { type: Boolean, required: true },
 });
 
 AgreementsSchema.virtual('url').get(function () {
-  return 'agreements' + this._id;
+  return 'agreements/' + this._id;
 });
 
 module.exports = model<IAgreements>('Agreement', AgreementsSchema);

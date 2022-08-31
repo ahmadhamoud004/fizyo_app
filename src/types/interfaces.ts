@@ -1,21 +1,21 @@
-import { Types } from 'mongoose';
+import { Types } from "mongoose";
 
 export interface IServiceProviders {
   _id?: Types.ObjectId | string;
   uID?: string | Types.ObjectId;
   bio: string;
   specialities: string;
-  preferredServiceType: string[] | ('online' | 'home' | 'office')[];
+  // preferredServiceType: string[] | ("online" | "home" | "office")[];
   minSessionFee: Number;
   maxSessionFee: Number;
-  documents: { url: string; name: string; type: string };
+  // documents?: { url: string; name: string; type: string };
   reviewerUIDs?: string[] | Types.ObjectId[];
   verificationStatus:
-    | 'notSubmitted'
-    | 'pendingReview'
-    | 'inReview'
-    | 'verified'
-    | 'rejected';
+    | "notSubmitted"
+    | "pendingReview"
+    | "inReview"
+    | "verified"
+    | "rejected";
   verificationDate: Date;
   verifiedByUID?: string | Types.ObjectId;
   url?: string;
@@ -30,12 +30,12 @@ export interface IDispute {
   details: string;
   attachments?: { url: string; name: string; type: string }[]; // name, url, type
   status:
-    | 'sent'
-    | 'received'
-    | 'in-progress'
-    | 'suspended'
-    | 'rejected'
-    | 'resolved';
+    | "sent"
+    | "received"
+    | "in-progress"
+    | "suspended"
+    | "rejected"
+    | "resolved";
   resolverUID?: string | Types.ObjectId;
   inProgressDate: Date;
   receivedDate: Date;
@@ -46,7 +46,7 @@ export interface IDispute {
 
 export interface ICommunications {
   _id?: string | Types.ObjectId;
-  referenceType: 'sessions' | 'agreements' | 'disputes' | 'users';
+  referenceType: "sessions" | "agreements" | "disputes" | "users";
   referenceID?: string | Types.ObjectId;
   partiesUIDs?: string[] | Types.ObjectId[];
   lastUpdate: Date;
@@ -67,7 +67,7 @@ export interface IAgreements {
   startDate: Date;
   endDate: Date;
   details: string;
-  attachments: Object[];
+  // attachments: Object[];
   reminder: boolean;
   url?: string;
 }
