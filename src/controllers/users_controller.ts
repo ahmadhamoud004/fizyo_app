@@ -1,85 +1,124 @@
-import { Request, Response } from "express";
+import {
+  Get,
+  Post,
+  Delete,
+  Put,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Path,
+} from "tsoa";
+import { Model } from "mongoose";
 import { IUsers } from "../types/interfaces";
-const UsersModel = require("../models/users_model");
 
-// Get Users
-exports.GetUsers = (req: Request, res: Response) => {
-  UsersModel.find()
-    .then((users: Array<IUsers>) => {
-      res.send(users);
-    })
-    .catch((err: any) => {
-      console.log(err);
-      res.send("Error!")
-    });
-};
+const UsersModel: Model<IUsers> = require("../models/users_model");
 
-// Get User
-exports.getUser = (req: Request, res: Response) => {
-  UsersModel.findById(req.params.id)
-    .then((user: IUsers) => {
-      res.send(user);
-    })
-    .catch((err: any) => {
-      console.log(err);
-      res.send("Error!")
-    });
-};
+@Route("users")
+export default class UsersController {
+  /**
+   * Get all of users
+   */
+  @Get("/")
+  public async getUsers(): Promise<IUsers[]> {
+    return await UsersModel.find();
+  }
 
-// Create User
-exports.createUser = (req: any, res: Response) => {
+  /**
+   * Get a user details
+   * @example userId "       "
+   */
+  @Response(404, "The requested user is not found")
+  @Get("{userId}")
+  public async getUser(
+    userId: string
+  ): Promise<IUsers | null> {
+    return await UsersModel.findById(userId);
+  }
 
-  // Example on string
-  const email = req.body.email;
+  /**
+   * Delete a user
+   * @example userId "ertwerwryer45"
+   */
+  @Response(404, "The requested user is not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{userId}")
+  public async deleteUser(
+    userId: string
+  ): Promise<IUsers | null> {
+    return await UsersModel.findByIdAndDelete(userId);
+  }
 
-  const phoneNumber = req.body.phoneNumber;
-  const password = req.body.password;
-  const profilePicture = req.body.profilePicture;
-  const firstName = req.body.firstName;
-  const lastName = req.body.lastName;
+  /**
+   * Create a user
+   */
+  @Response(422, "Validation failed")
+  @SuccessResponse("200", "Created")
+  @Example<IUsers>({
+    //uID: "43234erwrdfserwr",
+    email: "nour@gmail.com",
+    phoneNumber: "00352681531905",
+    password: "00352681531905",
+    profilePicture: "main.png",
+    firstName: "Muhammad",
+    lastName: "Nour",
+    gender: "Male",
+    DOB: new Date("2022-09-10"),
+    address: [
+      {
+        country: "Syria",
+        government: "SY",
+        manipolicity: "Fixed",
+      },
+    ],
+    verified: "notSent",
+    status: "active",
+    accountType: "EM",
+    lastLoginDate: new Date(Date.now()),
+    accountSetting: {  name: "Setting1", value: "Some value"},
+    languages:["AR", "EN"],
+    maritalStatus: "single",
+  })
+  @Post("create")
+  public async createUser(
+    @Body() user: IUsers
+  ): Promise<IUsers> {
+    return await new UsersModel({ ...user }).save();
+  }
 
-  // Example on Enum
-  
-
-  const book = new BookModel({
-    title,
-    author,
-    summary,
-    isbn,
-    genre,
-  });
-  book
-    .save()
-    .then(async (e: any) => {
-      res.json("Book inserted!");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
-
-// Handle book delete on POST.
-exports.book_delete_post = (req: Request, res: Response) => {
-  BookModel.findByIdAndDelete(req.params.id)
-    .then((e: any) => {
-      res.json("Book deleted");
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
-
-// Handle book update on POST.
-exports.book_update_post = (req: Request, res: Response) => {
-  BookModel.findById(req.params.id)
-    .then((book: any) => {
-      book.title = req.body.title??book.title;
-      book.author = req.body.author == null?book.author:req.body.author;
-      book.summary = req.body.summary;
-      book.isbn = req.body.isbn;
-      book.genre = req.body.genre;
-      book
-        .save()
-        .then((e: any) => {
-          res.json("Book updated!");
-        })
-        .catch((err: any) => res.status(400).json(err));
-    })
-    .catch((err: any) => res.status(400).json(err));
-};
+  /**
+   * Update user
+   */
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Updated")
+  @Put("update/{userId}")
+  public async updateUser(
+    @Path() userId: string,
+    @Body() user: Partial<IUsers>
+  ): Promise<IUsers | null> {
+    let userDocument = await UsersModel.findById(
+      userId
+    );
+    if (userDocument != null) {
+      userDocument.email = user.email ?? userDocument.email;
+      userDocument.phoneNumber = user.phoneNumber ?? userDocument.phoneNumber;
+      userDocument.password = user.password ?? userDocument.password;
+      userDocument.profilePicture = user.profilePicture ?? userDocument.profilePicture;
+      userDocument.firstName = user.firstName ?? userDocument.firstName;
+      userDocument.lastName = user.lastName ?? userDocument.lastName;
+      userDocument.gender = user.gender ?? userDocument.gender;
+      userDocument.DOB = user.DOB ?? userDocument.DOB;
+      userDocument.address = user.address ?? userDocument.address;
+      userDocument.verified = user.verified ?? userDocument.verified;
+      userDocument.status = user.status ?? userDocument.status;
+      userDocument.accountType = user.accountType ?? userDocument.accountType;
+      userDocument.lastLoginDate = user.lastLoginDate ?? userDocument.lastLoginDate;
+      userDocument.accountSetting = user.accountSetting ?? userDocument.accountSetting;
+      userDocument.languages = user.languages ?? userDocument.languages;
+      userDocument.maritalStatus = user.maritalStatus ?? userDocument.maritalStatus;
+      return await userDocument.save();
+    }
+    return null;
+  }
+}

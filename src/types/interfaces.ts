@@ -90,7 +90,7 @@ export interface IClients {
 }
 
 export interface IUsers {
-  _id: Types.ObjectId | string;
+  _id?: Types.ObjectId | string;
   email: string;
   phoneNumber: string;
   password: string;
