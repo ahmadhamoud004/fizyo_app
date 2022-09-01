@@ -2,20 +2,28 @@ import { Types } from "mongoose";
 
 export interface IServiceProviders {
   _id?: Types.ObjectId | string;
+  // Example on foreign key string
   uID?: string | Types.ObjectId;
+  // Example on string
   bio: string;
   specialities: string;
+  // Example on string[] enum
   preferredServiceType: string[] | ("online" | "home" | "office")[];
+  // Example on number
   minSessionFee: number;
   maxSessionFee: number;
+  // Example on object with attributes
   documents?: { url: string; name: string; attType: string };
+  // Example on string[] of foreign keys
   reviewerUIDs?: string[] | Types.ObjectId[];
+  // Example on enum
   verificationStatus:
     | "notSubmitted"
     | "pendingReview"
     | "inReview"
     | "verified"
     | "rejected";
+  // Example on date
   verificationDate: Date;
   verifiedByUID?: string | Types.ObjectId;
   url?: string;
@@ -50,6 +58,7 @@ export interface ICommunications {
   referenceID?: string | Types.ObjectId;
   partiesUIDs?: string[] | Types.ObjectId[];
   lastUpdate: Date;
+  // Example on object[] with attributes
   messages: {
     messageType: string;
     messageContent: string;
@@ -103,7 +112,7 @@ export interface IUsers {
   accountType:
     "PT" | "EM" | "PA";
   lastLoginDate: Date;
-  accountSetting: Object;
+  accountSetting: object;
   languages: string[];
   maritalStatus:   
     "married" | "single" | "divorced" | "widow";
@@ -112,7 +121,7 @@ export interface IUsers {
 export interface IRoles {
   _id: Types.ObjectId;
   name: string;
-  employees?: string[] | Types.ObjectId[] | IEmployees[];
+  employees?: string[] | Types.ObjectId[];
   //employeesArr?: Array<PopulatedDoc<IEmployees & Document>>;
   users: string[];
   service_provider: string[];
