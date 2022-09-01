@@ -15,14 +15,14 @@ describe("ServiceProvidersController", () => {
             uID: "123456845522",
             bio: "this is the best",
             specialities: "Physiotherapist",
-            // preferredServiceType: ["online", "home", "office"],
+            preferredServiceType: ["online", "home", "office"],
             minSessionFee: 100.0,
             maxSessionFee: 150.0,
-            // documents: {
-            //   url: 'http://localhost:8000/documents',
-            //   name: 'certificate',
-            //   type: 'pdf',
-            // },
+            documents: {
+              url: "http://localhost:8000/documents",
+              name: "certificate",
+              attType: "pdf",
+            },
             reviewerUIDs: ["123456123457", "123456"],
             verificationStatus: "notSubmitted",
 

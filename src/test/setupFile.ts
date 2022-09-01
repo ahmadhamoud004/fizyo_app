@@ -8,5 +8,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   // put your client disconnection code here, example with mongodb:
-  await mongoose.disconnect();
+  // await mongoose.disconnect();
+  console.log("i am here ------------------------------------------------");
 });

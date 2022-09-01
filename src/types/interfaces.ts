@@ -5,10 +5,10 @@ export interface IServiceProviders {
   uID?: string | Types.ObjectId;
   bio: string;
   specialities: string;
-  // preferredServiceType: string[] | ("online" | "home" | "office")[];
-  minSessionFee: Number;
-  maxSessionFee: Number;
-  // documents?: { url: string; name: string; type: string };
+  preferredServiceType: string[] | ("online" | "home" | "office")[];
+  minSessionFee: number;
+  maxSessionFee: number;
+  documents?: { url: string; name: string; attType: string };
   reviewerUIDs?: string[] | Types.ObjectId[];
   verificationStatus:
     | "notSubmitted"
@@ -21,14 +21,14 @@ export interface IServiceProviders {
   url?: string;
 }
 
-export interface IDispute {
+export interface IDisputes {
   _id?: Types.ObjectId | string;
   sessionID?: string | Types.ObjectId;
   firstPartyUID?: string | Types.ObjectId;
   secondUID?: string | Types.ObjectId;
   topic: string;
   details: string;
-  attachments?: { url: string; name: string; type: string }[]; // name, url, type
+  attachments?: { url: string; name: string; disType: string }[]; // name, url, type
   status:
     | "sent"
     | "received"
@@ -67,7 +67,15 @@ export interface IAgreements {
   startDate: Date;
   endDate: Date;
   details: string;
-  // attachments: Object[];
+  attachments: object[];
   reminder: boolean;
   url?: string;
+}
+
+export interface IClients {
+  _id?: string | Types.ObjectId;
+  uID?: string | Types.ObjectId;
+  preferredServiceType: string[] | ("online" | "home" | "office")[];
+  diseases: string;
+  preferences: object;
 }

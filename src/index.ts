@@ -21,7 +21,8 @@ mongoose.connect(uri).catch((err: any) => console.log(err));
 const connection = mongoose.connection;
 connection.once("open", async () => {
   console.log("MongoDB database connection established successfully");
-  const ServiceProvidersModel = require("./models/service_providers_model");
+  const ServiceProvidersModel =
+    await require("./models/service_providers_model");
   const DisputeModel = require("./models/dispute_model");
   const CommunicationsModel = require("./models/communications_model");
   const AgreementsModel = require("./models/agreements_model");

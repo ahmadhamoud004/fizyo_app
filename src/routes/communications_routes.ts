@@ -1,9 +1,9 @@
-import express from 'express';
-import CommunicationsController from '../controllers/communications_controller';
+import express from "express";
+import CommunicationsController from "../controllers/communications_controller";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   const controller = new CommunicationsController();
   controller
     .getCommunications()
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:communicationId', (req, res) => {
+router.get("/:communicationId", (req, res) => {
   const controller = new CommunicationsController();
   controller
     .getCommunication(req.params.communicationId)
@@ -23,7 +23,7 @@ router.get('/:communicationId', (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
-router.delete('/:communicationId', (req, res) => {
+router.delete("/:communicationId", (req, res) => {
   const controller = new CommunicationsController();
   controller
     .deleteCommunication(req.params.communicationId)
@@ -31,7 +31,7 @@ router.delete('/:communicationId', (req, res) => {
     .catch((err) => res.status(404).send(err));
 });
 
-router.post('/create', (req, res) => {
+router.post("/create", (req, res) => {
   const controller = new CommunicationsController();
   controller
     .createCommunication(req.body)
@@ -39,7 +39,7 @@ router.post('/create', (req, res) => {
     .catch((err) => res.status(422).send(err));
 });
 
-router.put('/update/:communicationId', (req, res) => {
+router.put("/update/:communicationId", (req, res) => {
   const controller = new CommunicationsController();
   controller
     .updateCommunication(req.params.communicationId, req.body)

@@ -9,7 +9,262 @@
 			"Types.ObjectId": {
 				"type": "string"
 			},
-			"IDispute": {
+			"IServiceProviders": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"bio": {
+						"type": "string"
+					},
+					"specialities": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"type": "string",
+									"enum": [
+										"online",
+										"home",
+										"office"
+									]
+								},
+								"type": "array"
+							}
+						]
+					},
+					"minSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"maxSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"documents": {
+						"properties": {
+							"attType": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"attType",
+							"name",
+							"url"
+						],
+						"type": "object"
+					},
+					"reviewerUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"verificationStatus": {
+						"type": "string",
+						"enum": [
+							"notSubmitted",
+							"pendingReview",
+							"inReview",
+							"verified",
+							"rejected"
+						]
+					},
+					"verificationDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"verifiedByUID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"bio",
+					"specialities",
+					"preferredServiceType",
+					"minSessionFee",
+					"maxSessionFee",
+					"verificationStatus",
+					"verificationDate"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IServiceProviders_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"bio": {
+						"type": "string"
+					},
+					"specialities": {
+						"type": "string"
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"type": "string",
+									"enum": [
+										"online",
+										"home",
+										"office"
+									]
+								},
+								"type": "array"
+							}
+						]
+					},
+					"minSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"maxSessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"documents": {
+						"properties": {
+							"attType": {
+								"type": "string"
+							},
+							"name": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"attType",
+							"name",
+							"url"
+						],
+						"type": "object"
+					},
+					"reviewerUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"verificationStatus": {
+						"type": "string",
+						"enum": [
+							"notSubmitted",
+							"pendingReview",
+							"inReview",
+							"verified",
+							"rejected"
+						]
+					},
+					"verificationDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"verifiedByUID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IDisputes": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -132,7 +387,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IDispute_": {
+			"Partial_IDisputes_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -483,6 +738,13 @@
 					"details": {
 						"type": "string"
 					},
+					"attachments": {
+						"items": {
+							"additionalProperties": false,
+							"type": "object"
+						},
+						"type": "array"
+					},
 					"reminder": {
 						"type": "boolean"
 					},
@@ -496,6 +758,7 @@
 					"startDate",
 					"endDate",
 					"details",
+					"attachments",
 					"reminder"
 				],
 				"type": "object",
@@ -533,6 +796,13 @@
 					"details": {
 						"type": "string"
 					},
+					"attachments": {
+						"items": {
+							"additionalProperties": false,
+							"type": "object"
+						},
+						"type": "array"
+					},
 					"reminder": {
 						"type": "boolean"
 					},
@@ -552,6 +822,211 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/serviceProviders": {
+			"get": {
+				"operationId": "GetServiceProviders",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IServiceProviders"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All serviceProviders",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/serviceProviders/{serviceProviderId}": {
+			"get": {
+				"operationId": "GetServiceProvider",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IServiceProviders"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested serviceProvider is not found"
+					}
+				},
+				"description": "Get a serviceProvider details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "serviceProviderId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "       "
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteServiceProvider",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IServiceProviders"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested serviceProvider is not found"
+					}
+				},
+				"description": "Delete a serverProvider",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "serviceProviderId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ertwerwryer45"
+					}
+				]
+			}
+		},
+		"/serviceProviders/create": {
+			"post": {
+				"operationId": "CreateServiceProvider",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IServiceProviders"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"uID": "43234erwrdfserwr",
+											"bio": "this is the best",
+											"specialities": "Physiotherapist",
+											"preferredServiceType": [
+												"online",
+												"home",
+												"office"
+											],
+											"minSessionFee": 100,
+											"maxSessionFee": 150,
+											"documents": {
+												"url": "http://localhost:8000/documents",
+												"name": "certificate",
+												"attType": "pdf"
+											},
+											"reviewerUIDs": [
+												"123456123457",
+												"123456"
+											],
+											"verificationStatus": "notSubmitted",
+											"verificationDate": "2022-09-10T00:00:00.000Z",
+											"verifiedByUID": "43234erwrdfserwr"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a serviceProvider",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IServiceProviders"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/serviceProviders/update/{serviceProviderId}": {
+			"put": {
+				"operationId": "UpdateServiceProvider",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IServiceProviders"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a ServiceProvider",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "serviceProviderId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IServiceProviders_"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/disputes": {
 			"get": {
 				"operationId": "GetDisputes",
@@ -562,7 +1037,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IDispute"
+										"$ref": "#/components/schemas/IDisputes"
 									},
 									"type": "array"
 								}
@@ -586,7 +1061,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDispute"
+											"$ref": "#/components/schemas/IDisputes"
 										}
 									],
 									"nullable": true
@@ -622,7 +1097,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDispute"
+											"$ref": "#/components/schemas/IDisputes"
 										}
 									],
 									"nullable": true
@@ -658,7 +1133,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IDispute"
+									"$ref": "#/components/schemas/IDisputes"
 								},
 								"examples": {
 									"Example 1": {
@@ -699,7 +1174,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IDispute"
+								"$ref": "#/components/schemas/IDisputes"
 							}
 						}
 					}
@@ -717,7 +1192,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDispute"
+											"$ref": "#/components/schemas/IDisputes"
 										}
 									],
 									"nullable": true
@@ -746,7 +1221,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IDispute_"
+								"$ref": "#/components/schemas/Partial_IDisputes_"
 							}
 						}
 					}
@@ -845,7 +1320,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "_"
+						"example": "wrerwetrewteryedsf"
 					}
 				]
 			}
@@ -1073,6 +1548,11 @@
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"endDate": "2022-09-10T00:00:00.000Z",
 											"details": "first Agreement",
+											"attachments": [
+												{
+													"name": "personal information"
+												}
+											],
 											"reminder": true
 										}
 									}

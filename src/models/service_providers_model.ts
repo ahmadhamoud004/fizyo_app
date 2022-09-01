@@ -6,26 +6,26 @@ const ServiceProvidersSchema = new Schema<IServiceProviders>({
   uID: { type: String },
   bio: { type: String, required: true },
   specialities: { type: String, required: true },
-  // preferredServiceType: [
-  //   {
-  //     type: String,
-  //     required: true,
-  //     enum: ["online", "home", "office"],
-  //     default: "online",
-  //   },
-  // ],
+  preferredServiceType: [
+    {
+      type: String,
+      required: true,
+      enum: ["online", "home", "office"],
+      default: "online",
+    },
+  ],
   minSessionFee: { type: Number, required: true },
   maxSessionFee: { type: Number, required: true },
 
-  // documents: {
-  //   type: {
-  //     url: { type: String, required: true },
-  //     name: { type: String, required: true },
-  //     type: { type: String, required: true },
-  //   } as Object,
-  // },
+  documents: {
+    type: {
+      url: { type: String, required: true },
+      name: { type: String, required: true },
+      attType: { type: String, required: true },
+    },
+  },
   // reviewerUIDs: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  reviewerUIDs: [{ type: String }],
+  reviewerUIDs: [{ type: String, required: true }],
   verificationStatus: {
     type: String,
     required: true,

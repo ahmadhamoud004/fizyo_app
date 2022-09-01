@@ -3,12 +3,12 @@ import ServiceProvidersController from "../controllers/service_providers_control
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const controller = new ServiceProvidersController();
   controller
     .getServiceProviders()
-    .then((response) => {
-      res.send(response);
+    .then(async (response) => {
+      await res.send(response);
     })
     .catch((err) => {
       res.status(422).send(err);
@@ -19,7 +19,7 @@ router.get("/:serviceProviderId", (req, res) => {
   const controller = new ServiceProvidersController();
   controller
     .getServiceProvider(req.params.serviceProviderId)
-    .then((response) => res.send(response))
+    .then(async (response) => await res.send(response))
     .catch((err) => res.status(404).send(err));
 });
 
@@ -27,23 +27,23 @@ router.delete("/:serviceProviderId", (req, res) => {
   const controller = new ServiceProvidersController();
   controller
     .deleteServiceProvider(req.params.serviceProviderId)
-    .then((response) => res.send(response))
+    .then(async (response) => await res.send(response))
     .catch((err) => res.status(404).send(err));
 });
 
-router.post("/create", (req, res) => {
+router.post("/create", async (req, res) => {
   const controller = new ServiceProvidersController();
-  controller
+  await controller
     .createServiceProvider(req.body)
     .then((response) => res.send(response))
     .catch((err) => res.status(422).send(err));
 });
 
-router.put("/update/:serviceProviderId", (req, res) => {
+router.put("/update/:serviceProviderId", async (req, res) => {
   const controller = new ServiceProvidersController();
-  controller
+  await controller
     .updateServiceProvider(req.params.serviceProviderId, req.body)
-    .then((response) => res.send(response))
+    .then(async (response) => await res.send(response))
     .catch((err) => res.status(422).send(err));
 });
 

@@ -34,7 +34,7 @@ export default class ServiceProvidersController {
   public async getServiceProvider(
     serviceProviderId: string
   ): Promise<IServiceProviders | null> {
-    return ServiceProvidersModel.findById(serviceProviderId);
+    return await ServiceProvidersModel.findById(serviceProviderId);
   }
 
   /**
@@ -47,7 +47,7 @@ export default class ServiceProvidersController {
   public async deleteServiceProvider(
     serviceProviderId: string
   ): Promise<IServiceProviders | null> {
-    return ServiceProvidersModel.findByIdAndDelete(serviceProviderId);
+    return await ServiceProvidersModel.findByIdAndDelete(serviceProviderId);
   }
 
   /**
@@ -60,14 +60,14 @@ export default class ServiceProvidersController {
     uID: "43234erwrdfserwr",
     bio: "this is the best",
     specialities: "Physiotherapist",
-    // preferredServiceType: ["online", "home", "office"],
+    preferredServiceType: ["online", "home", "office"],
     minSessionFee: 100.0,
     maxSessionFee: 150.0,
-    // documents: {
-    //   url: "http://localhost:8000/documents",
-    //   name: "certificate",
-    //   type: "pdf",
-    // },
+    documents: {
+      url: "http://localhost:8000/documents",
+      name: "certificate",
+      attType: "pdf",
+    },
     reviewerUIDs: ["123456123457", "123456"],
     verificationStatus: "notSubmitted",
 
@@ -78,7 +78,7 @@ export default class ServiceProvidersController {
   public async createServiceProvider(
     @Body() serviceProvider: IServiceProviders
   ): Promise<IServiceProviders> {
-    return new ServiceProvidersModel({ ...serviceProvider }).save();
+    return await new ServiceProvidersModel({ ...serviceProvider }).save();
   }
 
   /**
@@ -101,15 +101,15 @@ export default class ServiceProvidersController {
         serviceProvider.bio ?? serviceProviderDocument.bio;
       serviceProviderDocument.specialities =
         serviceProvider.specialities ?? serviceProviderDocument.specialities;
-      // serviceProviderDocument.preferredServiceType =
-      //   serviceProvider.preferredServiceType ??
-      //   serviceProviderDocument.preferredServiceType;
+      serviceProviderDocument.preferredServiceType =
+        serviceProvider.preferredServiceType ??
+        serviceProviderDocument.preferredServiceType;
       serviceProviderDocument.minSessionFee =
         serviceProvider.minSessionFee ?? serviceProviderDocument.minSessionFee;
       serviceProviderDocument.maxSessionFee =
         serviceProvider.maxSessionFee ?? serviceProviderDocument.maxSessionFee;
-      // serviceProviderDocument.documents =
-      //   serviceProvider.documents ?? serviceProviderDocument.documents;
+      serviceProviderDocument.documents =
+        serviceProvider.documents ?? serviceProviderDocument.documents;
       serviceProviderDocument.reviewerUIDs =
         serviceProvider.reviewerUIDs ?? serviceProviderDocument.reviewerUIDs;
       serviceProviderDocument.verificationStatus =

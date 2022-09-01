@@ -1,7 +1,7 @@
-import { Schema, model } from 'mongoose';
-import { IDispute } from '../types/interfaces';
+import { Schema, model } from "mongoose";
+import { IDisputes } from "../types/interfaces";
 
-const DisputeSchema = new Schema<IDispute>({
+const DisputeSchema = new Schema<IDisputes>({
   // sessionID: { type: Schema.Types.ObjectId, ref: 'Session' },
   // firstPartyUID: { type: Schema.Types.ObjectId, ref: 'User' },
   // secondUID: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -12,25 +12,25 @@ const DisputeSchema = new Schema<IDispute>({
   details: { type: String, required: true },
   attachments: [
     {
-      type: Object({
-        url: { type: String },
-        name: { type: String },
-        type: { type: String },
-      }),
+      type: {
+        url: { type: String, required: true },
+        name: { type: String, required: true },
+        type: { type: String, required: true },
+      },
     },
   ], // name, url, type
   status: {
     type: String,
     required: true,
     enum: [
-      'sent',
-      'received',
-      'in-progress',
-      'suspended',
-      'rejected',
-      'resolved',
+      "sent",
+      "received",
+      "in-progress",
+      "suspended",
+      "rejected",
+      "resolved",
     ],
-    default: 'sent',
+    default: "sent",
   },
 
   // resolverUID: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -41,8 +41,8 @@ const DisputeSchema = new Schema<IDispute>({
   closedDate: { type: Date, required: true },
 });
 
-DisputeSchema.virtual('url').get(function () {
-  return 'disputes/' + this._id;
+DisputeSchema.virtual("url").get(function () {
+  return "disputes/" + this._id;
 });
 
-module.exports = model<IDispute>('Dispute', DisputeSchema);
+module.exports = model<IDisputes>("Dispute", DisputeSchema);

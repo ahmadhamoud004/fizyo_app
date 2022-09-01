@@ -9,18 +9,18 @@ import {
   Response,
   Example,
   Path,
-} from 'tsoa';
-import { Model } from 'mongoose';
-import { ICommunications } from '../types/interfaces';
+} from "tsoa";
+import { Model } from "mongoose";
+import { ICommunications } from "../types/interfaces";
 
-const CommunicationsModel: Model<ICommunications> = require('../models/communications_model');
+const CommunicationsModel: Model<ICommunications> = require("../models/communications_model");
 
-@Route('communications')
+@Route("communications")
 export default class CommunicationsController {
   /**
    * Get List of All communications
    */
-  @Get('/')
+  @Get("/")
   public async getCommunications(): Promise<ICommunications[]> {
     return await CommunicationsModel.find();
   }
@@ -29,60 +29,60 @@ export default class CommunicationsController {
    * Get a communication details
    * @example communicationId "_"
    */
-  @Response(404, 'The requested communication is not found')
-  @Get('{communicationId}')
+  @Response(404, "The requested communication is not found")
+  @Get("{communicationId}")
   public async getCommunication(
     communicationId: string
   ): Promise<ICommunications | null> {
-    return CommunicationsModel.findById(communicationId);
+    return await CommunicationsModel.findById(communicationId);
   }
 
   /**
    * Delete a communication
-   * @example communicationId "_"
+   * @example communicationId "wrerwetrewteryedsf"
    */
-  @Response(404, 'The requested communication is not found')
-  @SuccessResponse('200', 'Deleted')
-  @Delete('{communicationId}')
+  @Response(404, "The requested communication is not found")
+  @SuccessResponse("200", "Deleted")
+  @Delete("{communicationId}")
   public async deleteCommunication(
     communicationId: string
   ): Promise<ICommunications | null> {
-    return CommunicationsModel.findByIdAndDelete(communicationId);
+    return await CommunicationsModel.findByIdAndDelete(communicationId);
   }
 
   /**
    * Create a communication
    */
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Created')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
   @Example<ICommunications>({
-    referenceType: 'sessions',
-    referenceID: '_',
-    partiesUIDs: ['_'],
-    lastUpdate: new Date('2022-09-10'),
+    referenceType: "sessions",
+    referenceID: "_",
+    partiesUIDs: ["_"],
+    lastUpdate: new Date("2022-09-10"),
     messages: [
       {
-        messageType: 'txt',
-        messageContent: 'hello',
-        senderUID: '_',
-        sendDate: new Date('2022-09-10'),
-        deliveryDetails: [{ status: 'done' }],
+        messageType: "txt",
+        messageContent: "hello",
+        senderUID: "_",
+        sendDate: new Date("2022-09-10"),
+        deliveryDetails: [{ status: "done" }],
       },
     ],
   })
-  @Post('create')
+  @Post("create")
   public async createCommunication(
     @Body() communication: ICommunications
   ): Promise<ICommunications> {
-    return new CommunicationsModel({ ...communication }).save();
+    return await new CommunicationsModel({ ...communication }).save();
   }
 
   /**
    * Update a communication
    */
-  @Response(422, 'Validation Failed')
-  @SuccessResponse('200', 'Updated')
-  @Put('update/{communicationId}')
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Updated")
+  @Put("update/{communicationId}")
   public async updateCommunication(
     @Path() communicationId: string,
     @Body() communication: Partial<ICommunications>
