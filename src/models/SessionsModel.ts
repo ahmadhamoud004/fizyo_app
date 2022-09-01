@@ -11,7 +11,7 @@ const SessionsSchema = new Schema<ISessions>({
   
   },
   serviceProvidersID: {type:Schema.Types.ObjectId,ref:"IserviceProviders",required:true},
-  clientsIDs:[{type:Schema.Types.ObjectId, ref:"IClients"}],
+  clientsIDs:[{type:Schema.Types.ObjectId, ref:"Client"}],
   name: {type:String,required:true},
   details: {type:String,required:true},
   startDate: {type:Date,required:true},  
@@ -34,7 +34,7 @@ const SessionsSchema = new Schema<ISessions>({
   requirements:{type:String,required:true},
   ratings:[{
     type:{
-      raterUID:{type:Schema.Types.ObjectId,ref:IUsers},
+      raterUID:{type:Schema.Types.ObjectId,ref:"User"},
       ratingValue:{type:String,required:true},
       ratingDate:{type:Date,required:true},
 
@@ -43,7 +43,7 @@ const SessionsSchema = new Schema<ISessions>({
   }],
   reviews:[{
     type:{
-      reviewerUID:{type:Schema.Types.ObjectId,ref:IUsers},
+      reviewerUID:{type:Schema.Types.ObjectId,ref:"User"},
       reviewDeatails:{type:String,required:true},
       reviewDate:{type:Date,required:true},
 
@@ -56,7 +56,7 @@ const SessionsSchema = new Schema<ISessions>({
     discount:{type:Number},
     payment:{type:String},
     paymentMethod:{type:String},
-    payerID:{type:Schema.Types.ObjectId,ref:"IClients",required:true},
+    payerID:{type:Schema.Types.ObjectId,ref:"Client",required:true},
     amount:{type:Number}
   }
   },
@@ -69,4 +69,4 @@ const SessionsSchema = new Schema<ISessions>({
 
 
 });
-module.exports = model<ISessions>('ISessions', SessionsSchema);
+module.exports = model<ISessions>('Session', SessionsSchema);

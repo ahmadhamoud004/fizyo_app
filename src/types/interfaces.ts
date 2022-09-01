@@ -40,7 +40,7 @@ statues: string|'draft'|'published';//enum
 topic:string;
 details:string;
 sentDate:Date;
-attachments:object[];
+attachments:object[]|string;
 receiversUIDs?:string[]|Types.ObjectId[]|IUsers[];
 
 }
@@ -72,7 +72,7 @@ receiverUID:string|Types.ObjectId|IUsers;
 export interface IEnumValues{
 
     _id?:Types.ObjectId|string;
-    name:string;
-    values:string[];
-    note:string;
+    enumName:string;
+    enumValues:string[];
+    enumNote:string;
 }

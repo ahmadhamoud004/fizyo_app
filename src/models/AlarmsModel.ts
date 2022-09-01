@@ -20,4 +20,4 @@ const AlarmsSchema = new Schema<IAlarms>({
     startDate:{type:Date,required:true},
     endDate:{type:Date,required:true}    
 });
-module.exports = model<IAlarms>('IAlarms',AlarmsSchema );
+module.exports = model<IAlarms>('Alarm',AlarmsSchema );

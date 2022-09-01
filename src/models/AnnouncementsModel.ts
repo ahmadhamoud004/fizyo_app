@@ -18,7 +18,7 @@ const AnnouncementSchema = new Schema<IAnnouncements>({
     topic:{type:String},
     details:{type:String},
     sentDate:{type:Date},
-    attachments:{type:Object},
-    receiversUIDs:{type:Schema.Types.ObjectId,ref:"IUsers"}
+    attachments:{type:String},
+    receiversUIDs:{type:Schema.Types.ObjectId,ref:"User"}
 });
-module.exports = model<IAnnouncements>('IAnnouncement', AnnouncementSchema);
+module.exports = model<IAnnouncements>('Announcement', AnnouncementSchema);
