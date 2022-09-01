@@ -991,7 +991,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "63107aae6bcd70f0f363847c"
 					}
 				]
 			},
@@ -1027,7 +1027,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ertwerwryer45"
+						"example": "63107aae6bcd70f0f363847c"
 					}
 				]
 			}
@@ -1196,7 +1196,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "63107cdf144972d5a75c14cb"
 					}
 				]
 			},
@@ -1232,7 +1232,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "63107cdf144972d5a75c14cb"
 					}
 				]
 			}
@@ -1252,8 +1252,8 @@
 									"Example 1": {
 										"value": {
 											"sessionID": "yuuruyyudde",
-											"firstPartyUID": "_",
-											"secondUID": "_",
+											"firstPartyUID": "rtyetyertwrqer",
+											"secondUID": "werweryrtgerwer",
 											"topic": "treatment",
 											"details": "more details",
 											"attachments": [
@@ -1264,7 +1264,7 @@
 												}
 											],
 											"status": "sent",
-											"resolverUID": "_",
+											"resolverUID": "wertehterwrwrr",
 											"inProgressDate": "2022-09-10T00:00:00.000Z",
 											"receivedDate": "2022-09-10T00:00:00.000Z",
 											"suspendedDate": "2022-09-10T00:00:00.000Z",
@@ -1397,7 +1397,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "_"
+						"example": "63107b4a8e2578704ed06b1d"
 					}
 				]
 			},
@@ -1433,7 +1433,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "wrerwetrewteryedsf"
+						"example": "63107b4a8e2578704ed06b1d"
 					}
 				]
 			}
@@ -1599,7 +1599,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "_"
+						"example": "630ded831cb815c4d98d3df6"
 					}
 				]
 			},
@@ -1635,7 +1635,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "3452ter23wt"
+						"example": "630ded831cb815c4d98d3df6"
 					}
 				]
 			}
@@ -1795,7 +1795,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ret53y453retwer"
+						"example": "6310750be8f4ab035351fb78"
 					}
 				]
 			},
@@ -1831,7 +1831,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ertwerwryer45"
+						"example": "6310750be8f4ab035351fb78"
 					}
 				]
 			}
@@ -1850,7 +1850,6 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"_id": "ewrwertert3452342345555",
 											"uID": "ertewryrtuyr43535355543",
 											"preferredServiceType": [
 												"online"

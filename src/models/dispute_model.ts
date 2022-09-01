@@ -15,7 +15,7 @@ const DisputeSchema = new Schema<IDisputes>({
       type: {
         url: { type: String, required: true },
         name: { type: String, required: true },
-        type: { type: String, required: true },
+        disType: { type: String, required: true },
       },
     },
   ], // name, url, type

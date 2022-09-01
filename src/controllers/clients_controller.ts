@@ -27,7 +27,7 @@ export default class ClientControllers {
 
   /**
    * Get a client details
-   * @example clientId "ret53y453retwer"
+   * @example clientId "6310750be8f4ab035351fb78"
    */
   @Response(404, "The requested client is not found")
   @Get("{clientId}")
@@ -37,7 +37,7 @@ export default class ClientControllers {
 
   /**
    * Delete a client
-   * @example clientId "ertwerwryer45"
+   * @example clientId "6310750be8f4ab035351fb78"
    */
   @Response(404, "The requested client is not found")
   @SuccessResponse("200", "Deleted")
@@ -53,7 +53,6 @@ export default class ClientControllers {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IClients>({
-    _id: "ewrwertert3452342345555",
     uID: "ertewryrtuyr43535355543",
     preferredServiceType: ["online"],
     diseases: "diseases",

@@ -11,7 +11,7 @@ describe("ClientController", () => {
       expect(
         async () =>
           await controller.createClient({
-            _id: "6300e18b3bbd975cf6456666",
+            _id: "6310750be8f4ab035351fb78",
             uID: "ertewryrtuyr43535355543",
             preferredServiceType: ["online"],
             diseases: "diseases",
@@ -31,7 +31,7 @@ describe("ClientController", () => {
     it("should update a specific client correctly", async () => {
       expect(
         async () =>
-          await controller.updateClient("6300e18b3bbd975cf6456666", {
+          await controller.updateClient("6310750be8f4ab035351fb78", {
             preferredServiceType: ["home"],
             diseases: "diseases updated",
           })
@@ -42,7 +42,7 @@ describe("ClientController", () => {
   describe("getClient", () => {
     it("should get a specific client by Id", async () => {
       expect(
-        async () => await controller.getClient("6300e18b3bbd975cf6456666")
+        async () => await controller.getClient("6310750be8f4ab035351fb78")
       ).not.toThrow();
     });
   });
@@ -50,7 +50,7 @@ describe("ClientController", () => {
   describe("deleteClient", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () => await controller.deleteClient("6300e18b3bbd975cf6456666")
+        async () => await controller.deleteClient("6310750be8f4ab035351fb78")
       ).not.toThrow();
     });
   });
