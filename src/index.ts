@@ -10,6 +10,9 @@ import ServiceProvidersRoutes from "./routes/service_providers_routes";
 import DisputeRoutes from "./routes/dispute_routes";
 import CommunicationsRoutes from "./routes/communications_routes";
 import AgreementsRoutes from "./routes/agreements_routes";
+import UsersRoutes from "./routes/users_routes";
+import RolesRoutes from "./routes/roles_route";
+
 
 dotenv.config();
 
@@ -27,6 +30,8 @@ connection.once("open", async () => {
   const DisputeModel = require("./models/dispute_model");
   const CommunicationsModel = require("./models/communications_model");
   const AgreementsModel = require("./models/agreements_model");
+  const UsersModel = require("./models/users_model");
+  const RolesModel = require("./models/roles_model");
 });
 
 app.use(
@@ -34,6 +39,7 @@ app.use(
     extended: false,
   })
 );
+
 app.use(bodyParser.json());
 
 app.use(morgan("tiny"));
@@ -43,6 +49,8 @@ app.use("/serviceProviders", ServiceProvidersRoutes);
 app.use("/disputes", DisputeRoutes);
 app.use("/communications", CommunicationsRoutes);
 app.use("/agreements", AgreementsRoutes);
+app.use("/users", UsersRoutes);
+app.use("/roles", RolesRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

@@ -119,7 +119,7 @@ export interface IUsers {
 }
 
 export interface IRoles {
-  _id: Types.ObjectId;
+  _id?: Types.ObjectId;
   name: string;
   employees?: string[] | Types.ObjectId[];
   //employeesArr?: Array<PopulatedDoc<IEmployees & Document>>;
