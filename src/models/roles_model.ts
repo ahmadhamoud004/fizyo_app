@@ -18,6 +18,6 @@ RolesSchema.virtual("url").get(function () {
 });
 
 module.exports = model<IRoles>(
-  "Roles",
+  "Role",
   RolesSchema
 );
