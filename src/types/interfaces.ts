@@ -79,3 +79,60 @@ export interface IClients {
   diseases: string;
   preferences: object;
 }
+
+export interface IUsers {
+  _id: Types.ObjectId | string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  profilePicture: string;
+  firstName: string;
+  lastName: string;
+  gender:
+    "Male" | "Female";
+  DOB:Date;
+  address: {
+    country: string;
+    government: string;
+    manipolicity: string;
+  }[];
+  verified: 
+    "notSent" | "pending" | "verified";
+  status:
+    "inActive" | "active" | "suspended" | "lost" | "deleted";
+  accountType:
+    "PT" | "EM" | "PA";
+  lastLoginDate: Date;
+  accountSetting: Object;
+  languages: string[];
+  maritalStatus:   
+    "married" | "single" | "divorced" | "widow";
+}
+
+export interface IRoles {
+  _id: Types.ObjectId;
+  name: string;
+  employees?: string[] | Types.ObjectId[] | IEmployees[];
+  //employeesArr?: Array<PopulatedDoc<IEmployees & Document>>;
+  users: string[];
+  service_provider: string[];
+  clients: string[];
+  sessions: string[];
+  communications: string[];
+  disputes: string[];
+  enum_values: string[];
+}
+
+export interface IEmployees {
+  _id: Types.ObjectId;
+  uID?: string | Types.ObjectId;
+  //user: PopulatedDoc<IUsers & Document>;
+  roleID?: string | Types.ObjectId;
+  //role: PopulatedDoc<IRoles & Document>;
+  salery: Number;
+  attachments: {
+    name: string;
+    url: string;
+    type: string;
+  }[];
+}
