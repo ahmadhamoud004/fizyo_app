@@ -315,7 +315,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"disType": {
 									"type": "string"
 								},
 								"name": {
@@ -326,7 +326,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"disType",
 								"name",
 								"url"
 							],
@@ -438,7 +438,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"disType": {
 									"type": "string"
 								},
 								"name": {
@@ -449,7 +449,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"disType",
 								"name",
 								"url"
 							],
@@ -1147,7 +1147,7 @@
 												{
 													"url": "http://localhost:8000/disputes",
 													"name": "file",
-													"type": "pdf"
+													"disType": "pdf"
 												}
 											],
 											"status": "sent",
