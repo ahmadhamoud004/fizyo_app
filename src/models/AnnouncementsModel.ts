@@ -9,8 +9,7 @@ const AnnouncementSchema = new Schema<IAnnouncements>({
     type:String,
     required:true,
     enum:["session","advertisment"],
-    default:"session"
-  },
+    default:"session"},
   referenceID:{type:String},
   statues:{type:String,
            enum:["draft","published"],
@@ -19,6 +18,7 @@ const AnnouncementSchema = new Schema<IAnnouncements>({
     details:{type:String},
     sentDate:{type:Date},
     attachments:{type:String},
-    receiversUIDs:{type:Schema.Types.ObjectId,ref:"User"}
+    //receiversUIDs:[{type:Schema.Types.ObjectId,ref:"User"}],
+    receiversUIDs:[{type:String}]
 });
 module.exports = model<IAnnouncements>('Announcement', AnnouncementSchema);

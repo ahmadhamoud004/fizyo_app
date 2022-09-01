@@ -51,25 +51,42 @@ export default class SessionController {
    */
     @Response(422, "Validation Failed")
     @SuccessResponse("200", "Created")
-//     @Example<ISessions>({
-// sessionType:"",
-// serviceProvidersID:"" ,
-// clientsIDs:"",
-// name: "",
-// details:"" ,
-// startDate:"" ,  
-// duration:"",
-// serviceType:"",
-// location:"",
-// attachments:"",
-// requirements:"",
-// ratings:"",
-// reviews:"",
-//   sessionFee:"",
-//   payments:"",
-//   status:"",
-//   doctorReferral:"",
-// })
+    @Example<ISessions>({
+        sessionType:"group",
+        serviceProvidersID:"6300e18d3bbd975cf6459994" ,
+        clientsIDs:["6300e18d3bbd975cf64599"],
+        name: "therapist",
+        details:"therapost" ,
+        startDate:new Date("2022-09-10"),  
+        duration:50,
+        serviceType:"Home",
+        location:"aleppo",
+        attachments:{
+          attachmentUrl:"attachmentUrl",
+          attachmentName:"attachmentName",
+          attachmentType:"attachmentType",
+        },
+        requirements:"",
+        ratings:[{
+          raterUID:"raterUID",
+          ratingValue:"ratingValue",
+          ratingDate:new Date("2022-09-10"),
+        }],
+        reviews:[{
+          reviewerUID:"reviewerUID",
+          reviewDetails:"reviewDetails",
+          reviewDate:new Date("2022-09-10"),
+  }],
+          sessionFee:25,
+           payments:{
+            discount:10,
+           paymentMethod:"paymentMethod",
+           payerID:"payerID",
+           amount:10
+          },
+          status:"agreed",
+          doctorReferral:"doctorReferral",
+})
     @Post("create")
     public async createSession(@Body() session: ISessions): Promise<ISessions> {
       return new SessionModel({

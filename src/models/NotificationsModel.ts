@@ -19,7 +19,7 @@ const NOtificationsSchema = new Schema<INotifications>({
     sentDate:{type:Date, required:true},
     receivedDate:{type:Date, required:true},
     openDate:{type:Date, required:true},
-    receiverUID:{type:Schema.Types.ObjectId, ref:"User"}
-    
+    //receiverUID:{type:Schema.Types.ObjectId, ref:"User"}
+    receiverUID:{type:String}
 });
 module.exports = model<INotifications>('Notification',NOtificationsSchema );

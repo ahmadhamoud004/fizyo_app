@@ -1,72 +1,74 @@
-import { Schema,model } from "mongoose";
+import { Schema, model } from "mongoose";
 import { type } from "os";
-import {ISessions} from '../types/interfaces';
+import { ISessions } from "../types/interfaces";
 
 const SessionsSchema = new Schema<ISessions>({
-
-  sessionType:{type:String,
-              required:true,
-              enum:["group","individual"],
-              default:"individual"
-  
+  sessionType: {
+    type: String,
+    enum: ["group", "individual"],
+    default: "individual"
   },
-  serviceProvidersID: {type:Schema.Types.ObjectId,ref:"IserviceProviders",required:true},
-  clientsIDs:[{type:Schema.Types.ObjectId, ref:"Client"}],
-  name: {type:String,required:true},
-  details: {type:String,required:true},
-  startDate: {type:Date,required:true},  
-  duration:{type:Number, required:true},
-  serviceType:{
-    
-    type:String,
-    required:true,
-    enum:["Home","Office","Online"],
-    default:"Office"
+  //serviceProvidersID: {type: Schema.Types.ObjectId,ref: "ServiceProvider"},
+  serviceProvidersID: {type:String},
 
-},
-  location:Object,
-  attachments:{type:{
-    attachmentUrl:{type:String,required:true},
-    attachmentName:{type:String,required:true},
-    attachmentType:{type:String,required:true},
-  },required:true
+  //clientsIDs: [{ type: Schema.Types.ObjectId, ref: "Client" }],
+  clientsIDs: { type: String },
+
+  name: { type: String },
+  details: { type: String },
+  startDate: { type: Date},
+  duration: { type: Number},
+  serviceType: {
+    type: String,
+    required: false,
+    enum: ["Home", "Office", "Online"],
+    default: "Office"
   },
-  requirements:{type:String,required:true},
-  ratings:[{
-    type:{
-      raterUID:{type:Schema.Types.ObjectId,ref:"User"},
-      ratingValue:{type:String,required:true},
-      ratingDate:{type:Date,required:true},
-
+  location: { type: String },
+  attachments: {
+    type: {
+      attachmentUrl: { type: String},
+      attachmentName: { type: String },
+      attachmentType: { type: String }
     }
-
-  }],
-  reviews:[{
-    type:{
-      reviewerUID:{type:Schema.Types.ObjectId,ref:"User"},
-      reviewDeatails:{type:String,required:true},
-      reviewDate:{type:Date,required:true},
-
+  },
+  requirements: { type: String},
+  ratings: [
+    {
+      type: {
+        // raterUID: { type: Schema.Types.ObjectId, ref: "User" },
+        raterUID: { type: String },
+        ratingValue: { type: String},
+        ratingDate: { type: Date}
+      }
     }
-
-  }],
-  sessionFee:{type:Number,required:true},
-  payments:{
-    type:{
-    discount:{type:Number},
-    payment:{type:String},
-    paymentMethod:{type:String},
-    payerID:{type:Schema.Types.ObjectId,ref:"Client",required:true},
-    amount:{type:Number}
-  }
+  ],
+  reviews: [
+    {
+      type: {
+        //reviewerUID: { type: Schema.Types.ObjectId, ref: "User" },
+        reviewerUID: { type: String },
+        reviewDeatails: { type: String },
+        reviewDate: { type: Date },
+      }
+    }
+  ],
+  sessionFee: { type: Number },
+  payments: {
+    type: {
+      discount: { type: Number },
+      paymentMethod: { type: String },
+      // payerID: { type: Schema.Types.ObjectId, ref: "Client", required: false },
+      payerID: { type: String },
+      amount: { type: Number },
+    }
   },
-  status:{
-    type:String,
-    enum:["initiated","agreed","canceled","finished"],
-    default:"initiated"
+  status: {
+    type: String,
+    enum: ["initiated", "agreed", "canceled", "finished"],
+    default: "initiated"
   },
-  doctorReferral:{type:String},
-
+  doctorReferral: { type: String }
 
 });
-module.exports = model<ISessions>('Session', SessionsSchema);
+module.exports = model<ISessions>("Session", SessionsSchema);
