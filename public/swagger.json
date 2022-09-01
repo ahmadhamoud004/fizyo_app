@@ -315,7 +315,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"disType": {
 									"type": "string"
 								},
 								"name": {
@@ -326,7 +326,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"disType",
 								"name",
 								"url"
 							],
@@ -438,7 +438,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"disType": {
 									"type": "string"
 								},
 								"name": {
@@ -449,7 +449,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"disType",
 								"name",
 								"url"
 							],
@@ -812,6 +812,119 @@
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
+			},
+			"IClients": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"type": "string",
+									"enum": [
+										"online",
+										"home",
+										"office"
+									]
+								},
+								"type": "array"
+							}
+						]
+					},
+					"diseases": {
+						"type": "string"
+					},
+					"preferences": {
+						"additionalProperties": false,
+						"type": "object"
+					}
+				},
+				"required": [
+					"preferredServiceType",
+					"diseases",
+					"preferences"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IClients_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"type": "string",
+									"enum": [
+										"online",
+										"home",
+										"office"
+									]
+								},
+								"type": "array"
+							}
+						]
+					},
+					"diseases": {
+						"type": "string"
+					},
+					"preferences": {
+						"additionalProperties": false,
+						"type": "object"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
 			}
 		},
 		"securitySchemes": {}
@@ -1147,7 +1260,7 @@
 												{
 													"url": "http://localhost:8000/disputes",
 													"name": "file",
-													"type": "pdf"
+													"disType": "pdf"
 												}
 											],
 											"status": "sent",
@@ -1620,6 +1733,198 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IAgreements_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/clients": {
+			"get": {
+				"operationId": "GetClients",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IClients"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get List of All clients",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/clients/{clientId}": {
+			"get": {
+				"operationId": "GetClient",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IClients"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested client is not found"
+					}
+				},
+				"description": "Get a client details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ret53y453retwer"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteClient",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IClients"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested client is not found"
+					}
+				},
+				"description": "Delete a client",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ertwerwryer45"
+					}
+				]
+			}
+		},
+		"/clients/create": {
+			"post": {
+				"operationId": "CreateClient",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IClients"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"_id": "ewrwertert3452342345555",
+											"uID": "ertewryrtuyr43535355543",
+											"preferredServiceType": [
+												"online"
+											],
+											"diseases": "diseases",
+											"preferences": {
+												"pref": "pref test"
+											}
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Create a client",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IClients"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/clients/update/{clientId}": {
+			"put": {
+				"operationId": "UpdateClient",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IClients"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update a Client",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clientId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IClients_"
 							}
 						}
 					}

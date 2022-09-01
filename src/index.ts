@@ -9,6 +9,7 @@ import ServiceProvidersRoutes from "./routes/service_providers_routes";
 import DisputeRoutes from "./routes/dispute_routes";
 import CommunicationsRoutes from "./routes/communications_routes";
 import AgreementsRoutes from "./routes/agreements_routes";
+import ClientsRoutes from "./routes/clients_routes";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ connection.once("open", async () => {
   const DisputeModel = require("./models/dispute_model");
   const CommunicationsModel = require("./models/communications_model");
   const AgreementsModel = require("./models/agreements_model");
+  const ClientsModel = require("./models/clients_model");
 });
 
 app.use(
@@ -42,6 +44,7 @@ app.use("/serviceProviders", ServiceProvidersRoutes);
 app.use("/disputes", DisputeRoutes);
 app.use("/communications", CommunicationsRoutes);
 app.use("/agreements", AgreementsRoutes);
+app.use("/clients", ClientsRoutes);
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
