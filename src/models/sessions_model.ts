@@ -9,11 +9,11 @@ const SessionsSchema = new Schema<ISessions>({
     default: "individual",
     required: true,
   },
-  //serviceProvidersID: {type: Schema.Types.ObjectId,ref: "ServiceProvider"},
-  serviceProvidersID: { type: String },
+  serviceProvidersID: { type: Schema.Types.ObjectId, ref: "ServiceProvider" },
+  // serviceProvidersID: { type: String },
 
-  //clientsIDs: [{ type: Schema.Types.ObjectId, ref: "Client" }],
-  clientsIDs: { type: String },
+  clientsIDs: [{ type: Schema.Types.ObjectId, ref: "Client" }],
+  // clientsIDs: { type: String },
 
   name: { type: String, required: true },
   details: { type: String, required: true },
@@ -24,7 +24,7 @@ const SessionsSchema = new Schema<ISessions>({
     enum: ["Home", "Office", "Online"],
     default: "Office",
   },
-  location: { type: String, required: true },
+  location: { type: Object, required: true },
   attachments: {
     type: {
       attachmentUrl: { type: String, required: true },
@@ -36,8 +36,8 @@ const SessionsSchema = new Schema<ISessions>({
   ratings: [
     {
       type: {
-        // raterUID: { type: Schema.Types.ObjectId, ref: "User" },
-        raterUID: { type: String, required: true },
+        raterUID: { type: Schema.Types.ObjectId, ref: "User" },
+        // raterUID: { type: String, required: true },
         ratingValue: { type: String, required: true },
         ratingDate: { type: Date, required: true },
       },
@@ -46,8 +46,8 @@ const SessionsSchema = new Schema<ISessions>({
   reviews: [
     {
       type: {
-        //reviewerUID: { type: Schema.Types.ObjectId, ref: "User" },
-        reviewerUID: { type: String, required: true },
+        reviewerUID: { type: Schema.Types.ObjectId, ref: "User" },
+        // reviewerUID: { type: String, required: true },
         reviewDetails: { type: String, required: true },
         reviewDate: { type: Date, required: true },
       },
@@ -58,8 +58,8 @@ const SessionsSchema = new Schema<ISessions>({
     type: {
       discount: { type: Number, required: true },
       paymentMethod: { type: String, required: true },
-      // payerID: { type: Schema.Types.ObjectId, ref: "Client", required: false },
-      payerID: { type: String, required: true },
+      payerID: { type: Schema.Types.ObjectId, ref: "Client", required: false },
+      // payerID: { type: String, required: true },
       amount: { type: Number, required: true },
     },
   },

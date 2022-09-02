@@ -4,13 +4,13 @@ import { IRoles } from "../types/interfaces";
 const RolesSchema = new Schema<IRoles>({
   name: { type: String, required: true },
   employees: [{ type: Schema.Types.ObjectId, ref: "Employee" }],
-  users: [{ type: String, required: true }],
-  service_provider: [{ type: String, required: true }],
-  clients: [{ type: String, required: true }],
-  sessions: [{ type: String, required: true }],
-  communications: [{ type: String, required: true }],
-  disputes: [{ type: String, required: true }],
-  enum_values: [{ type: String, required: true }],
+  users: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  service_provider: [{ type: Schema.Types.ObjectId, ref: "ServiceProvider" }],
+  clients: [{ type: Schema.Types.ObjectId, ref: "Client" }],
+  sessions: [{ type: Schema.Types.ObjectId, ref: "Session" }],
+  communications: [{ type: Schema.Types.ObjectId, ref: "Communication" }],
+  disputes: [{ type: Schema.Types.ObjectId, ref: "Disputes" }],
+  enum_values: [{ type: Schema.Types.ObjectId, ref: "EnumValue" }],
 });
 
 RolesSchema.virtual("url").get(function () {

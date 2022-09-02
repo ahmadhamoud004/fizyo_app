@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { type } from "os";
 
 import { IAlarms } from "../types/interfaces";
 
@@ -7,11 +6,12 @@ const AlarmsSchema = new Schema<IAlarms>({
   name: { type: String, required: true },
   referenceType: {
     type: String,
-    enum: ["agreements", "sessions", "disputes", "services providers"],
-    default: "sessions",
+    enum: ["Agreement", "Session", "Dispute", "ServiceProvider"],
+    default: "Session",
     required: true,
   },
-  referenceID: { type: String, required: true },
+  referenceID: { type: [Schema.Types.ObjectId], refPath: "referenceType" },
+
   frequencyUnit: {
     type: String,
     enum: ["Days", "Hours"],

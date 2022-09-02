@@ -53,7 +53,7 @@ export default class AlarmController {
   @SuccessResponse("200", "Created")
   @Example<IAlarms>({
     name: "new therapist",
-    referenceType: "disputes",
+    referenceType: "Dispute",
     referenceID: "155552222",
     frequencyUnit: "Days",
     frequency: 15,

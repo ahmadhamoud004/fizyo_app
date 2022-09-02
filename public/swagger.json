@@ -9,6 +9,138 @@
 			"Types.ObjectId": {
 				"type": "string"
 			},
+			"IUsers": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"email": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string"
+					},
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"properties": {
+								"manipolicity": {
+									"type": "string"
+								},
+								"government": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"manipolicity",
+								"government",
+								"country"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSent",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSetting": {
+						"additionalProperties": false,
+						"type": "object"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"phoneNumber",
+					"password",
+					"profilePicture",
+					"firstName",
+					"lastName",
+					"gender",
+					"DOB",
+					"verified",
+					"status",
+					"accountType",
+					"lastLoginDate",
+					"accountSetting",
+					"languages",
+					"maritalStatus"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IServiceProviders": {
 				"properties": {
 					"_id": {
@@ -28,13 +160,16 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
 					"bio": {
 						"type": "string"
 					},
-					"specialities": {
+					"specialties": {
 						"type": "string"
 					},
 					"preferredServiceType": {
@@ -98,6 +233,12 @@
 									"$ref": "#/components/schemas/Types.ObjectId"
 								},
 								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
 							}
 						]
 					},
@@ -122,6 +263,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -131,7 +275,7 @@
 				},
 				"required": [
 					"bio",
-					"specialities",
+					"specialties",
 					"preferredServiceType",
 					"minSessionFee",
 					"maxSessionFee",
@@ -160,13 +304,16 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
 					"bio": {
 						"type": "string"
 					},
-					"specialities": {
+					"specialties": {
 						"type": "string"
 					},
 					"preferredServiceType": {
@@ -230,6 +377,12 @@
 									"$ref": "#/components/schemas/Types.ObjectId"
 								},
 								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
 							}
 						]
 					},
@@ -254,6 +407,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -263,6 +419,309 @@
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
+			},
+			"IClients": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
+					},
+					"preferredServiceType": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"type": "string",
+									"enum": [
+										"online",
+										"home",
+										"office"
+									]
+								},
+								"type": "array"
+							}
+						]
+					},
+					"diseases": {
+						"type": "string"
+					},
+					"preferences": {
+						"additionalProperties": false,
+						"type": "object"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"preferredServiceType",
+					"diseases",
+					"preferences"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ISessions": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"sessionType": {
+						"type": "string",
+						"enum": [
+							"group",
+							"individual"
+						]
+					},
+					"serviceProvidersID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IServiceProviders"
+							}
+						]
+					},
+					"clientsIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IClients"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"startDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					},
+					"serviceType": {
+						"type": "string",
+						"enum": [
+							"Online",
+							"Home",
+							"Office"
+						]
+					},
+					"location": {
+						"additionalProperties": false,
+						"type": "object"
+					},
+					"attachments": {
+						"properties": {
+							"attachmentType": {
+								"type": "string"
+							},
+							"attachmentName": {
+								"type": "string"
+							},
+							"attachmentUrl": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"attachmentType",
+							"attachmentName",
+							"attachmentUrl"
+						],
+						"type": "object"
+					},
+					"requirements": {
+						"type": "string"
+					},
+					"ratings": {
+						"items": {
+							"properties": {
+								"ratingDate": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"ratingValue": {
+									"type": "string"
+								},
+								"raterUID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									]
+								}
+							},
+							"required": [
+								"ratingDate",
+								"ratingValue",
+								"raterUID"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"reviews": {
+						"items": {
+							"properties": {
+								"reviewDate": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"reviewDetails": {
+									"type": "string"
+								},
+								"reviewerUID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									]
+								}
+							},
+							"required": [
+								"reviewDate",
+								"reviewDetails",
+								"reviewerUID"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"sessionFee": {
+						"type": "number",
+						"format": "double"
+					},
+					"payments": {
+						"properties": {
+							"amount": {
+								"type": "number",
+								"format": "double"
+							},
+							"payerID": {
+								"anyOf": [
+									{
+										"type": "string"
+									},
+									{
+										"$ref": "#/components/schemas/Types.ObjectId"
+									},
+									{
+										"$ref": "#/components/schemas/IUsers"
+									}
+								]
+							},
+							"paymentMethod": {
+								"type": "string"
+							},
+							"discount": {
+								"type": "number",
+								"format": "double"
+							}
+						},
+						"required": [
+							"amount",
+							"payerID",
+							"paymentMethod",
+							"discount"
+						],
+						"type": "object"
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"initiated",
+							"agreed",
+							"canceled",
+							"finished"
+						]
+					},
+					"doctorReferral": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"sessionType",
+					"name",
+					"details",
+					"startDate",
+					"duration",
+					"serviceType",
+					"location",
+					"requirements",
+					"sessionFee",
+					"status"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"IDisputes": {
 				"properties": {
@@ -283,6 +742,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
 							}
 						]
 					},
@@ -293,6 +755,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -303,6 +768,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -352,6 +820,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -406,6 +877,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
 							}
 						]
 					},
@@ -416,6 +890,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -426,6 +903,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -475,6 +955,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -493,211 +976,6 @@
 					"closedDate": {
 						"type": "string",
 						"format": "date-time"
-					},
-					"url": {
-						"type": "string"
-					}
-				},
-				"type": "object",
-				"description": "Make all properties in T optional"
-			},
-			"ICommunications": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"referenceType": {
-						"type": "string",
-						"enum": [
-							"sessions",
-							"agreements",
-							"disputes",
-							"users"
-						]
-					},
-					"referenceID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"partiesUIDs": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"lastUpdate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"messages": {
-						"items": {
-							"properties": {
-								"deliveryDetails": {
-									"items": {
-										"additionalProperties": false,
-										"type": "object"
-									},
-									"type": "array"
-								},
-								"sendDate": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"senderUID": {
-									"anyOf": [
-										{
-											"type": "string"
-										},
-										{
-											"$ref": "#/components/schemas/Types.ObjectId"
-										}
-									]
-								},
-								"messageContent": {
-									"type": "string"
-								},
-								"messageType": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"deliveryDetails",
-								"sendDate",
-								"senderUID",
-								"messageContent",
-								"messageType"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"url": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"referenceType",
-					"lastUpdate",
-					"messages"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Partial_ICommunications_": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"referenceType": {
-						"type": "string",
-						"enum": [
-							"sessions",
-							"agreements",
-							"disputes",
-							"users"
-						]
-					},
-					"referenceID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"partiesUIDs": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"lastUpdate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"messages": {
-						"items": {
-							"properties": {
-								"deliveryDetails": {
-									"items": {
-										"additionalProperties": false,
-										"type": "object"
-									},
-									"type": "array"
-								},
-								"sendDate": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"senderUID": {
-									"anyOf": [
-										{
-											"type": "string"
-										},
-										{
-											"$ref": "#/components/schemas/Types.ObjectId"
-										}
-									]
-								},
-								"messageContent": {
-									"type": "string"
-								},
-								"messageType": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"deliveryDetails",
-								"sendDate",
-								"senderUID",
-								"messageContent",
-								"messageType"
-							],
-							"type": "object"
-						},
-						"type": "array"
 					},
 					"url": {
 						"type": "string"
@@ -758,11 +1036,257 @@
 					"startDate",
 					"endDate",
 					"details",
-					"attachments",
 					"reminder"
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"ICommunications": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"Agreement",
+							"Session",
+							"Dispute",
+							"User"
+						]
+					},
+					"referenceID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
+					},
+					"partiesUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"lastUpdate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"messages": {
+						"items": {
+							"properties": {
+								"deliveryDetails": {
+									"items": {
+										"additionalProperties": false,
+										"type": "object"
+									},
+									"type": "array"
+								},
+								"sendDate": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"senderUID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									]
+								},
+								"messageContent": {
+									"type": "string"
+								},
+								"messageType": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"deliveryDetails",
+								"sendDate",
+								"senderUID",
+								"messageContent",
+								"messageType"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"referenceType",
+					"lastUpdate",
+					"messages"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_ICommunications_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"Agreement",
+							"Session",
+							"Dispute",
+							"User"
+						]
+					},
+					"referenceID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
+					},
+					"partiesUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"lastUpdate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"messages": {
+						"items": {
+							"properties": {
+								"deliveryDetails": {
+									"items": {
+										"additionalProperties": false,
+										"type": "object"
+									},
+									"type": "array"
+								},
+								"sendDate": {
+									"type": "string",
+									"format": "date-time"
+								},
+								"senderUID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									]
+								},
+								"messageContent": {
+									"type": "string"
+								},
+								"messageType": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"deliveryDetails",
+								"sendDate",
+								"senderUID",
+								"messageContent",
+								"messageType"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
 			},
 			"Partial_IAgreements_": {
 				"properties": {
@@ -813,139 +1337,6 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IUsers": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"email": {
-						"type": "string"
-					},
-					"phoneNumber": {
-						"type": "string"
-					},
-					"password": {
-						"type": "string"
-					},
-					"profilePicture": {
-						"type": "string"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"gender": {
-						"type": "string",
-						"enum": [
-							"Male",
-							"Female"
-						]
-					},
-					"DOB": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"address": {
-						"items": {
-							"properties": {
-								"manipolicity": {
-									"type": "string"
-								},
-								"government": {
-									"type": "string"
-								},
-								"country": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"manipolicity",
-								"government",
-								"country"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"verified": {
-						"type": "string",
-						"enum": [
-							"notSent",
-							"pending",
-							"verified"
-						]
-					},
-					"status": {
-						"type": "string",
-						"enum": [
-							"inActive",
-							"active",
-							"suspended",
-							"lost",
-							"deleted"
-						]
-					},
-					"accountType": {
-						"type": "string",
-						"enum": [
-							"PT",
-							"EM",
-							"PA"
-						]
-					},
-					"lastLoginDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"accountSetting": {
-						"additionalProperties": false,
-						"type": "object"
-					},
-					"languages": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"maritalStatus": {
-						"type": "string",
-						"enum": [
-							"married",
-							"single",
-							"divorced",
-							"widow"
-						]
-					}
-				},
-				"required": [
-					"email",
-					"phoneNumber",
-					"password",
-					"profilePicture",
-					"firstName",
-					"lastName",
-					"gender",
-					"DOB",
-					"verified",
-					"status",
-					"accountType",
-					"lastLoginDate",
-					"accountSetting",
-					"languages",
-					"maritalStatus"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"Partial_IUsers_": {
 				"properties": {
 					"_id": {
@@ -977,11 +1368,7 @@
 						"type": "string"
 					},
 					"gender": {
-						"type": "string",
-						"enum": [
-							"Male",
-							"Female"
-						]
+						"type": "string"
 					},
 					"DOB": {
 						"type": "string",
@@ -1057,6 +1444,9 @@
 							"divorced",
 							"widow"
 						]
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
@@ -1083,61 +1473,278 @@
 									"$ref": "#/components/schemas/Types.ObjectId"
 								},
 								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEmployees"
+								},
+								"type": "array"
 							}
 						]
 					},
 					"users": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"service_provider": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IServiceProviders"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"clients": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IClients"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"sessions": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/ISessions"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"communications": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/ICommunications"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"disputes": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IDisputes"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"enum_values": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEnumValues"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"required": [
-					"name",
-					"users",
-					"service_provider",
-					"clients",
-					"sessions",
-					"communications",
-					"disputes",
-					"enum_values"
+					"name"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IEmployees": {
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/Types.ObjectId"
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
+					},
+					"roleID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IRoles"
+							}
+						]
+					},
+					"salary": {
+						"type": "number",
+						"format": "double"
+					},
+					"attachments": {
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"type",
+								"url",
+								"name"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"salary"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IEnumValues": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"enumName": {
+						"type": "string"
+					},
+					"enumValues": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enumNote": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"enumName",
+					"enumValues",
+					"enumNote"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -1163,112 +1770,175 @@
 									"$ref": "#/components/schemas/Types.ObjectId"
 								},
 								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEmployees"
+								},
+								"type": "array"
 							}
 						]
 					},
 					"users": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"service_provider": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IServiceProviders"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"clients": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IClients"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"sessions": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/ISessions"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"communications": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/ICommunications"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"disputes": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IDisputes"
+								},
+								"type": "array"
+							}
+						]
 					},
 					"enum_values": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IEnumValues"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
-			},
-			"IEmployees": {
-				"properties": {
-					"_id": {
-						"$ref": "#/components/schemas/Types.ObjectId"
-					},
-					"uID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"roleID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"salary": {
-						"type": "number",
-						"format": "double"
-					},
-					"attachments": {
-						"items": {
-							"properties": {
-								"type": {
-									"type": "string"
-								},
-								"url": {
-									"type": "string"
-								},
-								"name": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"type",
-								"url",
-								"name"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"salary"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"Partial_IEmployees_": {
 				"properties": {
@@ -1282,6 +1952,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -1292,6 +1965,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IRoles"
 							}
 						]
 					},
@@ -1320,69 +1996,13 @@
 							"type": "object"
 						},
 						"type": "array"
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
-			},
-			"IClients": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"uID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"preferredServiceType": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"type": "string",
-									"enum": [
-										"online",
-										"home",
-										"office"
-									]
-								},
-								"type": "array"
-							}
-						]
-					},
-					"diseases": {
-						"type": "string"
-					},
-					"preferences": {
-						"additionalProperties": false,
-						"type": "object"
-					}
-				},
-				"required": [
-					"preferredServiceType",
-					"diseases",
-					"preferences"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"Partial_IClients_": {
 				"properties": {
@@ -1403,6 +2023,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
 					},
@@ -1433,220 +2056,13 @@
 					"preferences": {
 						"additionalProperties": false,
 						"type": "object"
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
-			},
-			"ISessions": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"sessionType": {
-						"type": "string",
-						"enum": [
-							"group",
-							"individual"
-						]
-					},
-					"serviceProvidersID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"clientsIDs": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"name": {
-						"type": "string"
-					},
-					"details": {
-						"type": "string"
-					},
-					"startDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"duration": {
-						"type": "number",
-						"format": "double"
-					},
-					"serviceType": {
-						"type": "string",
-						"enum": [
-							"Online",
-							"Home",
-							"Office"
-						]
-					},
-					"location": {
-						"type": "string"
-					},
-					"attachments": {
-						"properties": {
-							"attachmentType": {
-								"type": "string"
-							},
-							"attachmentName": {
-								"type": "string"
-							},
-							"attachmentUrl": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"attachmentType",
-							"attachmentName",
-							"attachmentUrl"
-						],
-						"type": "object"
-					},
-					"requirements": {
-						"type": "string"
-					},
-					"ratings": {
-						"items": {
-							"properties": {
-								"ratingDate": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"ratingValue": {
-									"type": "string"
-								},
-								"raterUID": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"ratingDate",
-								"ratingValue",
-								"raterUID"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"reviews": {
-						"items": {
-							"properties": {
-								"reviewDate": {
-									"type": "string",
-									"format": "date-time"
-								},
-								"reviewDetails": {
-									"type": "string"
-								},
-								"reviewerUID": {
-									"anyOf": [
-										{
-											"type": "string"
-										},
-										{
-											"$ref": "#/components/schemas/Types.ObjectId"
-										}
-									]
-								}
-							},
-							"required": [
-								"reviewDate",
-								"reviewDetails",
-								"reviewerUID"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"sessionFee": {
-						"type": "number",
-						"format": "double"
-					},
-					"payments": {
-						"properties": {
-							"amount": {
-								"type": "number",
-								"format": "double"
-							},
-							"payerID": {
-								"anyOf": [
-									{
-										"type": "string"
-									},
-									{
-										"$ref": "#/components/schemas/Types.ObjectId"
-									}
-								]
-							},
-							"paymentMethod": {
-								"type": "string"
-							},
-							"discount": {
-								"type": "number",
-								"format": "double"
-							}
-						},
-						"required": [
-							"amount",
-							"payerID",
-							"paymentMethod",
-							"discount"
-						],
-						"type": "object"
-					},
-					"status": {
-						"type": "string",
-						"enum": [
-							"initiated",
-							"agreed",
-							"canceled",
-							"finished"
-						]
-					},
-					"doctorReferral": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"sessionType",
-					"name",
-					"details",
-					"startDate",
-					"duration",
-					"serviceType",
-					"location",
-					"requirements",
-					"sessionFee",
-					"status",
-					"doctorReferral"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"FlattenMaps_T_": {
 				"properties": {},
@@ -1687,6 +2103,9 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IServiceProviders"
 							}
 						]
 					},
@@ -1701,6 +2120,12 @@
 							{
 								"items": {
 									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IClients"
 								},
 								"type": "array"
 							}
@@ -1729,7 +2154,8 @@
 						]
 					},
 					"location": {
-						"type": "string"
+						"additionalProperties": false,
+						"type": "object"
 					},
 					"attachments": {
 						"properties": {
@@ -1764,7 +2190,17 @@
 									"type": "string"
 								},
 								"raterUID": {
-									"type": "string"
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
+										}
+									]
 								}
 							},
 							"required": [
@@ -1793,6 +2229,9 @@
 										},
 										{
 											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUsers"
 										}
 									]
 								}
@@ -1823,6 +2262,9 @@
 									},
 									{
 										"$ref": "#/components/schemas/Types.ObjectId"
+									},
+									{
+										"$ref": "#/components/schemas/IUsers"
 									}
 								]
 							},
@@ -1853,142 +2295,9 @@
 					},
 					"doctorReferral": {
 						"type": "string"
-					}
-				},
-				"type": "object",
-				"description": "Make all properties in T optional"
-			},
-			"IAnnouncements": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
 					},
-					"referenceType": {
-						"type": "string",
-						"enum": [
-							"Session",
-							"Advertisment"
-						]
-					},
-					"referenceID": {
-						"type": "string",
-						"nullable": true
-					},
-					"statues": {
-						"type": "string",
-						"enum": [
-							"draft",
-							"published"
-						]
-					},
-					"topic": {
+					"url": {
 						"type": "string"
-					},
-					"details": {
-						"type": "string"
-					},
-					"sentDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"attachments": {
-						"type": "string"
-					},
-					"receiversUIDs": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							}
-						]
-					}
-				},
-				"required": [
-					"referenceType",
-					"referenceID",
-					"statues",
-					"topic",
-					"details",
-					"sentDate",
-					"attachments",
-					"receiversUIDs"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Partial_IAnnouncements_": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"referenceType": {
-						"type": "string",
-						"enum": [
-							"Session",
-							"Advertisment"
-						]
-					},
-					"referenceID": {
-						"type": "string",
-						"nullable": true
-					},
-					"statues": {
-						"type": "string",
-						"enum": [
-							"draft",
-							"published"
-						]
-					},
-					"topic": {
-						"type": "string"
-					},
-					"details": {
-						"type": "string"
-					},
-					"sentDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"attachments": {
-						"type": "string"
-					},
-					"receiversUIDs": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							}
-						]
 					}
 				},
 				"type": "object",
@@ -2012,14 +2321,30 @@
 					"referenceType": {
 						"type": "string",
 						"enum": [
-							"agreements",
-							"sessions",
-							"disputes",
-							"services providers"
+							"Agreement",
+							"Session",
+							"Dispute",
+							"ServiceProvider"
 						]
 					},
 					"referenceID": {
-						"type": "string"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IServiceProviders"
+							}
+						]
 					},
 					"frequencyUnit": {
 						"type": "string",
@@ -2042,6 +2367,9 @@
 					"endDate": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"required": [
@@ -2055,6 +2383,293 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"IAnnouncements": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"Session",
+							"Advertisement"
+						]
+					},
+					"referenceID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/INotifications"
+							}
+						]
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"published"
+						]
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"attachments": {
+						"items": {
+							"additionalProperties": false,
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"receiversUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"referenceType",
+					"statues",
+					"topic",
+					"details",
+					"sentDate",
+					"attachments"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"INotifications": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"Session",
+							"Agreement",
+							"Dispute",
+							"Alarm",
+							"Announcement",
+							"User",
+							"Communication"
+						]
+					},
+					"referenceID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IAlarms"
+							},
+							{
+								"$ref": "#/components/schemas/IAnnouncements"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							},
+							{
+								"$ref": "#/components/schemas/ICommunications"
+							}
+						]
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"sent",
+							"delivered",
+							"opened"
+						]
+					},
+					"title": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receivedDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"openDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"receiverUID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"referenceType",
+					"referenceID",
+					"statues",
+					"title",
+					"details",
+					"sentDate",
+					"receivedDate",
+					"openDate",
+					"receiverUID"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IAnnouncements_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"referenceType": {
+						"type": "string",
+						"enum": [
+							"Session",
+							"Advertisement"
+						]
+					},
+					"referenceID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/INotifications"
+							}
+						]
+					},
+					"statues": {
+						"type": "string",
+						"enum": [
+							"draft",
+							"published"
+						]
+					},
+					"topic": {
+						"type": "string"
+					},
+					"details": {
+						"type": "string"
+					},
+					"sentDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"attachments": {
+						"items": {
+							"additionalProperties": false,
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"receiversUIDs": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/IUsers"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
 			},
 			"Partial_IAlarms_": {
 				"properties": {
@@ -2074,14 +2689,30 @@
 					"referenceType": {
 						"type": "string",
 						"enum": [
-							"agreements",
-							"sessions",
-							"disputes",
-							"services providers"
+							"Agreement",
+							"Session",
+							"Dispute",
+							"ServiceProvider"
 						]
 					},
 					"referenceID": {
-						"type": "string"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IServiceProviders"
+							}
+						]
 					},
 					"frequencyUnit": {
 						"type": "string",
@@ -2104,88 +2735,13 @@
 					"endDate": {
 						"type": "string",
 						"format": "date-time"
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
-			},
-			"INotifications": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"referenceType": {
-						"type": "string",
-						"enum": [
-							"sessions",
-							"agreements",
-							"disputes",
-							"alarm",
-							"announcements",
-							"users",
-							"communications"
-						]
-					},
-					"referenceID": {
-						"type": "string"
-					},
-					"statues": {
-						"type": "string",
-						"enum": [
-							"sent",
-							"delivered",
-							"opened"
-						]
-					},
-					"title": {
-						"type": "string"
-					},
-					"details": {
-						"type": "string"
-					},
-					"sentDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"receivedDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"openDate": {
-						"type": "string",
-						"format": "date-time"
-					},
-					"receiverUID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					}
-				},
-				"required": [
-					"referenceType",
-					"referenceID",
-					"statues",
-					"title",
-					"details",
-					"sentDate",
-					"receivedDate",
-					"openDate",
-					"receiverUID"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"Partial_INotifications_": {
 				"properties": {
@@ -2202,17 +2758,42 @@
 					"referenceType": {
 						"type": "string",
 						"enum": [
-							"sessions",
-							"agreements",
-							"disputes",
-							"alarm",
-							"announcements",
-							"users",
-							"communications"
+							"Session",
+							"Agreement",
+							"Dispute",
+							"Alarm",
+							"Announcement",
+							"User",
+							"Communication"
 						]
 					},
 					"referenceID": {
-						"type": "string"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/ISessions"
+							},
+							{
+								"$ref": "#/components/schemas/IAgreements"
+							},
+							{
+								"$ref": "#/components/schemas/IDisputes"
+							},
+							{
+								"$ref": "#/components/schemas/IAlarms"
+							},
+							{
+								"$ref": "#/components/schemas/IAnnouncements"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
+							},
+							{
+								"$ref": "#/components/schemas/ICommunications"
+							}
+						]
 					},
 					"statues": {
 						"type": "string",
@@ -2247,45 +2828,18 @@
 							},
 							{
 								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUsers"
 							}
 						]
+					},
+					"url": {
+						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
-			},
-			"IEnumValues": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"enumName": {
-						"type": "string"
-					},
-					"enumValues": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					},
-					"enumNote": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"enumName",
-					"enumValues",
-					"enumNote"
-				],
-				"type": "object",
-				"additionalProperties": false
 			},
 			"Partial_IEnumValues_": {
 				"properties": {
@@ -2309,6 +2863,9 @@
 						"type": "array"
 					},
 					"enumNote": {
+						"type": "string"
+					},
+					"url": {
 						"type": "string"
 					}
 				},
@@ -2437,7 +2994,7 @@
 										"value": {
 											"uID": "43234erwrdfserwr",
 											"bio": "this is the best",
-											"specialities": "Physiotherapist",
+											"specialties": "Physiotherapist",
 											"preferredServiceType": [
 												"online",
 												"home",
@@ -2841,7 +3398,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"referenceType": "sessions",
+											"referenceType": "Session",
 											"referenceID": "_",
 											"partiesUIDs": [
 												"_"
@@ -4056,7 +4613,9 @@
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"duration": 50,
 											"serviceType": "Home",
-											"location": "aleppo",
+											"location": {
+												"city": "Aleppo"
+											},
 											"attachments": {
 												"attachmentUrl": "attachmentUrl",
 												"attachmentName": "attachmentName",
@@ -4274,13 +4833,17 @@
 									"Example 1": {
 										"value": {
 											"_id": "6300e18b3bbd975cf6459983",
-											"referenceType": "Advertisment",
+											"referenceType": "Advertisement",
 											"referenceID": "11115555555555",
 											"statues": "draft",
 											"topic": "new topic",
 											"details": "The announcement contain info ",
 											"sentDate": "2022-09-10T00:00:00.000Z",
-											"attachments": "no attachment",
+											"attachments": [
+												{
+													"name": "personal information"
+												}
+											],
 											"receiversUIDs": [
 												"11111111166666660"
 											]
@@ -4472,7 +5035,7 @@
 									"Example 1": {
 										"value": {
 											"name": "new therapist",
-											"referenceType": "disputes",
+											"referenceType": "Dispute",
 											"referenceID": "155552222",
 											"frequencyUnit": "Days",
 											"frequency": 15,
@@ -4667,7 +5230,7 @@
 									"Example 1": {
 										"value": {
 											"_id": "6300e18b3bbd975cf6459983",
-											"referenceType": "agreements",
+											"referenceType": "Agreement",
 											"referenceID": "11144411444411",
 											"statues": "opened",
 											"title": "Warning",

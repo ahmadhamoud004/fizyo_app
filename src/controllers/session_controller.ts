@@ -60,7 +60,7 @@ export default class SessionController {
     startDate: new Date("2022-09-10"),
     duration: 50,
     serviceType: "Home",
-    location: "aleppo",
+    location: { city: "Aleppo" },
     attachments: {
       attachmentUrl: "attachmentUrl",
       attachmentName: "attachmentName",

@@ -5,18 +5,18 @@ const NotificationsSchema = new Schema<INotifications>({
   referenceType: {
     type: String,
     enum: [
-      "sessions",
-      "agreements",
-      "disputes",
-      "alarm",
-      "announcements",
-      "users",
-      "communications",
+      "Session",
+      "Agreement",
+      "Dispute",
+      "Alarm",
+      "Announcement",
+      "User",
+      "Communication",
     ],
-    default: "sessions",
+    default: "Session",
     required: true,
   },
-  referenceID: { type: String, required: true },
+  referenceID: { type: Schema.Types.ObjectId, ref: "referenceType" },
   statues: {
     type: String,
     enum: ["sent", "delivered", "opened"],
@@ -28,8 +28,8 @@ const NotificationsSchema = new Schema<INotifications>({
   sentDate: { type: Date, required: true },
   receivedDate: { type: Date, required: true },
   openDate: { type: Date, required: true },
-  //receiverUID:{type:Schema.Types.ObjectId, ref:"User"}
-  receiverUID: { type: String },
+  receiverUID: { type: Schema.Types.ObjectId, ref: "User" },
+  // receiverUID: { type: String },
 });
 NotificationsSchema.virtual("url").get(function () {
   return "notifications/" + this._id;

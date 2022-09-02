@@ -56,7 +56,7 @@ export default class CommunicationsController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<ICommunications>({
-    referenceType: "sessions",
+    referenceType: "Session",
     referenceID: "_",
     partiesUIDs: ["_"],
     lastUpdate: new Date("2022-09-10"),

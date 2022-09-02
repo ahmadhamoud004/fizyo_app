@@ -55,13 +55,13 @@ export default class AnnouncementController {
   @SuccessResponse("200", "Created")
   @Example<IAnnouncements>({
     _id: "6300e18b3bbd975cf6459983",
-    referenceType: "Advertisment",
+    referenceType: "Advertisement",
     referenceID: "11115555555555",
     statues: "draft",
     topic: "new topic",
     details: "The announcement contain info ",
     sentDate: new Date("2022-09-10"),
-    attachments: "no attachment",
+    attachments: [{ name: "personal information" }],
     receiversUIDs: ["11111111166666660"],
   })
   @Post("create")
