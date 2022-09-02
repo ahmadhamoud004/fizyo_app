@@ -20,7 +20,7 @@ describe("SessionController", () => {
             startDate: new Date("10-11-2022"),
             duration: 50,
             serviceType: "Home",
-            location: "aleppo",
+            location: { city: "Aleppo" },
             attachments: {
               attachmentUrl: "www.google.com",
               attachmentName: "cd",

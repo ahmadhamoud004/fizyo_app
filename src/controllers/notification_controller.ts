@@ -55,7 +55,7 @@ export default class NotificationController {
   @SuccessResponse("200", "Created")
   @Example<INotifications>({
     _id: "6300e18b3bbd975cf6459983",
-    referenceType: "agreements",
+    referenceType: "Agreement",
     referenceID: "11144411444411",
     statues: "opened",
     title: "Warning",

@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IUsers } from "../types/interfaces";
+import { IUsers, IEnumValues } from "../types/interfaces";
 
 const UsersSchema = new Schema<IUsers>({
   // Example on String
@@ -12,8 +12,8 @@ const UsersSchema = new Schema<IUsers>({
   gender: {
     type: String,
     required: true,
-    enum: ["Male", "Female"],
-    default: "Male",
+    // enum: IEnu,
+    // default: "Male",
   },
   // Example on Date
   DOB: { type: Date, required: true },

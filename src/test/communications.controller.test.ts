@@ -11,8 +11,8 @@ describe("CommunicationsController", () => {
       expect(
         async () =>
           await controller.createCommunication({
-            _id: "6300e18b3bbd975cf6457777",
-            referenceType: "disputes",
+            _id: "6300e18b3bbd975rr6457777",
+            referenceType: "Dispute",
             referenceID: "6300e18b3bbd975cf6456666",
             partiesUIDs: ["6300e18b3bbd975cf6456666"],
             lastUpdate: new Date("2022-09-10"),
@@ -40,8 +40,8 @@ describe("CommunicationsController", () => {
     it("should update a specific communication correctly", async () => {
       expect(
         async () =>
-          await controller.updateCommunication("6300e18b3bbd975cf6457777", {
-            referenceType: "agreements",
+          await controller.updateCommunication("6300e18b3bbd975rr6457777", {
+            referenceType: "Agreement",
             messages: [
               {
                 messageType: "voice",
@@ -60,7 +60,7 @@ describe("CommunicationsController", () => {
     it("should get a specific communication by Id", async () => {
       expect(
         async () =>
-          await controller.getCommunication("6300e18b3bbd975cf6457777")
+          await controller.getCommunication("6300e18b3bbd975rr6457777")
       ).not.toThrow();
     });
   });
@@ -69,7 +69,7 @@ describe("CommunicationsController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteCommunication("6300e18b3bbd975cf6456666")
+          await controller.deleteCommunication("6300e18b3bbd975rr6457777")
       ).not.toThrow();
     });
   });

@@ -12,7 +12,7 @@ describe("NotificationController", () => {
         async () =>
           await controller.createNotification({
             _id: "6300e18b3bbd975cf6459983",
-            referenceType: "agreements",
+            referenceType: "Agreement",
             referenceID: "11144411444411",
             statues: "opened",
             title: "Warning",
@@ -37,7 +37,7 @@ describe("NotificationController", () => {
       expect(
         async () =>
           await controller.updateNotification("6310d1e9f2d63b32d0c306ba", {
-            referenceType: "users",
+            referenceType: "User",
             statues: "opened",
             details: "change information",
           })

@@ -2,12 +2,9 @@ import { Schema, model } from "mongoose";
 import { IDisputes } from "../types/interfaces";
 
 const DisputeSchema = new Schema<IDisputes>({
-  // sessionID: { type: Schema.Types.ObjectId, ref: 'Session' },
-  // firstPartyUID: { type: Schema.Types.ObjectId, ref: 'User' },
-  // secondUID: { type: Schema.Types.ObjectId, ref: 'User' },
-  sessionID: { type: String },
-  firstPartyUID: { type: String },
-  secondUID: { type: String },
+  sessionID: { type: Schema.Types.ObjectId, ref: "Session" },
+  firstPartyUID: { type: Schema.Types.ObjectId, ref: "User" },
+  secondUID: { type: Schema.Types.ObjectId, ref: "User" },
   topic: { type: String, required: true },
   details: { type: String, required: true },
   attachments: [
@@ -34,7 +31,7 @@ const DisputeSchema = new Schema<IDisputes>({
   },
 
   // resolverUID: { type: Schema.Types.ObjectId, ref: 'User' },
-  resolverUID: { type: String },
+  resolverUID: { type: Schema.Types.ObjectId, ref: "User" },
   inProgressDate: { type: Date, required: true },
   receivedDate: { type: Date, required: true },
   suspendedDate: { type: Date, required: true },

@@ -12,13 +12,13 @@ describe("AnnouncementController", () => {
         async () =>
           await controller.createAnnouncement({
             _id: "6300e18b3bbd975cf6459983",
-            referenceType: "Advertisment",
+            referenceType: "Advertisement",
             referenceID: "11115555555555",
             statues: "draft",
             topic: "new topic",
             details: "The announcement contain info ",
             sentDate: new Date("10-11-2022"),
-            attachments: "no attachment",
+            attachments: [{ name: "personal information" }],
             receiversUIDs: ["11111111166666660"],
           })
       ).not.toThrow();
@@ -38,7 +38,7 @@ describe("AnnouncementController", () => {
           await controller.updateAnnouncement("6310d1e9f2d63b32d0c306ba", {
             referenceType: "Session",
             statues: "published",
-            attachments: "new attachments",
+            attachments: [{ name: "public information" }],
             details: "change information",
           })
       ).not.toThrow();
