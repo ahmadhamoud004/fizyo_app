@@ -27,7 +27,7 @@ export default class ServiceProvidersController {
 
   /**
    * Get a serviceProvider details
-   * @example serviceProviderId "       "
+   * @example serviceProviderId "63107aae6bcd70f0f363847c"
    */
   @Response(404, "The requested serviceProvider is not found")
   @Get("{serviceProviderId}")
@@ -39,7 +39,7 @@ export default class ServiceProvidersController {
 
   /**
    * Delete a serverProvider
-   * @example serviceProviderId "ertwerwryer45"
+   * @example serviceProviderId "63107aae6bcd70f0f363847c"
    */
   @Response(404, "The requested serviceProvider is not found")
   @SuccessResponse("200", "Deleted")

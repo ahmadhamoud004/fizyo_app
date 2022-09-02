@@ -10,9 +10,13 @@ import ServiceProvidersRoutes from "./routes/service_providers_routes";
 import DisputeRoutes from "./routes/dispute_routes";
 import CommunicationsRoutes from "./routes/communications_routes";
 import AgreementsRoutes from "./routes/agreements_routes";
+
 import UsersRoutes from "./routes/users_routes";
 import RolesRoutes from "./routes/roles_route";
 import EmployeesRoutes from "./routes/employees_routes";
+
+import ClientsRoutes from "./routes/clients_routes";
+
 
 dotenv.config();
 
@@ -30,9 +34,13 @@ connection.once("open", async () => {
   const DisputeModel = require("./models/dispute_model");
   const CommunicationsModel = require("./models/communications_model");
   const AgreementsModel = require("./models/agreements_model");
+
   const UsersModel = require("./models/users_model");
   const RolesModel = require("./models/roles_model");
   const EmployeesModel = require("./models/employees_model");
+
+  const ClientsModel = require("./models/clients_model");
+
 });
 
 app.use(
@@ -50,9 +58,13 @@ app.use("/serviceProviders", ServiceProvidersRoutes);
 app.use("/disputes", DisputeRoutes);
 app.use("/communications", CommunicationsRoutes);
 app.use("/agreements", AgreementsRoutes);
+
 app.use("/users", UsersRoutes);
 app.use("/roles", RolesRoutes);
 app.use("/employees", EmployeesRoutes);
+
+=======
+app.use("/clients", ClientsRoutes);
 
 
 app.get("/", (req: Request, res: Response) => {

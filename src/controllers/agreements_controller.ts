@@ -27,7 +27,7 @@ export default class AgreementsController {
 
   /**
    * Get a agreement details
-   * @example agreementId "_"
+   * @example agreementId "630ded831cb815c4d98d3df6"
    */
   @Response(404, "The requested agreement is not found")
   @Get("{agreementId}")
@@ -37,7 +37,7 @@ export default class AgreementsController {
 
   /**
    * Delete a agreement
-   * @example agreementId "3452ter23wt"
+   * @example agreementId "630ded831cb815c4d98d3df6"
    */
   @Response(404, "The requested agreement is not found")
   @SuccessResponse("200", "Deleted")

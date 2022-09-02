@@ -27,7 +27,7 @@ export default class DisputeController {
 
   /**
    * Get a dispute details
-   * @example disputeId "       "
+   * @example disputeId "63107cdf144972d5a75c14cb"
    */
   @Response(404, "The requested dispute is not found")
   @Get("{disputeId}")
@@ -37,7 +37,7 @@ export default class DisputeController {
 
   /**
    * Delete a dispute
-   * @example disputeId "       "
+   * @example disputeId "63107cdf144972d5a75c14cb"
    */
   @Response(404, "The requested dispute is not found")
   @SuccessResponse("200", "Deleted")
@@ -53,15 +53,15 @@ export default class DisputeController {
   @SuccessResponse("200", "Created")
   @Example<IDisputes>({
     sessionID: "yuuruyyudde",
-    firstPartyUID: "_",
-    secondUID: "_",
+    firstPartyUID: "rtyetyertwrqer",
+    secondUID: "werweryrtgerwer",
     topic: "treatment",
     details: "more details",
     attachments: [
       { url: "http://localhost:8000/disputes", name: "file", disType: "pdf" },
     ], // name, url, type
     status: "sent",
-    resolverUID: "_",
+    resolverUID: "wertehterwrwrr",
     inProgressDate: new Date("2022-09-10"),
     receivedDate: new Date("2022-09-10"),
     suspendedDate: new Date("2022-09-10"),
