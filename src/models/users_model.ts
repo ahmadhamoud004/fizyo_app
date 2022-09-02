@@ -20,11 +20,9 @@ const UsersSchema = new Schema<IUsers>({
   // Example on object[] with attributes
   address: [
     {
-      type: {
         country: { type: String },
         government: { type: String },
         manipolicity: { type: String },
-      },
     },
   ],
   verified: {

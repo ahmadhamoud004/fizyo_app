@@ -133,7 +133,7 @@ export interface IRoles {
 }
 
 export interface IEmployees {
-  _id: Types.ObjectId;
+  _id?: Types.ObjectId;
   uID?: string | Types.ObjectId;
   //user: PopulatedDoc<IUsers & Document>;
   roleID?: string | Types.ObjectId;
