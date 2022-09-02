@@ -1,19 +1,19 @@
 import {
-    Get,
-    Post,
-    Route,
-    SuccessResponse,
-    Body,
-    Response,
-    Example,
-    Delete,
-    Path,
-    Put,
-  } from "tsoa";
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
 import { IEnumValues } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const EnumModel: Model<IEnumValues> = require("../models/EnumsModel");
+const EnumModel: Model<IEnumValues> = require("../models/enums_model");
 
 @Route("enums")
 export default class EnumController {
@@ -25,17 +25,17 @@ export default class EnumController {
     return await EnumModel.find();
   }
 
-   /**
+  /**
    * Get a Enums details
    * @example Enums "6300e18d3bbd975cf6459994"
    */
-    @Response(404, "the requested enum in not found")
-    @Get("{enumId}")
-    public async getEnum(enumId: string): Promise<IEnumValues | null> {
-      return await EnumModel.findById(enumId);
-    }
+  @Response(404, "the requested enum in not found")
+  @Get("{enumId}")
+  public async getEnum(enumId: string): Promise<IEnumValues | null> {
+    return await EnumModel.findById(enumId);
+  }
 
-    /**
+  /**
    * Delete a enum
    * @example enumId "6300e18d3bbd975cf6459994"
    */
@@ -46,25 +46,24 @@ export default class EnumController {
     return await EnumModel.findByIdAndDelete(enumId);
   }
 
-   /**
+  /**
    * Create a enum
    */
-    @Response(422, "Validation Failed")
-    @SuccessResponse("200", "Created")
-    // @Example<IEnumValues>({
-        // name:"",
-        // values:"",
-        // note:"",
-        
-    // })
-    @Post("create")
-    public async createEnum(@Body() enums: IEnumValues): Promise<IEnumValues> {
-      return new EnumModel({
-        ...enums,
-      }).save();
-    }
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IEnumValues>({
+    enumName: "session",
+    enumValues: ["first"],
+    enumNote: "test",
+  })
+  @Post("create")
+  public async createEnum(@Body() enums: IEnumValues): Promise<IEnumValues> {
+    return new EnumModel({
+      ...enums,
+    }).save();
+  }
 
-      /**
+  /**
    * Update a enum
    */
   @Response(422, "Validation Failed")
@@ -79,7 +78,7 @@ export default class EnumController {
       enumDocument.enumName = enums.enumName ?? enumDocument.enumName;
       enumDocument.enumValues = enums.enumValues ?? enumDocument.enumValues;
       enumDocument.enumNote = enums.enumNote ?? enumDocument.enumNote;
-      
+
       return await enumDocument.save();
     }
     return null;

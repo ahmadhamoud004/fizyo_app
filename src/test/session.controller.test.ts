@@ -3,7 +3,7 @@ import SessionController from "../controllers/session_controller";
 import { ISessions } from "../types/interfaces";
 
 describe("SessionController", () => {
-  const SessionModel: Model<ISessions> = require("../models/SessionsModel");
+  const SessionModel: Model<ISessions> = require("../models/sessions_model");
   const controller = new SessionController();
 
   describe("createSession", () => {
@@ -12,24 +12,49 @@ describe("SessionController", () => {
         async () =>
           await controller.createSession({
             _id: "6300e18b3bbd975cf6459983",
-            sessionType:"individual",
-            serviceProvidersID:"6300e18b3bbd975cf6459983",
-            clientsIDs:["6300e18b3bbd975cf6459983"],
-            name:"math",
-            details:"mathmatical analysis",
-            startDate:new Date(10/10/2022),
-            duration:50,
-            serviceType:"Home",
-            location:"aleppo",
-            attachments:{attachmentUrl:"www.google.com",attachmentName:"cd",attachmentType:"pdf"},
-            requirements:"no requirement",
-            ratings:[{raterUID:"111111111111115",ratingValue:"5",ratingDate:new Date(10/10/2022)},{raterUID:"11111111141121115",ratingValue:"4",ratingDate:new Date(10/10/2022)}],
-            reviews:[{reviewerUID:"11115551515",reviewDetails:"goooood",reviewDate:new Date(10/10/2021)}],
-            sessionFee:1500,
-            payments:{discount:25,paymentMethod:"paypal",payerID:"1145655",amount:250},
-            status:"agreed",
-            doctorReferral:"no "
-
+            sessionType: "individual",
+            serviceProvidersID: "6300e18b3bbd975cf6459983",
+            clientsIDs: ["6300e18b3bbd975cf6459983"],
+            name: "math",
+            details: "mathematical analysis",
+            startDate: new Date("10-11-2022"),
+            duration: 50,
+            serviceType: "Home",
+            location: "aleppo",
+            attachments: {
+              attachmentUrl: "www.google.com",
+              attachmentName: "cd",
+              attachmentType: "pdf",
+            },
+            requirements: "no requirement",
+            ratings: [
+              {
+                raterUID: "111111111111115",
+                ratingValue: "5",
+                ratingDate: new Date("10-11-2022"),
+              },
+              {
+                raterUID: "11111111141121115",
+                ratingValue: "4",
+                ratingDate: new Date("10-11-2022"),
+              },
+            ],
+            reviews: [
+              {
+                reviewerUID: "11115551515",
+                reviewDetails: "goooood",
+                reviewDate: new Date("10-11-2022"),
+              },
+            ],
+            sessionFee: 1500,
+            payments: {
+              discount: 25,
+              paymentMethod: "paypal",
+              payerID: "1145655",
+              amount: 250,
+            },
+            status: "agreed",
+            doctorReferral: "no ",
           })
       ).not.toThrow();
     });
@@ -46,9 +71,9 @@ describe("SessionController", () => {
       expect(
         async () =>
           await controller.updateSession("6310d1e9f2d63b32d0c306ba", {
-            sessionType:"group",
-            duration:120,
-            serviceType:"Online",
+            sessionType: "group",
+            duration: 120,
+            serviceType: "Online",
           })
       ).not.toThrow();
     });
@@ -57,8 +82,7 @@ describe("SessionController", () => {
   describe("getSession", () => {
     it("should get a specific session by Id", async () => {
       expect(
-        async () =>
-          await controller.getSession("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.getSession("6310d1e9f2d63b32d0c306ba")
       ).not.toThrow();
     });
   });
@@ -66,8 +90,7 @@ describe("SessionController", () => {
   describe("deleteSession", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () =>
-          await controller.deletesession("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.deleteSession("6310d1e9f2d63b32d0c306ba")
       ).not.toThrow();
     });
   });

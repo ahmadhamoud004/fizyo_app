@@ -3,24 +3,23 @@ import AnnouncementController from "../controllers/announcement_controller";
 import { IAnnouncements } from "../types/interfaces";
 
 describe("AnnouncementController", () => {
-  const SessionModel: Model<IAnnouncements> = require("../models/SessionsModel");
+  const AnnouncementModel: Model<IAnnouncements> = require("../models/announcements_model");
   const controller = new AnnouncementController();
 
-  describe("createannouncement", () => {
+  describe("createAnnouncement", () => {
     it("should be created correctly", async () => {
       expect(
         async () =>
-          await controller.createannouncement({
+          await controller.createAnnouncement({
             _id: "6300e18b3bbd975cf6459983",
-            referenceType:"Advertisment",
-            referenceID:"11115555555555",
-            statues:"draft",
-            topic:"new topic",
-            details:"The annpuncement contain info ",
-            sentDate:new Date(10/10/2022),
-            attachments:"no attachment",
-            receiversUIDs:["11111111166666660"]
-
+            referenceType: "Advertisment",
+            referenceID: "11115555555555",
+            statues: "draft",
+            topic: "new topic",
+            details: "The announcement contain info ",
+            sentDate: new Date("10-11-2022"),
+            attachments: "no attachment",
+            receiversUIDs: ["11111111166666660"],
           })
       ).not.toThrow();
     });
@@ -37,10 +36,10 @@ describe("AnnouncementController", () => {
       expect(
         async () =>
           await controller.updateAnnouncement("6310d1e9f2d63b32d0c306ba", {
-            referenceType:"Session",
-            statues:"published",
-            attachments:"new attachments",
-            details:"change information"
+            referenceType: "Session",
+            statues: "published",
+            attachments: "new attachments",
+            details: "change information",
           })
       ).not.toThrow();
     });
@@ -49,8 +48,7 @@ describe("AnnouncementController", () => {
   describe("getAnnouncement", () => {
     it("should get a specific announcement by Id", async () => {
       expect(
-        async () =>
-          await controller.getAnnouncement("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.getAnnouncement("6310d1e9f2d63b32d0c306ba")
       ).not.toThrow();
     });
   });

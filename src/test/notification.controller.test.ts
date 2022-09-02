@@ -3,7 +3,7 @@ import NotificationController from "../controllers/notification_controller";
 import { INotifications } from "../types/interfaces";
 
 describe("NotificationController", () => {
-  const NotificationModel: Model<INotifications> = require("../models/NotificationsModel");
+  const NotificationModel: Model<INotifications> = require("../models/notifications_model");
   const controller = new NotificationController();
 
   describe("createNotification", () => {
@@ -12,17 +12,15 @@ describe("NotificationController", () => {
         async () =>
           await controller.createNotification({
             _id: "6300e18b3bbd975cf6459983",
-            referenceType:"agreements",
-            referenceID:"11144411444411",
-            statues:"opened",
-            title:"Warning",
-            details:"this notification title",
-            sentDate:new Date(10/10/2022),
-            receivedDate:new Date(9/10/2022),
-            openDate:new Date(11/10/2022),
-            receiverUID:"11155555555555"
-            
-
+            referenceType: "agreements",
+            referenceID: "11144411444411",
+            statues: "opened",
+            title: "Warning",
+            details: "this notification title",
+            sentDate: new Date("10-11-2022"),
+            receivedDate: new Date("11-11-2022"),
+            openDate: new Date("11-11-2022"),
+            receiverUID: "11155555555555",
           })
       ).not.toThrow();
     });
@@ -35,13 +33,13 @@ describe("NotificationController", () => {
   });
 
   describe("updateNotification", () => {
-    it("should update a specific session correctly", async () => {
+    it("should update a specific notification correctly", async () => {
       expect(
         async () =>
           await controller.updateNotification("6310d1e9f2d63b32d0c306ba", {
-            referenceType:"users",
-            statues:"opened",
-            details:"change information"
+            referenceType: "users",
+            statues: "opened",
+            details: "change information",
           })
       ).not.toThrow();
     });
@@ -50,8 +48,7 @@ describe("NotificationController", () => {
   describe("getNotification", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () =>
-          await controller.getNotification("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.getNotification("6310d1e9f2d63b32d0c306ba")
       ).not.toThrow();
     });
   });
