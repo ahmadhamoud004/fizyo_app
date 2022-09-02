@@ -58,7 +58,7 @@ export default class EmployeesController {
   @Example<IEmployees>({
     uID: "_",
     roleID: "_",
-    salery: 5000.500,
+    salery: 5000,
     attachments: [
       {
         name: "memo",
