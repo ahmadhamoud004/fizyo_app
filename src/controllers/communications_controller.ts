@@ -27,7 +27,7 @@ export default class CommunicationsController {
 
   /**
    * Get a communication details
-   * @example communicationId "_"
+   * @example communicationId "63107b4a8e2578704ed06b1d"
    */
   @Response(404, "The requested communication is not found")
   @Get("{communicationId}")
@@ -39,7 +39,7 @@ export default class CommunicationsController {
 
   /**
    * Delete a communication
-   * @example communicationId "wrerwetrewteryedsf"
+   * @example communicationId "63107b4a8e2578704ed06b1d"
    */
   @Response(404, "The requested communication is not found")
   @SuccessResponse("200", "Deleted")
