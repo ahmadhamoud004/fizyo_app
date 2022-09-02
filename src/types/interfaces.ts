@@ -136,7 +136,7 @@ export interface IEmployees {
   _id?: Types.ObjectId;
   uID?: string | Types.ObjectId;
   //user: PopulatedDoc<IUsers & Document>;
-  roleID?: string | Types.ObjectId;
+  roleId?: string | Types.ObjectId;
   //role: PopulatedDoc<IRoles & Document>;
   salery: Number;
   attachments: {

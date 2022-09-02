@@ -57,7 +57,7 @@ export default class EmployeesController {
   @SuccessResponse("200", "Created")
   @Example<IEmployees>({
     uID: "_",
-    roleID: "_",
+    roleId: "_",
     salery: 5000,
     attachments: [
       {
@@ -82,15 +82,15 @@ export default class EmployeesController {
   @Put("update/{employeeId}")
   public async updateEmployee(
     @Path() employeeId: string,
-    @Body() user: Partial<IEmployees>
+    @Body() employee: Partial<IEmployees>
   ): Promise<IEmployees | null> {
     let employeeDocument = await EmployeesModel.findById(
       employeeId
     );
     if (employeeDocument != null) {
-      employeeDocument.roleID = user.roleID ?? employeeDocument.roleID;
-      employeeDocument.salery = user.salery ?? employeeDocument.salery;
-      employeeDocument.attachments = user.attachments ?? employeeDocument.attachments;
+      employeeDocument.roleId = employee.roleId ?? employeeDocument.roleId;
+      employeeDocument.salery = employee.salery ?? employeeDocument.salery;
+      employeeDocument.attachments = employee.attachments ?? employeeDocument.attachments;
       return await employeeDocument.save();
     }
     return null;

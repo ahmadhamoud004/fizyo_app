@@ -16,7 +16,7 @@ const UsersSchema = new Schema<IUsers>({
     default: "Male",
   },
   // Example on Date
-  DOB: { type: Date, required: true },
+  DOB: { type: Date, required: false },
   // Example on object[] with attributes
   address: [
     {
@@ -43,7 +43,7 @@ const UsersSchema = new Schema<IUsers>({
     enum: ["PT", "EM", "PA"],
     default: "PT",
   },
-  lastLoginDate: { type: Date, required: true },
+  lastLoginDate: { type: Date, required: false },
   // Example on object
   accountSetting:{type: Object, required: false},
   // Example on String[]

@@ -813,88 +813,265 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IClients": {
+			"IUsers": {
 				"properties": {
 					"_id": {
 						"anyOf": [
 							{
-								"type": "string"
-							},
-							{
 								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"uID": {
-						"anyOf": [
+							},
 							{
 								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
 							}
 						]
 					},
-					"preferredServiceType": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"type": "string",
-									"enum": [
-										"online",
-										"home",
-										"office"
-									]
-								},
-								"type": "array"
-							}
-						]
-					},
-					"diseases": {
+					"email": {
 						"type": "string"
 					},
-					"preferences": {
+					"phoneNumber": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"Male",
+							"Female"
+						]
+					},
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"properties": {
+								"manipolicity": {
+									"type": "string"
+								},
+								"government": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"manipolicity",
+								"government",
+								"country"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSent",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSetting": {
 						"additionalProperties": false,
 						"type": "object"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
 					}
 				},
 				"required": [
-					"preferredServiceType",
-					"diseases",
-					"preferences"
+					"email",
+					"phoneNumber",
+					"password",
+					"profilePicture",
+					"firstName",
+					"lastName",
+					"gender",
+					"DOB",
+					"address",
+					"verified",
+					"status",
+					"accountType",
+					"lastLoginDate",
+					"accountSetting",
+					"languages",
+					"maritalStatus"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IClients_": {
+			"Partial_IUsers_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
 							{
-								"type": "string"
+								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/Types.ObjectId"
+								"type": "string"
 							}
 						]
 					},
-					"uID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
+					"email": {
+						"type": "string"
+					},
+					"phoneNumber": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"profilePicture": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "string",
+						"enum": [
+							"Male",
+							"Female"
 						]
 					},
-					"preferredServiceType": {
+					"DOB": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"address": {
+						"items": {
+							"properties": {
+								"manipolicity": {
+									"type": "string"
+								},
+								"government": {
+									"type": "string"
+								},
+								"country": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"manipolicity",
+								"government",
+								"country"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"verified": {
+						"type": "string",
+						"enum": [
+							"notSent",
+							"pending",
+							"verified"
+						]
+					},
+					"status": {
+						"type": "string",
+						"enum": [
+							"inActive",
+							"active",
+							"suspended",
+							"lost",
+							"deleted"
+						]
+					},
+					"accountType": {
+						"type": "string",
+						"enum": [
+							"PT",
+							"EM",
+							"PA"
+						]
+					},
+					"lastLoginDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"accountSetting": {
+						"additionalProperties": false,
+						"type": "object"
+					},
+					"languages": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"maritalStatus": {
+						"type": "string",
+						"enum": [
+							"married",
+							"single",
+							"divorced",
+							"widow"
+						]
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"IRoles": {
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/Types.ObjectId"
+					},
+					"name": {
+						"type": "string"
+					},
+					"employees": {
 						"anyOf": [
 							{
 								"items": {
@@ -904,23 +1081,133 @@
 							},
 							{
 								"items": {
-									"type": "string",
-									"enum": [
-										"online",
-										"home",
-										"office"
-									]
+									"$ref": "#/components/schemas/Types.ObjectId"
 								},
 								"type": "array"
 							}
 						]
 					},
-					"diseases": {
+					"users": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"service_provider": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"clients": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"communications": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"disputes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enum_values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"name",
+					"users",
+					"service_provider",
+					"clients",
+					"sessions",
+					"communications",
+					"disputes",
+					"enum_values"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IRoles_": {
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/Types.ObjectId"
+					},
+					"name": {
 						"type": "string"
 					},
-					"preferences": {
-						"additionalProperties": false,
-						"type": "object"
+					"employees": {
+						"anyOf": [
+							{
+								"items": {
+									"type": "string"
+								},
+								"type": "array"
+							},
+							{
+								"items": {
+									"$ref": "#/components/schemas/Types.ObjectId"
+								},
+								"type": "array"
+							}
+						]
+					},
+					"users": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"service_provider": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"clients": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"communications": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"disputes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enum_values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"type": "object",
@@ -1739,9 +2026,9 @@
 				}
 			}
 		},
-		"/clients": {
+		"/users": {
 			"get": {
-				"operationId": "GetClients",
+				"operationId": "GetUsers",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -1749,7 +2036,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IClients"
+										"$ref": "#/components/schemas/IUsers"
 									},
 									"type": "array"
 								}
@@ -1757,14 +2044,14 @@
 						}
 					}
 				},
-				"description": "Get List of All clients",
+				"description": "Get all of users",
 				"security": [],
 				"parameters": []
 			}
 		},
-		"/clients/{clientId}": {
+		"/users/{userId}": {
 			"get": {
-				"operationId": "GetClient",
+				"operationId": "GetUser",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -1773,7 +2060,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IUsers"
 										}
 									],
 									"nullable": true
@@ -1782,25 +2069,25 @@
 						}
 					},
 					"404": {
-						"description": "The requested client is not found"
+						"description": "The requested user is not found"
 					}
 				},
-				"description": "Get a client details",
+				"description": "Get a user details",
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
-						"name": "clientId",
+						"name": "userId",
 						"required": true,
 						"schema": {
 							"type": "string"
 						},
-						"example": "6310750be8f4ab035351fb78"
+						"example": "       "
 					}
 				]
 			},
 			"delete": {
-				"operationId": "DeleteClient",
+				"operationId": "DeleteUser",
 				"responses": {
 					"200": {
 						"description": "Deleted",
@@ -1809,7 +2096,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IUsers"
 										}
 									],
 									"nullable": true
@@ -1818,46 +2105,66 @@
 						}
 					},
 					"404": {
-						"description": "The requested client is not found"
+						"description": "The requested user is not found"
 					}
 				},
-				"description": "Delete a client",
+				"description": "Delete a user",
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
-						"name": "clientId",
+						"name": "userId",
 						"required": true,
 						"schema": {
 							"type": "string"
 						},
-						"example": "6310750be8f4ab035351fb78"
+						"example": "ertwerwryer45"
 					}
 				]
 			}
 		},
-		"/clients/create": {
+		"/users/create": {
 			"post": {
-				"operationId": "CreateClient",
+				"operationId": "CreateUser",
 				"responses": {
 					"200": {
 						"description": "Created",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IClients"
+									"$ref": "#/components/schemas/IUsers"
 								},
 								"examples": {
 									"Example 1": {
 										"value": {
-											"uID": "ertewryrtuyr43535355543",
-											"preferredServiceType": [
-												"online"
+											"email": "nour@gmail.com",
+											"phoneNumber": "00352681531905",
+											"password": "00352681531905",
+											"profilePicture": "main.png",
+											"firstName": "Muhammad",
+											"lastName": "Nour",
+											"gender": "Male",
+											"DOB": "2022-09-10T00:00:00.000Z",
+											"address": [
+												{
+													"country": "Syria",
+													"government": "SY",
+													"manipolicity": "Fixed"
+												}
 											],
-											"diseases": "diseases",
-											"preferences": {
-												"pref": "pref test"
-											}
+											"verified": "notSent",
+											"status": "active",
+											"accountType": "EM",
+											"lastLoginDate": "2022-09-10T00:00:00.000Z",
+											"accountSetting": {
+												"name": "Setting1",
+												"value": "Some value"
+											},
+											"languages": [
+												"AR",
+												"EN"
+											],
+											"maritalStatus": "single"
 										}
 									}
 								}
@@ -1865,10 +2172,10 @@
 						}
 					},
 					"422": {
-						"description": "Validation Failed"
+						"description": "Validation failed"
 					}
 				},
-				"description": "Create a client",
+				"description": "Create a user",
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -1876,16 +2183,16 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IClients"
+								"$ref": "#/components/schemas/IUsers"
 							}
 						}
 					}
 				}
 			}
 		},
-		"/clients/update/{clientId}": {
+		"/users/update/{userId}": {
 			"put": {
-				"operationId": "UpdateClient",
+				"operationId": "UpdateUser",
 				"responses": {
 					"200": {
 						"description": "Updated",
@@ -1894,7 +2201,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IUsers"
 										}
 									],
 									"nullable": true
@@ -1906,12 +2213,12 @@
 						"description": "Validation Failed"
 					}
 				},
-				"description": "Update a Client",
+				"description": "Update user",
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
-						"name": "clientId",
+						"name": "userId",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -1923,7 +2230,199 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IClients_"
+								"$ref": "#/components/schemas/Partial_IUsers_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles": {
+			"get": {
+				"operationId": "GetRoles",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IRoles"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Get all of roles",
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/roles/{roleId}": {
+			"get": {
+				"operationId": "GetRole",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IRoles"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested role is not found"
+					}
+				},
+				"description": "Get role details",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "       "
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteRole",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IRoles"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "The requested role is not found"
+					}
+				},
+				"description": "Delete role",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "ertwerwryer45"
+					}
+				]
+			}
+		},
+		"/roles/create": {
+			"post": {
+				"operationId": "CreateRole",
+				"responses": {
+					"200": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IRoles"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "Admin",
+											"employees": [],
+											"users": [],
+											"service_provider": [],
+											"clients": [],
+											"sessions": [],
+											"communications": [],
+											"disputes": [],
+											"enum_values": []
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation failed"
+					}
+				},
+				"description": "Create role",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IRoles"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/roles/update/{roleId}": {
+			"put": {
+				"operationId": "UpdateRole",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IRoles"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed"
+					}
+				},
+				"description": "Update role",
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "roleId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/Partial_IRoles_"
 							}
 						}
 					}

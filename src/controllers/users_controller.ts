@@ -75,7 +75,7 @@ export default class UsersController {
     verified: "notSent",
     status: "active",
     accountType: "EM",
-    lastLoginDate: new Date(Date.now()),
+    lastLoginDate: new Date("2022-09-10"),
     accountSetting: {  name: "Setting1", value: "Some value"},
     languages:["AR", "EN"],
     maritalStatus: "single",
