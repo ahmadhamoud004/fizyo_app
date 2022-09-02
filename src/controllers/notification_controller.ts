@@ -58,9 +58,9 @@ export default class NotificationController {
       statues:"opened",
       title:"Warning",
       details:"this notification title",
-      sentDate:new Date(10/10/2022),
-      receivedDate:new Date(9/10/2022),
-      openDate:new Date(11/10/2022),
+      sentDate:new Date("10-10-2022"),
+      receivedDate:new Date("9-10-2022"),
+      openDate:new Date("11-10-2022"),
       receiverUID:"11155555555555"
            
     })

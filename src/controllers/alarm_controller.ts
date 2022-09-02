@@ -58,8 +58,8 @@ export default class AlarmController {
       frequencyUnit:"Days",
       frequency:15,
       active:true,
-      startDate:new Date(10/11/2022),
-      endDate:new Date(25/11/2022) 
+      startDate:new Date("10-11-2022"),
+      endDate:new Date("25-11-2022") 
         
     })
     @Post("create")

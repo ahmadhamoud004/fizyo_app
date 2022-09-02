@@ -57,7 +57,7 @@ export default class SessionController {
         clientsIDs:["6300e18d3bbd975cf64599"],
         name: "therapist",
         details:"therapost" ,
-        startDate:new Date("2022-09-10"),  
+        startDate:new Date("10-9-2022"),  
         duration:50,
         serviceType:"Home",
         location:"aleppo",
@@ -70,12 +70,12 @@ export default class SessionController {
         ratings:[{
           raterUID:"raterUID",
           ratingValue:"ratingValue",
-          ratingDate:new Date("2022-09-10"),
+          ratingDate:new Date("10-10-2022")
         }],
         reviews:[{
           reviewerUID:"reviewerUID",
           reviewDetails:"reviewDetails",
-          reviewDate:new Date("2022-09-10"),
+          reviewDate:new Date("10-10-2022")
   }],
           sessionFee:25,
            payments:{

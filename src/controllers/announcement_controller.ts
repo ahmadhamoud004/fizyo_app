@@ -58,7 +58,7 @@ export default class AnnouncementController {
             statues:"draft",
             topic:"new topic",
             details:"The annpuncement contain info ",
-            sentDate:new Date(10/10/2022),
+            sentDate:new Date("10-10-2022"),
             attachments:"no attachment",
             receiversUIDs:["11111111166666660"]})
     @Post("create")
