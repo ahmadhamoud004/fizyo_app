@@ -51,17 +51,17 @@ export default class AlarmController {
    */
     @Response(422, "Validation Failed")
     @SuccessResponse("200", "Created")
-    // @Example<IAlarms>({
-        // name:"",
-        // referenceType:"",
-        // referenceID:"",
-        // frequencyUnit:"",
-        // frequency:"",
-        // active:"",
-        // startDate:"",
-        // endDate:""    
+    @Example<IAlarms>({
+      name:"new therpist",
+      referenceType:"disputes",
+      referenceID:"155552222",
+      frequencyUnit:"Days",
+      frequency:15,
+      active:true,
+      startDate:new Date(10/11/2022),
+      endDate:new Date(25/11/2022) 
         
-    // })
+    })
     @Post("create")
     public async createAlarm(@Body() alarm: IAlarms): Promise<IAlarms> {
       return new AlarmModel({

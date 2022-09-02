@@ -51,16 +51,16 @@ export default class AnnouncementController {
    */
     @Response(422, "Validation Failed")
     @SuccessResponse("200", "Created")
-    // @Example<Iannouncements>({
-    //     referenceType:"",
-    //     referenceID:"",
-    //     statues:"",
-    //     topic:"",
-    //     details:"",
-    //     sentDate:"",
-    //     attachments:"",
-    //     receiversUIDs:""    
-    // })
+    @Example<IAnnouncements>({
+      _id: "6300e18b3bbd975cf6459983",
+            referenceType:"Advertisment",
+            referenceID:"11115555555555",
+            statues:"draft",
+            topic:"new topic",
+            details:"The annpuncement contain info ",
+            sentDate:new Date(10/10/2022),
+            attachments:"no attachment",
+            receiversUIDs:["11111111166666660"]})
     @Post("create")
     public async createannouncement(@Body() announcement: IAnnouncements): Promise<IAnnouncements> {
       return new AnnouncementModel({

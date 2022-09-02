@@ -51,18 +51,19 @@ export default class NotificationController {
    */
     @Response(422, "Validation Failed")
     @SuccessResponse("200", "Created")
-    // @Example<INotifications>({
-    //     referenceType:"",
-    //     referenceID:"",
-    //     statues:"",
-    //     title:"",
-    //     details:"",
-    //     sentDate:"",
-    //     receivedDate:"",
-    //     openDate:"",
-    //     receiverUID:"",
-        
-    // })
+    @Example<INotifications>({
+      _id: "6300e18b3bbd975cf6459983",
+      referenceType:"agreements",
+      referenceID:"11144411444411",
+      statues:"opened",
+      title:"Warning",
+      details:"this notification title",
+      sentDate:new Date(10/10/2022),
+      receivedDate:new Date(9/10/2022),
+      openDate:new Date(11/10/2022),
+      receiverUID:"11155555555555"
+           
+    })
     @Post("create")
     public async createNotification(@Body() notification: INotifications): Promise<INotifications> {
       return new NotificationModel({
