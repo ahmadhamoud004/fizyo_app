@@ -1,4 +1,3 @@
-// MuhammadNour
 import express, { Application, Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
@@ -17,6 +16,11 @@ import EmployeesRoutes from "./routes/employees_routes";
 
 import ClientsRoutes from "./routes/clients_routes";
 
+import SessionRoute from "./routes/session_routes";
+import AnnouncementRoute from "./routes/announcement_routes";
+import AlarmRoute from "./routes/alarm_routes";
+import NotificationRoute from "./routes/notification_routes";
+import EnumRoute from "./routes/enum_routes";
 
 dotenv.config();
 
@@ -38,9 +42,13 @@ connection.once("open", async () => {
   const UsersModel = require("./models/users_model");
   const RolesModel = require("./models/roles_model");
   const EmployeesModel = require("./models/employees_model");
-
   const ClientsModel = require("./models/clients_model");
 
+  const SessionModel = require("./models/sessions_model");
+  const AnnouncementModel = require("./models/announcements_model");
+  const AlarmModel = require("./models/alarms_model");
+  const NotificationModel = require("./models/notifications_model");
+  const EnumModel = require("./models/enums_model");
 });
 
 app.use(
@@ -54,6 +62,12 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 
+app.use("/sessions", SessionRoute);
+app.use("/announcements", AnnouncementRoute);
+app.use("/alarms", AlarmRoute);
+app.use("/notifications", NotificationRoute);
+app.use("/enums", EnumRoute);
+
 app.use("/serviceProviders", ServiceProvidersRoutes);
 app.use("/disputes", DisputeRoutes);
 app.use("/communications", CommunicationsRoutes);
@@ -62,9 +76,7 @@ app.use("/agreements", AgreementsRoutes);
 app.use("/users", UsersRoutes);
 app.use("/roles", RolesRoutes);
 app.use("/employees", EmployeesRoutes);
-
 app.use("/clients", ClientsRoutes);
-
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
@@ -81,5 +93,5 @@ app.use(
 );
 
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });

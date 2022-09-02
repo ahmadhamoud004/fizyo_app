@@ -14,7 +14,7 @@ describe("ServiceProvidersController", () => {
             _id: "6300e18b3bbd975cf6459983",
             uID: "123456845522",
             bio: "this is the best",
-            specialities: "Physiotherapist",
+            specialties: "Physiotherapist",
             preferredServiceType: ["online", "home", "office"],
             minSessionFee: 100.0,
             maxSessionFee: 150.0,
@@ -45,7 +45,7 @@ describe("ServiceProvidersController", () => {
         async () =>
           await controller.updateServiceProvider("6300e18b3bbd975cf6459983", {
             bio: "updated",
-            specialities: "Physio",
+            specialties: "Physio",
             verificationStatus: "verified",
           })
       ).not.toThrow();

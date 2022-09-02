@@ -59,7 +59,7 @@ export default class ServiceProvidersController {
   @Example<IServiceProviders>({
     uID: "43234erwrdfserwr",
     bio: "this is the best",
-    specialities: "Physiotherapist",
+    specialties: "Physiotherapist",
     preferredServiceType: ["online", "home", "office"],
     minSessionFee: 100.0,
     maxSessionFee: 150.0,
@@ -99,8 +99,8 @@ export default class ServiceProvidersController {
         serviceProvider.uID ?? serviceProviderDocument.uID;
       serviceProviderDocument.bio =
         serviceProvider.bio ?? serviceProviderDocument.bio;
-      serviceProviderDocument.specialities =
-        serviceProvider.specialities ?? serviceProviderDocument.specialities;
+      serviceProviderDocument.specialties =
+        serviceProvider.specialties ?? serviceProviderDocument.specialties;
       serviceProviderDocument.preferredServiceType =
         serviceProvider.preferredServiceType ??
         serviceProviderDocument.preferredServiceType;

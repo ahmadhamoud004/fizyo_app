@@ -31,9 +31,7 @@ export default class EmployeesController {
    */
   @Response(404, "The requested employee is not found")
   @Get("{employeeId}")
-  public async getEmployee(
-    employeeId: string
-  ): Promise<IEmployees | null> {
+  public async getEmployee(employeeId: string): Promise<IEmployees | null> {
     return await EmployeesModel.findById(employeeId);
   }
 
@@ -44,9 +42,7 @@ export default class EmployeesController {
   @Response(404, "The requested role is not found")
   @SuccessResponse("200", "Deleted")
   @Delete("{employeeId}")
-  public async deleteEmployee(
-    employeeId: string
-  ): Promise<IEmployees | null> {
+  public async deleteEmployee(employeeId: string): Promise<IEmployees | null> {
     return await EmployeesModel.findByIdAndDelete(employeeId);
   }
 
@@ -57,8 +53,8 @@ export default class EmployeesController {
   @SuccessResponse("200", "Created")
   @Example<IEmployees>({
     uID: "_",
-    roleId: "_",
-    salery: 5000,
+    roleID: "_",
+    salary: 5000.5,
     attachments: [
       {
         name: "memo",
@@ -84,13 +80,13 @@ export default class EmployeesController {
     @Path() employeeId: string,
     @Body() employee: Partial<IEmployees>
   ): Promise<IEmployees | null> {
-    let employeeDocument = await EmployeesModel.findById(
-      employeeId
-    );
+    let employeeDocument = await EmployeesModel.findById(employeeId);
     if (employeeDocument != null) {
-      employeeDocument.roleId = employee.roleId ?? employeeDocument.roleId;
-      employeeDocument.salery = employee.salery ?? employeeDocument.salery;
-      employeeDocument.attachments = employee.attachments ?? employeeDocument.attachments;
+      employeeDocument.uID = employee.uID ?? employeeDocument.uID;
+      employeeDocument.roleID = employee.roleID ?? employeeDocument.roleID;
+      employeeDocument.salary = employee.salary ?? employeeDocument.salary;
+      employeeDocument.attachments =
+        employee.attachments ?? employeeDocument.attachments;
       return await employeeDocument.save();
     }
     return null;
