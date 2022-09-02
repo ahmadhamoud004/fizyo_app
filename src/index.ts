@@ -17,7 +17,6 @@ import EmployeesRoutes from "./routes/employees_routes";
 
 import ClientsRoutes from "./routes/clients_routes";
 
-
 dotenv.config();
 
 const app: Application = express();
@@ -40,7 +39,6 @@ connection.once("open", async () => {
   const EmployeesModel = require("./models/employees_model");
 
   const ClientsModel = require("./models/clients_model");
-
 });
 
 app.use(
@@ -62,10 +60,7 @@ app.use("/agreements", AgreementsRoutes);
 app.use("/users", UsersRoutes);
 app.use("/roles", RolesRoutes);
 app.use("/employees", EmployeesRoutes);
-
-=======
 app.use("/clients", ClientsRoutes);
-
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

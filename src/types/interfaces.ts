@@ -97,25 +97,20 @@ export interface IUsers {
   profilePicture: string;
   firstName: string;
   lastName: string;
-  gender:
-    "Male" | "Female";
-  DOB:Date;
-  address: {
+  gender: "Male" | "Female";
+  DOB: Date;
+  address?: {
     country: string;
     government: string;
     manipolicity: string;
   }[];
-  verified: 
-    "notSent" | "pending" | "verified";
-  status:
-    "inActive" | "active" | "suspended" | "lost" | "deleted";
-  accountType:
-    "PT" | "EM" | "PA";
+  verified: "notSent" | "pending" | "verified";
+  status: "inActive" | "active" | "suspended" | "lost" | "deleted";
+  accountType: "PT" | "EM" | "PA";
   lastLoginDate: Date;
   accountSetting: object;
   languages: string[];
-  maritalStatus:   
-    "married" | "single" | "divorced" | "widow";
+  maritalStatus: "married" | "single" | "divorced" | "widow";
 }
 
 export interface IRoles {
@@ -138,8 +133,8 @@ export interface IEmployees {
   //user: PopulatedDoc<IUsers & Document>;
   roleID?: string | Types.ObjectId;
   //role: PopulatedDoc<IRoles & Document>;
-  salery: Number;
-  attachments: {
+  salary: number;
+  attachments?: {
     name: string;
     url: string;
     type: string;

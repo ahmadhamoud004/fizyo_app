@@ -7,7 +7,7 @@ const UsersSchema = new Schema<IUsers>({
   password: { type: String, required: true },
   profilePicture: { type: String, required: false },
   firstName: { type: String, required: true },
-  lastName: { type: String, required: true },  
+  lastName: { type: String, required: true },
   // Example on Enum
   gender: {
     type: String,
@@ -20,9 +20,9 @@ const UsersSchema = new Schema<IUsers>({
   // Example on object[] with attributes
   address: [
     {
-        country: { type: String },
-        government: { type: String },
-        manipolicity: { type: String },
+      country: { type: String, required: true },
+      government: { type: String, required: true },
+      manipolicity: { type: String, required: true },
     },
   ],
   verified: {
@@ -34,7 +34,7 @@ const UsersSchema = new Schema<IUsers>({
   status: {
     type: String,
     required: true,
-    enum: ["inActive", "penactiveding", "suspended", "lost", "deleted"],
+    enum: ["inActive", "active", "suspended", "lost", "deleted"],
     default: "inActive",
   },
   accountType: {
@@ -45,22 +45,19 @@ const UsersSchema = new Schema<IUsers>({
   },
   lastLoginDate: { type: Date, required: true },
   // Example on object
-  accountSetting:{type: Object, required: false},
+  accountSetting: { type: Object, required: false },
   // Example on String[]
-  languages: [{ type: String }],
+  languages: [{ type: String, required: true }],
   maritalStatus: {
     type: String,
     required: true,
     enum: ["married", "single", "divorced", "widow"],
     default: "single",
-  }
+  },
 });
 
 UsersSchema.virtual("url").get(function () {
-  return "Users/" + this._id;
+  return "users/" + this._id;
 });
 
-module.exports = model<IUsers>(
-  "User",
-  UsersSchema
-);
+module.exports = model<IUsers>("User", UsersSchema);

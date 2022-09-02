@@ -2,14 +2,14 @@ import { Schema, model } from "mongoose";
 import { IEmployees } from "../types/interfaces";
 
 const EmployeesSchema = new Schema<IEmployees>({
-  uID: { type: Schema.Types.ObjectId, ref: 'IUsers' },
+  uID: { type: Schema.Types.ObjectId, ref: "User" },
   //uID: { type: String, required: true },
-  roleID: { type: Schema.Types.ObjectId, ref: 'IRoles' },
+  roleID: { type: Schema.Types.ObjectId, ref: "Role" },
   //roleID: { type: String, required: true },
-  salery: {type: Number, required: true},
-  attachments:[
+  salary: { type: Number, required: true },
+  attachments: [
     {
-      type:{
+      type: {
         name: { type: String, required: true },
         url: { type: String, required: true },
         type: { type: String, required: true },
@@ -19,10 +19,7 @@ const EmployeesSchema = new Schema<IEmployees>({
 });
 
 EmployeesSchema.virtual("url").get(function () {
-  return "Employees/" + this._id;
+  return "employees/" + this._id;
 });
 
-module.exports = model<IEmployees>(
-  "Employee",
-  EmployeesSchema
-);
+module.exports = model<IEmployees>("Employee", EmployeesSchema);
