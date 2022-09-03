@@ -11,13 +11,13 @@ describe("SessionController", () => {
       expect(
         async () =>
           await controller.createSession({
-            _id: "6300e18b3bbd975cf6459943",
+            _id: "6313197208b52ee1da804777",
             sessionType: "individual",
-            serviceProvidersID: "6300e18b3bbd975cf6459983",
-            clientsIDs: ["6310750be8f4ab035351fb78"],
+            serviceProvidersID: "6313197208b52ee1da804405",
+            clientsIDs: ["6313197208b52ee1da804405"],
             name: "math",
             details: "mathematical analysis",
-            startDate: new Date("10-11-2022"),
+            startDate: new Date("2022-10-11"),
             duration: 50,
             serviceType: "Home",
             location: { city: "Aleppo" },
@@ -29,28 +29,28 @@ describe("SessionController", () => {
             requirements: "no requirement",
             ratings: [
               {
-                raterUID: "6300e18b3bbd975cf64599833",
+                raterUID: "6313197208b52ee1da804405",
                 ratingValue: "5",
-                ratingDate: new Date("10-11-2022"),
+                ratingDate: new Date("2022-10-11"),
               },
               {
-                raterUID: "6300e18b3bbd975cf64599834",
+                raterUID: "6313197208b52ee1da804405",
                 ratingValue: "4",
-                ratingDate: new Date("10-11-2022"),
+                ratingDate: new Date("2022-10-11"),
               },
             ],
             reviews: [
               {
-                reviewerUID: "6300e18b3bbd975cf6459985",
+                reviewerUID: "6313197208b52ee1da804405",
                 reviewDetails: "goooood",
-                reviewDate: new Date("10-11-2022"),
+                reviewDate: new Date("2022-10-11"),
               },
             ],
             sessionFee: 1500,
             payments: {
               discount: 25,
               paymentMethod: "paypal",
-              payerID: "6300e18b3bbd975cf6459986",
+              payerID: "6313197208b52ee1da804405",
               amount: 250,
             },
             status: "agreed",
@@ -70,7 +70,7 @@ describe("SessionController", () => {
     it("should update a specific session correctly", async () => {
       expect(
         async () =>
-          await controller.updateSession("6300e18b3bbd975cf6459983", {
+          await controller.updateSession("6313197208b52ee1da804777", {
             sessionType: "group",
             duration: 120,
             serviceType: "Online",
@@ -82,7 +82,7 @@ describe("SessionController", () => {
   describe("getSession", () => {
     it("should get a specific session by Id", async () => {
       expect(
-        async () => await controller.getSession("6300e18b3bbd975cf6459983")
+        async () => await controller.getSession("6313197208b52ee1da804777")
       ).not.toThrow();
     });
   });
@@ -90,7 +90,7 @@ describe("SessionController", () => {
   describe("deleteSession", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () => await controller.deleteSession("6300e18b3bbd975cf6459983")
+        async () => await controller.deleteSession("6313197208b52ee1da804777")
       ).not.toThrow();
     });
   });
