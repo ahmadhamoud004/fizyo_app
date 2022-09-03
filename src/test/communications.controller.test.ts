@@ -11,16 +11,16 @@ describe("CommunicationsController", () => {
       expect(
         async () =>
           await controller.createCommunication({
-            _id: "6300e18b3bbd975rr6457777",
+            _id: "6313197208b52ee1da804406",
             referenceType: "Dispute",
-            referenceID: "6300e18b3bbd975cf6456666",
-            partiesUIDs: ["6300e18b3bbd975cf6459983"],
+            referenceID: "6313197208b52ee1da804405",
+            partiesUIDs: ["6313197208b52ee1da804405"],
             lastUpdate: new Date("2022-09-10"),
             messages: [
               {
                 messageType: "txt",
                 messageContent: "hello",
-                senderUID: "6300e18b3bbd975cf6459983",
+                senderUID: "6313197208b52ee1da804405",
                 sendDate: new Date("2022-09-10"),
                 deliveryDetails: [{ status: "done" }],
               },
@@ -40,12 +40,12 @@ describe("CommunicationsController", () => {
     it("should update a specific communication correctly", async () => {
       expect(
         async () =>
-          await controller.updateCommunication("6300e18b3bbd975rr6457777", {
+          await controller.updateCommunication("6313197208b52ee1da804406", {
             messages: [
               {
                 messageType: "voice",
                 messageContent: "hiii",
-                senderUID: "6300e18b3bbd975cf6459983",
+                senderUID: "6313197208b52ee1da804405",
                 sendDate: new Date("2022-09-10"),
                 deliveryDetails: [{ status: "updated" }],
               },
@@ -59,7 +59,7 @@ describe("CommunicationsController", () => {
     it("should get a specific communication by Id", async () => {
       expect(
         async () =>
-          await controller.getCommunication("6300e18b3bbd975rr6457777")
+          await controller.getCommunication("6313197208b52ee1da804406")
       ).not.toThrow();
     });
   });
@@ -68,7 +68,7 @@ describe("CommunicationsController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteCommunication("6300e18b3bbd975rr6457777")
+          await controller.deleteCommunication("6313197208b52ee1da804406")
       ).not.toThrow();
     });
   });
