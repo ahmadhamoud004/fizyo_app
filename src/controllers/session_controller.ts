@@ -27,7 +27,7 @@ export default class SessionController {
 
   /**
    * Get a Session details
-   * @example SessionId "6300e18d3bbd975cf6459994"
+   * @example SessionId "63131c361ea32f520cb28bd6"
    */
   @Response(404, "the requested session in not found")
   @Get("{sessionId}")
@@ -37,7 +37,7 @@ export default class SessionController {
 
   /**
    * Delete a session
-   * @example sessionId "6300e18d3bbd975cf6459994"
+   * @example sessionId "63131c361ea32f520cb28bd6"
    */
   @Response(404, "the requested session in not found")
   @SuccessResponse("200", "Deleted")
@@ -54,11 +54,11 @@ export default class SessionController {
   @SuccessResponse("200", "Created")
   @Example<ISessions>({
     sessionType: "individual",
-    serviceProvidersID: "6300e18b3bbd975cf6459983",
-    clientsIDs: ["6310750be8f4ab035351fb78"],
+    serviceProvidersID: "63107aae6bcd70f0f363847c",
+    clientsIDs: ["6310750be8f4ab035351fb78", "63107517e8f4ab035351fb7a"],
     name: "math",
     details: "mathematical analysis",
-    startDate: new Date("10-11-2022"),
+    startDate: new Date("2022-09-10"),
     duration: 50,
     serviceType: "Home",
     location: { city: "Aleppo" },
@@ -70,28 +70,23 @@ export default class SessionController {
     requirements: "no requirement",
     ratings: [
       {
-        raterUID: "6300e18b3bbd975cf6459983",
+        raterUID: "6310750be8f4ab035351fb78",
         ratingValue: "5",
-        ratingDate: new Date("10-11-2022"),
-      },
-      {
-        raterUID: "6300e18b3bbd975cf6459983",
-        ratingValue: "4",
-        ratingDate: new Date("10-11-2022"),
+        ratingDate: new Date("2022-09-10"),
       },
     ],
     reviews: [
       {
-        reviewerUID: "6300e18b3bbd975cf6459983",
+        reviewerUID: "6310750be8f4ab035351fb78",
         reviewDetails: "goooood",
-        reviewDate: new Date("10-11-2022"),
+        reviewDate: new Date("2022-09-10"),
       },
     ],
     sessionFee: 1500,
     payments: {
       discount: 25,
       paymentMethod: "paypal",
-      payerID: "6300e18b3bbd975cf6459983",
+      payerID: "6310750be8f4ab035351fb78",
       amount: 250,
     },
     status: "agreed",
@@ -104,9 +99,9 @@ export default class SessionController {
     }).save();
   }
 
-
   /**
    * Update a session
+   * @example SessionId "63131c361ea32f520cb28bd6"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")

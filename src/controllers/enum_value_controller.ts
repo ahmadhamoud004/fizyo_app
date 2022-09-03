@@ -27,7 +27,7 @@ export default class EnumController {
 
   /**
    * Get a Enums details
-   * @example Enums "6300e18d3bbd975cf6459994"
+   * @example enumId "631370d58ec48bbce3f18fb6"
    */
   @Response(404, "the requested enum in not found")
   @Get("{enumId}")
@@ -37,7 +37,7 @@ export default class EnumController {
 
   /**
    * Delete a enum
-   * @example enumId "6300e18d3bbd975cf6459994"
+   * @example enumId "631370d58ec48bbce3f18fb6"
    */
   @Response(404, "the requested enum in not found")
   @SuccessResponse("200", "Deleted")
@@ -53,7 +53,7 @@ export default class EnumController {
   @SuccessResponse("200", "Created")
   @Example<IEnumValues>({
     enumName: "session",
-    enumValues: ["first"],
+    enumValues: ["first", "second"],
     enumNote: "test",
   })
   @Post("create")
@@ -65,6 +65,7 @@ export default class EnumController {
 
   /**
    * Update a enum
+   * @example enumId "631370d58ec48bbce3f18fb6"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")

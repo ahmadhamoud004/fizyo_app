@@ -27,7 +27,7 @@ export default class EmployeesController {
 
   /**
    * Get employee details
-   * @example employeeId "       "
+   * @example employeeId "6313151791b8bbcc188d8e37"
    */
   @Response(404, "The requested employee is not found")
   @Get("{employeeId}")
@@ -37,7 +37,7 @@ export default class EmployeesController {
 
   /**
    * Delete employee
-   * @example employeeId "ertwerwryer45"
+   * @example employeeId "6313151791b8bbcc188d8e37"
    */
   @Response(404, "The requested role is not found")
   @SuccessResponse("200", "Deleted")
@@ -52,7 +52,7 @@ export default class EmployeesController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IEmployees>({
-    uID: "63124dffdcf1e4974079a441",
+    uID: "63130ba28d796320172e58d6",
     roleID: "631312818d796320172e58e5",
     salary: 5000.5,
     attachments: [
@@ -72,6 +72,7 @@ export default class EmployeesController {
 
   /**
    * Update employee
+   * @example employeeId "6313151791b8bbcc188d8e37"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

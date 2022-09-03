@@ -55,7 +55,7 @@ export default class AgreementsController {
   @SuccessResponse("200", "Created")
   @Example<IAgreements>({
     name: "Ahmad",
-    parties: ["certificate"],
+    parties: ["63124dffdcf1e4974079a441"],
     startDate: new Date("2022-09-10"),
     endDate: new Date("2022-09-10"),
     details: "first Agreement",
@@ -71,6 +71,7 @@ export default class AgreementsController {
 
   /**
    * Update a agreement
+   * @example agreementId "630ded831cb815c4d98d3df6"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

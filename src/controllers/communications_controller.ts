@@ -27,7 +27,7 @@ export default class CommunicationsController {
 
   /**
    * Get a communication details
-   * @example communicationId "63107b4a8e2578704ed06b1d"
+   * @example communicationId "631371b43719f1a073ee6342"
    */
   @Response(404, "The requested communication is not found")
   @Get("{communicationId}")
@@ -39,7 +39,7 @@ export default class CommunicationsController {
 
   /**
    * Delete a communication
-   * @example communicationId "63107b4a8e2578704ed06b1d"
+   * @example communicationId "631371b43719f1a073ee6342"
    */
   @Response(404, "The requested communication is not found")
   @SuccessResponse("200", "Deleted")
@@ -56,15 +56,15 @@ export default class CommunicationsController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<ICommunications>({
-    referenceType: "Session",
-    referenceID: "_",
-    partiesUIDs: ["_"],
+    referenceType: "Agreement",
+    referenceID: "630ded831cb815c4d98d3df6",
+    partiesUIDs: ["63130ba28d796320172e58d6", "63124dffdcf1e4974079a441"],
     lastUpdate: new Date("2022-09-10"),
     messages: [
       {
         messageType: "txt",
         messageContent: "hello",
-        senderUID: "_",
+        senderUID: "63130ba28d796320172e58d6",
         sendDate: new Date("2022-09-10"),
         deliveryDetails: [{ status: "done" }],
       },
@@ -79,6 +79,7 @@ export default class CommunicationsController {
 
   /**
    * Update a communication
+   * @example communicationId "631371b43719f1a073ee6342"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

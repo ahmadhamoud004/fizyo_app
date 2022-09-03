@@ -27,7 +27,7 @@ export default class UsersController {
 
   /**
    * Get a user details
-   * @example userId "       "
+   * @example userId "63124dffdcf1e4974079a441"
    */
   @Response(404, "The requested user is not found")
   @Get("{userId}")
@@ -37,7 +37,7 @@ export default class UsersController {
 
   /**
    * Delete a user
-   * @example userId "ertwerwryer45"
+   * @example userId "63124dffdcf1e4974079a441"
    */
   @Response(404, "The requested user is not found")
   @SuccessResponse("200", "Deleted")
@@ -52,7 +52,6 @@ export default class UsersController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IUsers>({
-    _id: "63124dffdcf1e4974079a441",
     email: "nour@gmail.com",
     phoneNumber: "00352681531905",
     password: "00352681531905",
@@ -83,6 +82,7 @@ export default class UsersController {
 
   /**
    * Update user
+   * @example userId "63124dffdcf1e4974079a441"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

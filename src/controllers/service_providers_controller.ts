@@ -57,7 +57,7 @@ export default class ServiceProvidersController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IServiceProviders>({
-    uID: "43234erwrdfserwr",
+    uID: "63124dffdcf1e4974079a441",
     bio: "this is the best",
     specialties: "Physiotherapist",
     preferredServiceType: ["online", "home", "office"],
@@ -68,11 +68,11 @@ export default class ServiceProvidersController {
       name: "certificate",
       attType: "pdf",
     },
-    reviewerUIDs: ["123456123457", "123456"],
+    reviewerUIDs: ["63124dffdcf1e4974079a441", "63130ba28d796320172e58d6"],
     verificationStatus: "notSubmitted",
 
     verificationDate: new Date("2022-09-10"),
-    verifiedByUID: "43234erwrdfserwr",
+    verifiedByUID: "63130ba28d796320172e58d6",
   })
   @Post("create")
   public async createServiceProvider(
@@ -83,6 +83,7 @@ export default class ServiceProvidersController {
 
   /**
    * Update a ServiceProvider
+   * @example serviceProviderId "63107aae6bcd70f0f363847c"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")
