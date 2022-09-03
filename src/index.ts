@@ -79,7 +79,7 @@ app.use("/employees", EmployeesRoutes);
 app.use("/clients", ClientsRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+  res.send("<div style='background-color:#00ff105e;display: flex;height: 100%;width: 100%;font-size: xxx-large;font-family: arial;text-align: center;justify-content: center;'><div style='display: inline-block;top: 50%;position: absolute;'>Hello World!</div></div>");
 });
 
 app.use(
