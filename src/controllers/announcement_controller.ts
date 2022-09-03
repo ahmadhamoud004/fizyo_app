@@ -51,18 +51,19 @@ export default class AnnouncementController {
   /**
    * Create a Announcement
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAnnouncements>({
     _id: "6300e18b3bbd975cf6459983",
-    referenceType: "Advertisement",
-    referenceID: "11115555555555",
+    referenceType: "Session",
+    referenceID: "6300e18b3bbd975cf6459943",
     statues: "draft",
     topic: "new topic",
     details: "The announcement contain info ",
-    sentDate: new Date("2022-09-10"),
+    sentDate: new Date("10-11-2022"),
     attachments: [{ name: "personal information" }],
-    receiversUIDs: ["11111111166666660"],
+    receiversUIDs: ["6300e18b3bbd975cf6459983"],
   })
   @Post("create")
   public async createAnnouncement(
@@ -72,6 +73,7 @@ export default class AnnouncementController {
       ...announcement,
     }).save();
   }
+
 
   /**
    * Update a announcement

@@ -51,19 +51,20 @@ export default class NotificationController {
   /**
    * Create a notification
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<INotifications>({
     _id: "6300e18b3bbd975cf6459983",
     referenceType: "Agreement",
-    referenceID: "11144411444411",
+    referenceID: "630ded831cb815c4d98d3du6",
     statues: "opened",
     title: "Warning",
     details: "this notification title",
-    sentDate: new Date("10-10-2022"),
-    receivedDate: new Date("9-10-2022"),
-    openDate: new Date("11-10-2022"),
-    receiverUID: "11155555555555",
+    sentDate: new Date("10-11-2022"),
+    receivedDate: new Date("11-11-2022"),
+    openDate: new Date("11-11-2022"),
+    receiverUID: "6300e18b3bbd975cf6459983",
   })
   @Post("create")
   public async createNotification(
@@ -73,6 +74,7 @@ export default class NotificationController {
       ...notification,
     }).save();
   }
+
 
   /**
    * Update a notification
