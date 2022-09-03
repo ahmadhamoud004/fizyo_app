@@ -22,7 +22,12 @@ export default class SessionController {
    */
   @Get("/")
   public async getSessions(): Promise<ISessions[]> {
-    return await SessionModel.find();
+    return await SessionModel.find()
+      .populate("serviceProvidersID")
+      .populate("clientsIDs")
+      .populate("raterUID")
+      .populate("reviewerUID")
+      .populate("payerID");
   }
 
   /**
@@ -32,7 +37,12 @@ export default class SessionController {
   @Response(404, "the requested session in not found")
   @Get("{sessionId}")
   public async getSession(sessionId: string): Promise<ISessions | null> {
-    return await SessionModel.findById(sessionId);
+    return await SessionModel.findById(sessionId)
+      .populate("serviceProvidersID")
+      .populate("clientsIDs")
+      .populate("raterUID")
+      .populate("reviewerUID")
+      .populate("payerID");
   }
 
   /**

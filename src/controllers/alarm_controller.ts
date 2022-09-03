@@ -22,7 +22,7 @@ export default class AlarmController {
    */
   @Get("/")
   public async getAlarms(): Promise<IAlarms[]> {
-    return await AlarmModel.find();
+    return await AlarmModel.find().populate("referenceID");
   }
 
   /**
@@ -32,7 +32,7 @@ export default class AlarmController {
   @Response(404, "the requested Alarm in not found")
   @Get("{alarmId}")
   public async getAlarm(alarmId: string): Promise<IAlarms | null> {
-    return await AlarmModel.findById(alarmId);
+    return await AlarmModel.findById(alarmId).populate("referenceID");
   }
 
   /**

@@ -22,7 +22,9 @@ export default class NotificationController {
    */
   @Get("/")
   public async getNotifications(): Promise<INotifications[]> {
-    return await NotificationModel.find();
+    return await NotificationModel.find()
+      .populate("referenceID")
+      .populate("receiverUID");
   }
 
   /**
@@ -34,7 +36,9 @@ export default class NotificationController {
   public async getNotification(
     notificationId: string
   ): Promise<INotifications | null> {
-    return await NotificationModel.findById(notificationId);
+    return await NotificationModel.findById(notificationId)
+      .populate("referenceID")
+      .populate("receiverUID");
   }
 
   /**

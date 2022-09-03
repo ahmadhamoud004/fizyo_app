@@ -22,7 +22,11 @@ export default class DisputeController {
    */
   @Get("/")
   public async getDisputes(): Promise<IDisputes[]> {
-    return await DisputeModel.find();
+    return await DisputeModel.find()
+      .populate("sessionID")
+      .populate("firstPartyUID")
+      .populate("secondUID")
+      .populate("resolverUID");
   }
 
   /**
@@ -32,7 +36,11 @@ export default class DisputeController {
   @Response(404, "The requested dispute is not found")
   @Get("{disputeId}")
   public async getDispute(disputeId: string): Promise<IDisputes | null> {
-    return await DisputeModel.findById(disputeId);
+    return await DisputeModel.findById(disputeId)
+      .populate("sessionID")
+      .populate("firstPartyUID")
+      .populate("secondUID")
+      .populate("resolverUID");
   }
 
   /**
