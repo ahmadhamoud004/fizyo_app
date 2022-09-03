@@ -232,7 +232,7 @@ export interface IUsers {
 }
 
 export interface IRoles {
-  _id?: Types.ObjectId;
+  _id?: string | Types.ObjectId;
   name: string;
   employees?: string[] | Types.ObjectId[] | IEmployees[];
   //employeesArr?: Array<PopulatedDoc<IEmployees & Document>>;
@@ -247,7 +247,7 @@ export interface IRoles {
 }
 
 export interface IEmployees {
-  _id?: Types.ObjectId;
+  _id?: string | Types.ObjectId;
   uID?: string | Types.ObjectId | IUsers;
   //user: PopulatedDoc<IUsers & Document>;
   roleID?: string | Types.ObjectId | IRoles;

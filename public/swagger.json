@@ -1455,7 +1455,14 @@
 			"IRoles": {
 				"properties": {
 					"_id": {
-						"$ref": "#/components/schemas/Types.ObjectId"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
 					},
 					"name": {
 						"type": "string"
@@ -1752,7 +1759,14 @@
 			"Partial_IRoles_": {
 				"properties": {
 					"_id": {
-						"$ref": "#/components/schemas/Types.ObjectId"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
 					},
 					"name": {
 						"type": "string"
@@ -4009,28 +4023,28 @@
 										"value": {
 											"name": "Admin",
 											"employees": [
-												"fsdf"
+												"ddd"
 											],
 											"users": [
-												"dsfsdf"
+												"ddd"
 											],
 											"service_provider": [
-												"sdfsf"
+												"ddd"
 											],
 											"clients": [
-												"sdfsaf"
+												"ddd"
 											],
 											"sessions": [
-												"sdfsd"
+												"ddd"
 											],
 											"communications": [
-												"sdfsdf"
+												"ddd"
 											],
 											"disputes": [
-												"sdfsdf"
+												"ddd"
 											],
 											"enum_values": [
-												"fsdf"
+												"ddd"
 											]
 										}
 									}
