@@ -52,7 +52,7 @@ export default class UsersController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IUsers>({
-    //uID: "43234erwrdfserwr",
+    _id: "63124dffdcf1e4974079a441",
     email: "nour@gmail.com",
     phoneNumber: "00352681531905",
     password: "00352681531905",

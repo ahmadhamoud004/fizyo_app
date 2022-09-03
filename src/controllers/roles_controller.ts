@@ -52,15 +52,10 @@ export default class RolesController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IRoles>({
+    _id: "631312818d796320172e58e5",
     name: "Admin",
-    employees: ["fsdf"],
-    users: ["dsfsdf"],
-    service_provider: ["sdfsf"],
-    clients: ["sdfsaf"],
-    sessions: ["sdfsd"],
-    communications: ["sdfsdf"],
-    disputes: ["sdfsdf"],
-    enum_values: ["fsdf"],
+
+    users: ["63124dffdcf1e4974079a441"],
   })
   @Post("create")
   public async createRole(@Body() role: IRoles): Promise<IRoles> {

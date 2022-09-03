@@ -5,20 +5,20 @@ const CommunicationsSchema = new Schema<ICommunications>({
   referenceType: {
     type: String,
     required: true,
-    enum: ["sessions", "agreements", "disputes", "users"],
-    default: "sessions",
+    enum: ["Agreement", "Session", "Dispute", "User"],
+    default: "Session",
   },
-  referenceID: { type: String },
-  // partiesUIDs: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  partiesUIDs: [{ type: String }],
+  referenceID: { type: Schema.Types.ObjectId, refPath: "referenceType" },
+  partiesUIDs: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  // partiesUIDs: [{ type: String }],
   lastUpdate: { type: Date, required: true },
   messages: [
     {
       type: {
         messageType: { type: String, required: true },
         messageContent: { type: String, required: true },
-        // senderUID: { type: Schema.Types.ObjectId, ref: "User", required: true },
-        senderUID: { type: String, required: true },
+        senderUID: { type: Schema.Types.ObjectId, ref: "User", required: true },
+        // senderUID: { type: String, required: true },
         sendDate: { type: Date, required: true },
         deliveryDetails: [{ type: Object, required: true }],
       },

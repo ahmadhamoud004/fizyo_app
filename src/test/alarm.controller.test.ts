@@ -3,7 +3,7 @@ import AlarmController from "../controllers/alarm_controller";
 import { IAlarms } from "../types/interfaces";
 
 describe("AlarmController", () => {
-  const AlarmModel: Model<IAlarms> = require("../models/AlarmsModel");
+  const AlarmModel: Model<IAlarms> = require("../models/alarms_model");
   const controller = new AlarmController();
 
   describe("createAlarm", () => {
@@ -11,16 +11,15 @@ describe("AlarmController", () => {
       expect(
         async () =>
           await controller.createAlarm({
-            _id: "6300e18b3bbd975cf6459983",
-            name:"new therpist",
-            referenceType:"disputes",
-            referenceID:"155552222",
-            frequencyUnit:"Days",
-            frequency:15,
-            active:true,
-            startDate:new Date(10/11/2022),
-            endDate:new Date(25/11/2022)
-
+            _id: "6300e18b3bbd975cf645998i3",
+            name: "new therpist",
+            referenceType: "Dispute",
+            referenceID: "6300e18b3bbd975cf6456666",
+            frequencyUnit: "Days",
+            frequency: 15,
+            active: true,
+            startDate: new Date("10-11-2022"),
+            endDate: new Date("25-11-2022"),
           })
       ).not.toThrow();
     });
@@ -32,14 +31,13 @@ describe("AlarmController", () => {
     });
   });
 
-  describe("updatealarm", () => {
+  describe("updateAlarm", () => {
     it("should update a specific alarm correctly", async () => {
       expect(
         async () =>
-          await controller.updatealarm("6310d1e9f2d63b32d0c306ba", {
-            referenceType:"agreements",
-            frequencyUnit:"Hours",
-            frequency:25
+          await controller.updateAlarm("6300e18b3bbd975cf645998i3", {
+            frequencyUnit: "Hours",
+            frequency: 25,
           })
       ).not.toThrow();
     });
@@ -48,8 +46,7 @@ describe("AlarmController", () => {
   describe("getAlarm", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () =>
-          await controller.getAlarm("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.getAlarm("6300e18b3bbd975cf645998i3")
       ).not.toThrow();
     });
   });
@@ -57,8 +54,7 @@ describe("AlarmController", () => {
   describe("deleteAlarm", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () =>
-          await controller.deleteAlarm("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.deleteAlarm("6300e18b3bbd975cf645998i3")
       ).not.toThrow();
     });
   });

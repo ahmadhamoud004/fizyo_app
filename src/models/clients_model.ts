@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 import { IClients } from "../types/interfaces";
 
 const ClientsSchema = new Schema<IClients>({
-  uID: { type: String },
+  uID: { type: Schema.Types.ObjectId, ref: "User" },
   preferredServiceType: [
     {
       type: String,

@@ -12,7 +12,7 @@ describe("DisputeController", () => {
         async () =>
           await controller.createDispute({
             _id: "6300e18b3bbd975cf6456666",
-            sessionID: "yuuruyyudde",
+            sessionID: "6300e18b3bbd975cf6459943",
             firstPartyUID: "6300e18b3bbd975cf6459983",
             secondUID: "6300e18b3bbd975cf6459983",
             topic: "treatment",

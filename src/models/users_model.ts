@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IUsers } from "../types/interfaces";
+import { IUsers, IEnumValues } from "../types/interfaces";
 
 const UsersSchema = new Schema<IUsers>({
   // Example on String
@@ -12,11 +12,11 @@ const UsersSchema = new Schema<IUsers>({
   gender: {
     type: String,
     required: true,
-    enum: ["Male", "Female"],
-    default: "Male",
+    // enum: IEnu,
+    // default: "Male",
   },
   // Example on Date
-  DOB: { type: Date, required: true },
+  DOB: { type: Date, required: false },
   // Example on object[] with attributes
   address: [
     {
@@ -43,7 +43,7 @@ const UsersSchema = new Schema<IUsers>({
     enum: ["PT", "EM", "PA"],
     default: "PT",
   },
-  lastLoginDate: { type: Date, required: true },
+  lastLoginDate: { type: Date, required: false },
   // Example on object
   accountSetting: { type: Object, required: false },
   // Example on String[]

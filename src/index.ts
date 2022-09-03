@@ -16,14 +16,13 @@ import EmployeesRoutes from "./routes/employees_routes";
 
 import ClientsRoutes from "./routes/clients_routes";
 
-import  SessionRoute from "./routes/session_routes";
+import SessionRoute from "./routes/session_routes";
 import AnnouncementRoute from "./routes/announcement_routes";
 import AlarmRoute from "./routes/alarm_routes";
 import NotificationRoute from "./routes/notification_routes";
 import EnumRoute from "./routes/enum_routes";
 
 dotenv.config();
-
 
 const app: Application = express();
 const port = process.env.PORT;
@@ -44,14 +43,13 @@ connection.once("open", async () => {
   const RolesModel = require("./models/roles_model");
   const EmployeesModel = require("./models/employees_model");
   const ClientsModel = require("./models/clients_model");
-  
-  const SessionModel = require("./models/SessionsModel");
-  const AnnouncementModel = require("./models/AnnouncementsModel");
-  const AlarmModel = require("./models/AlarmsModel");
-  const NotificationModel = require("./models/NotificationsModel");
-  const EnumModel = require("./models/EnumsModel");
-});
 
+  const SessionModel = require("./models/sessions_model");
+  const AnnouncementModel = require("./models/announcements_model");
+  const AlarmModel = require("./models/alarms_model");
+  const NotificationModel = require("./models/notifications_model");
+  const EnumModel = require("./models/enums_model");
+});
 
 app.use(
   bodyParser.urlencoded({
@@ -64,29 +62,24 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 
-
 app.use("/sessions", SessionRoute);
 app.use("/announcements", AnnouncementRoute);
 app.use("/alarms", AlarmRoute);
 app.use("/notifications", NotificationRoute);
 app.use("/enums", EnumRoute);
 
-
 app.use("/serviceProviders", ServiceProvidersRoutes);
 app.use("/disputes", DisputeRoutes);
 app.use("/communications", CommunicationsRoutes);
 app.use("/agreements", AgreementsRoutes);
-
 
 app.use("/users", UsersRoutes);
 app.use("/roles", RolesRoutes);
 app.use("/employees", EmployeesRoutes);
 app.use("/clients", ClientsRoutes);
 
-
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-
+  res.send("<div style='background-color:#00ff105e;display: flex;height: 100%;width: 100%;font-size: xxx-large;font-family: arial;text-align: center;justify-content: center;'><div style='display: inline-block;top: 50%;position: absolute;'>Hello World!</div></div>");
 });
 
 app.use(

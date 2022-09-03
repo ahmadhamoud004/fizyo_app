@@ -1,19 +1,19 @@
 import {
-    Get,
-    Post,
-    Route,
-    SuccessResponse,
-    Body,
-    Response,
-    Example,
-    Delete,
-    Path,
-    Put,
-  } from "tsoa";
+  Get,
+  Post,
+  Route,
+  SuccessResponse,
+  Body,
+  Response,
+  Example,
+  Delete,
+  Path,
+  Put,
+} from "tsoa";
 import { IAlarms } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const AlarmModel: Model<IAlarms> = require("../models/AlarmsModel");
+const AlarmModel: Model<IAlarms> = require("../models/alarms_model");
 
 @Route("alarms")
 export default class AlarmController {
@@ -25,17 +25,17 @@ export default class AlarmController {
     return await AlarmModel.find();
   }
 
-   /**
+  /**
    * Get a Alarm details
    * @example AlarmId "6300e18d3bbd975cf6459994"
    */
-    @Response(404, "the requested Alarm in not found")
-    @Get("{alarmId}")
-    public async getAlarm(alarmId: string): Promise<IAlarms | null> {
-      return await AlarmModel.findById(alarmId);
-    }
+  @Response(404, "the requested Alarm in not found")
+  @Get("{alarmId}")
+  public async getAlarm(alarmId: string): Promise<IAlarms | null> {
+    return await AlarmModel.findById(alarmId);
+  }
 
-    /**
+  /**
    * Delete a alarm
    * @example alarmId "6300e18d3bbd975cf6459994"
    */
@@ -46,52 +46,56 @@ export default class AlarmController {
     return await AlarmModel.findByIdAndDelete(alarmId);
   }
 
-   /**
+  /**
    * Create a alarm
    */
-    @Response(422, "Validation Failed")
-    @SuccessResponse("200", "Created")
-    @Example<IAlarms>({
-      name:"new therpist",
-      referenceType:"disputes",
-      referenceID:"155552222",
-      frequencyUnit:"Days",
-      frequency:15,
-      active:true,
-      startDate:new Date("10-11-2022"),
-      endDate:new Date("25-11-2022") 
-        
-    })
-    @Post("create")
-    public async createAlarm(@Body() alarm: IAlarms): Promise<IAlarms> {
-      return new AlarmModel({
-        ...alarm,
-      }).save();
-    }
 
-      /**
+  @Response(422, "Validation Failed")
+  @SuccessResponse("200", "Created")
+  @Example<IAlarms>({
+    name: "new therpist",
+    referenceType: "Dispute",
+    referenceID: "6300e18b3bbd975cf6456666",
+    frequencyUnit: "Days",
+    frequency: 15,
+    active: true,
+    startDate: new Date("10-11-2022"),
+    endDate: new Date("25-11-2022"),
+  })
+  @Post("create")
+  public async createAlarm(@Body() alarm: IAlarms): Promise<IAlarms> {
+    return new AlarmModel({
+      ...alarm,
+    }).save();
+  }
+
+
+  /**
    * Update a alarm
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")
   @Put("update/{alarmId}")
-  public async updatealarm(
+  public async updateAlarm(
     @Path() alarmId: string,
     @Body() alarm: Partial<IAlarms>
   ): Promise<IAlarms | null> {
     let alarmDocument = await AlarmModel.findById(alarmId);
     if (alarmDocument != null) {
-        alarmDocument.name = alarm.name ?? alarmDocument.name;
-        alarmDocument.referenceType = alarm.referenceType ?? alarmDocument.referenceType;
-      alarmDocument.referenceID = alarm.referenceID ?? alarmDocument.referenceID;
-      
-      alarmDocument.frequencyUnit = alarm.frequencyUnit ?? alarmDocument.frequencyUnit;
+      alarmDocument.name = alarm.name ?? alarmDocument.name;
+      alarmDocument.referenceType =
+        alarm.referenceType ?? alarmDocument.referenceType;
+      alarmDocument.referenceID =
+        alarm.referenceID ?? alarmDocument.referenceID;
+
+      alarmDocument.frequencyUnit =
+        alarm.frequencyUnit ?? alarmDocument.frequencyUnit;
       alarmDocument.frequency = alarm.frequency ?? alarmDocument.frequency;
 
       alarmDocument.active = alarm.active ?? alarmDocument.active;
       alarmDocument.startDate = alarm.startDate ?? alarmDocument.startDate;
       alarmDocument.endDate = alarm.endDate ?? alarmDocument.endDate;
-      
+
       return await alarmDocument.save();
     }
     return null;
