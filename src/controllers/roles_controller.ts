@@ -22,7 +22,16 @@ export default class RolesController {
    */
   @Get("/")
   public async getRoles(): Promise<IRoles[]> {
-    return await RolesModel.find();
+    return await RolesModel.find()
+    .populate("employees")
+    .populate("users")
+    .populate("service_provider")
+    .populate("clients")
+    .populate("sessions")
+    .populate("disputes")
+    .populate("communications")
+    .populate("enum_values")
+    ;
   }
 
   /**
@@ -32,7 +41,16 @@ export default class RolesController {
   @Response(404, "The requested role is not found")
   @Get("{roleId}")
   public async getRole(roleId: string): Promise<IRoles | null> {
-    return await RolesModel.findById(roleId);
+    return await RolesModel.findById(roleId)
+    .populate("employees")
+    .populate("users")
+    .populate("service_provider")
+    .populate("clients")
+    .populate("sessions")
+    .populate("disputes")
+    .populate("communications")
+    .populate("enum_values")
+    ;
   }
 
   /**

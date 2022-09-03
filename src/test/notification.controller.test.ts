@@ -13,14 +13,14 @@ describe("NotificationController", () => {
           await controller.createNotification({
             _id: "6300e18b3bbd975cf6459983",
             referenceType: "Agreement",
-            referenceID: "630ded831cb815c4d98d3du6",
+            referenceID: "6313184808b52ee1da804402",
             statues: "opened",
             title: "Warning",
             details: "this notification title",
             sentDate: new Date("10-11-2022"),
             receivedDate: new Date("11-11-2022"),
             openDate: new Date("11-11-2022"),
-            receiverUID: "6300e18b3bbd975cf6459983",
+            receiverUID: "6313197208b52ee1da804405",
           })
       ).not.toThrow();
     });

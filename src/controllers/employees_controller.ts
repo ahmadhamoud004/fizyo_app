@@ -32,7 +32,7 @@ export default class EmployeesController {
   @Response(404, "The requested employee is not found")
   @Get("{employeeId}")
   public async getEmployee(employeeId: string): Promise<IEmployees | null> {
-    return await EmployeesModel.findById(employeeId);
+    return await EmployeesModel.findById(employeeId).populate("uID").populate("roleID");
   }
 
   /**
