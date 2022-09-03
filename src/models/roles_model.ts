@@ -9,7 +9,7 @@ const RolesSchema = new Schema<IRoles>({
   clients: [{ type: Schema.Types.ObjectId, ref: "Client" }],
   sessions: [{ type: Schema.Types.ObjectId, ref: "Session" }],
   communications: [{ type: Schema.Types.ObjectId, ref: "Communication" }],
-  disputes: [{ type: Schema.Types.ObjectId, ref: "Disputes" }],
+  disputes: [{ type: Schema.Types.ObjectId, ref: "Dispute" }],
   enum_values: [{ type: Schema.Types.ObjectId, ref: "EnumValue" }],
 });
 

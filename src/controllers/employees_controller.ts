@@ -22,7 +22,7 @@ export default class EmployeesController {
    */
   @Get("/")
   public async getEmployees(): Promise<IEmployees[]> {
-    return await EmployeesModel.find();
+    return await EmployeesModel.find().populate("uID").populate("roleID");
   }
 
   /**
