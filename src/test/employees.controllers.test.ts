@@ -2,7 +2,7 @@ import { Model, Types } from "mongoose";
 import EmployeesController from "../controllers/employees_controller";
 import { IEmployees } from "../types/interfaces";
 
-describe("ClientController", () => {
+describe("ُEmployeeController", () => {
   const EmployeeModel: Model<IEmployees> = require("../models/employees_model");
   const controller = new EmployeesController();
 

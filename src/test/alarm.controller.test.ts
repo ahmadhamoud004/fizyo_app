@@ -11,10 +11,10 @@ describe("AlarmController", () => {
       expect(
         async () =>
           await controller.createAlarm({
-            _id: "6300e18b3bbd975cf645998i3",
+            _id: "6300e18b3bbd975cf645998i3345",
             name: "new therpist",
             referenceType: "Dispute",
-            referenceID: "6300e18b3bbd975cf6456666",
+            referenceID: "63124dffdcf1e4974079a441",
             frequencyUnit: "Days",
             frequency: 15,
             active: true,
@@ -35,7 +35,7 @@ describe("AlarmController", () => {
     it("should update a specific alarm correctly", async () => {
       expect(
         async () =>
-          await controller.updateAlarm("6300e18b3bbd975cf645998i3", {
+          await controller.updateAlarm("6300e18b3bbd975cf645998i3345", {
             frequencyUnit: "Hours",
             frequency: 25,
           })
@@ -46,7 +46,7 @@ describe("AlarmController", () => {
   describe("getAlarm", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () => await controller.getAlarm("6300e18b3bbd975cf645998i3")
+        async () => await controller.getAlarm("6300e18b3bbd975cf645998i3345")
       ).not.toThrow();
     });
   });
@@ -54,7 +54,7 @@ describe("AlarmController", () => {
   describe("deleteAlarm", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () => await controller.deleteAlarm("6300e18b3bbd975cf645998i3")
+        async () => await controller.deleteAlarm("6300e18b3bbd975cf645998i3345")
       ).not.toThrow();
     });
   });
