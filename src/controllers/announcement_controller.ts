@@ -27,7 +27,7 @@ export default class AnnouncementController {
 
   /**
    * Get a Announcement details
-   * @example AnnouncementId "6300e18d3bbd975cf6459994"
+   * @example AnnouncementId "631330dbb5a0b3d3c3d6b0e7"
    */
   @Response(404, "the requested Announcement in not found")
   @Get("{announcementId}")
@@ -39,7 +39,7 @@ export default class AnnouncementController {
 
   /**
    * Delete a announcement
-   * @example announcementId "6300e18d3bbd975cf6459994"
+   * @example announcementId "631330dbb5a0b3d3c3d6b0e7"
    */
   @Response(404, "the requested announcement in not found")
   @SuccessResponse("200", "Deleted")
@@ -55,15 +55,14 @@ export default class AnnouncementController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAnnouncements>({
-    _id: "6300e18b3bbd975cf6459983",
     referenceType: "Session",
-    referenceID: "6300e18b3bbd975cf6459943",
+    referenceID: "63131c361ea32f520cb28bd6",
     statues: "draft",
     topic: "new topic",
     details: "The announcement contain info ",
-    sentDate: new Date("10-11-2022"),
+    sentDate: new Date("2022-09-10"),
     attachments: [{ name: "personal information" }],
-    receiversUIDs: ["6300e18b3bbd975cf6459983"],
+    receiversUIDs: ["63124dffdcf1e4974079a441", "63130ba28d796320172e58d6"],
   })
   @Post("create")
   public async createAnnouncement(
@@ -74,9 +73,9 @@ export default class AnnouncementController {
     }).save();
   }
 
-
   /**
    * Update a announcement
+   * @example AnnouncementId "631330dbb5a0b3d3c3d6b0e7"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")

@@ -27,7 +27,7 @@ export default class NotificationController {
 
   /**
    * Get a Notification details
-   * @example NotificationId "6300e18d3bbd975cf6459994"
+   * @example NotificationId "6313410084cfa62399551059"
    */
   @Response(404, "the requested notification in not found")
   @Get("{notificationId}")
@@ -39,7 +39,7 @@ export default class NotificationController {
 
   /**
    * Delete a notification
-   * @example notificationId "6300e18d3bbd975cf6459994"
+   * @example notificationId "6313410084cfa62399551059"
    */
   @Response(404, "the requested notification in not found")
   @SuccessResponse("200", "Deleted")
@@ -55,16 +55,15 @@ export default class NotificationController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<INotifications>({
-    _id: "6300e18b3bbd975cf6459983",
-    referenceType: "Agreement",
-    referenceID: "630ded831cb815c4d98d3du6",
+    referenceType: "Session",
+    referenceID: "63131c361ea32f520cb28bd6",
     statues: "opened",
     title: "Warning",
-    details: "this notification title",
-    sentDate: new Date("10-11-2022"),
-    receivedDate: new Date("11-11-2022"),
-    openDate: new Date("11-11-2022"),
-    receiverUID: "6300e18b3bbd975cf6459983",
+    details: "this notification contain on new details",
+    sentDate: new Date("2022-09-10"),
+    receivedDate: new Date("2022-09-10"),
+    openDate: new Date("2022-09-10"),
+    receiverUID: "63130ba28d796320172e58d6",
   })
   @Post("create")
   public async createNotification(
@@ -75,9 +74,9 @@ export default class NotificationController {
     }).save();
   }
 
-
   /**
    * Update a notification
+   * @example NotificationId "6313410084cfa62399551059"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")

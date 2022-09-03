@@ -11,15 +11,15 @@ describe("AnnouncementController", () => {
       expect(
         async () =>
           await controller.createAnnouncement({
-            _id: "6300e18b3bbd975cf6459983",
+            _id: "6313197208b52ee1da804333",
             referenceType: "Session",
-            referenceID: "6300e18b3bbd975cf6459943",
-            statues: "draft",
+            referenceID: "6313197208b52ee1da804405",
+            statues: "published",
             topic: "new topic",
             details: "The announcement contain info ",
-            sentDate: new Date("10-11-2022"),
+            sentDate: new Date("2022-10-11"),
             attachments: [{ name: "personal information" }],
-            receiversUIDs: ["6300e18b3bbd975cf6459983"],
+            receiversUIDs: ["6313197208b52ee1da804405"],
           })
       ).not.toThrow();
     });
@@ -35,7 +35,7 @@ describe("AnnouncementController", () => {
     it("should update a specific session correctly", async () => {
       expect(
         async () =>
-          await controller.updateAnnouncement("6310d1e9f2d63b32d0c306ba", {
+          await controller.updateAnnouncement("6313197208b52ee1da804333", {
             referenceType: "Session",
             statues: "published",
             attachments: [{ name: "public information" }],
@@ -48,7 +48,7 @@ describe("AnnouncementController", () => {
   describe("getAnnouncement", () => {
     it("should get a specific announcement by Id", async () => {
       expect(
-        async () => await controller.getAnnouncement("6310d1e9f2d63b32d0c306ba")
+        async () => await controller.getAnnouncement("6313197208b52ee1da804333")
       ).not.toThrow();
     });
   });
@@ -57,7 +57,7 @@ describe("AnnouncementController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteAnnouncement("6310d1e9f2d63b32d0c306ba")
+          await controller.deleteAnnouncement("6313197208b52ee1da804333")
       ).not.toThrow();
     });
   });

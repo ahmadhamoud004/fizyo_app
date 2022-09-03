@@ -53,7 +53,7 @@ export default class ClientControllers {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IClients>({
-    uID: "ertewryrtuyr43535355543",
+    uID: "63124dffdcf1e4974079a441",
     preferredServiceType: ["online"],
     diseases: "diseases",
     preferences: { pref: "pref test" },
@@ -65,6 +65,7 @@ export default class ClientControllers {
 
   /**
    * Update a Client
+   * @example clientId "6310750be8f4ab035351fb78"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

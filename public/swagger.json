@@ -3020,7 +3020,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"uID": "43234erwrdfserwr",
+											"uID": "63124dffdcf1e4974079a441",
 											"bio": "this is the best",
 											"specialties": "Physiotherapist",
 											"preferredServiceType": [
@@ -3036,12 +3036,12 @@
 												"attType": "pdf"
 											},
 											"reviewerUIDs": [
-												"123456123457",
-												"123456"
+												"63124dffdcf1e4974079a441",
+												"63130ba28d796320172e58d6"
 											],
 											"verificationStatus": "notSubmitted",
 											"verificationDate": "2022-09-10T00:00:00.000Z",
-											"verifiedByUID": "43234erwrdfserwr"
+											"verifiedByUID": "63130ba28d796320172e58d6"
 										}
 									}
 								}
@@ -3099,7 +3099,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "63107aae6bcd70f0f363847c"
 					}
 				],
 				"requestBody": {
@@ -3108,7 +3109,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IServiceProviders_"
-							}
+							},
+							"example": "63107aae6bcd70f0f363847c"
 						}
 					}
 				}
@@ -3225,9 +3227,9 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"sessionID": "yuuruyyudde",
-											"firstPartyUID": "rtyetyertwrqer",
-											"secondUID": "werweryrtgerwer",
+											"sessionID": "63130e088d796320172e58de",
+											"firstPartyUID": "63130ba28d796320172e58d6",
+											"secondUID": "63124dffdcf1e4974079a441",
 											"topic": "treatment",
 											"details": "more details",
 											"attachments": [
@@ -3238,7 +3240,7 @@
 												}
 											],
 											"status": "sent",
-											"resolverUID": "wertehterwrwrr",
+											"resolverUID": "63124dffdcf1e4974079a441",
 											"inProgressDate": "2022-09-10T00:00:00.000Z",
 											"receivedDate": "2022-09-10T00:00:00.000Z",
 											"suspendedDate": "2022-09-10T00:00:00.000Z",
@@ -3300,7 +3302,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "63107cdf144972d5a75c14cb"
 					}
 				],
 				"requestBody": {
@@ -3309,7 +3312,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IDisputes_"
-							}
+							},
+							"example": "63107cdf144972d5a75c14cb"
 						}
 					}
 				}
@@ -3371,7 +3375,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "63107b4a8e2578704ed06b1d"
+						"example": "631371b43719f1a073ee6342"
 					}
 				]
 			},
@@ -3407,7 +3411,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "63107b4a8e2578704ed06b1d"
+						"example": "631371b43719f1a073ee6342"
 					}
 				]
 			}
@@ -3426,17 +3430,18 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"referenceType": "Session",
-											"referenceID": "_",
+											"referenceType": "Agreement",
+											"referenceID": "630ded831cb815c4d98d3df6",
 											"partiesUIDs": [
-												"_"
+												"63130ba28d796320172e58d6",
+												"63124dffdcf1e4974079a441"
 											],
 											"lastUpdate": "2022-09-10T00:00:00.000Z",
 											"messages": [
 												{
 													"messageType": "txt",
 													"messageContent": "hello",
-													"senderUID": "_",
+													"senderUID": "63130ba28d796320172e58d6",
 													"sendDate": "2022-09-10T00:00:00.000Z",
 													"deliveryDetails": [
 														{
@@ -3502,7 +3507,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "631371b43719f1a073ee6342"
 					}
 				],
 				"requestBody": {
@@ -3511,7 +3517,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_ICommunications_"
-							}
+							},
+							"example": "631371b43719f1a073ee6342"
 						}
 					}
 				}
@@ -3630,7 +3637,7 @@
 										"value": {
 											"name": "Ahmad",
 											"parties": [
-												"certificate"
+												"63124dffdcf1e4974079a441"
 											],
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"endDate": "2022-09-10T00:00:00.000Z",
@@ -3698,7 +3705,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "630ded831cb815c4d98d3df6"
 					}
 				],
 				"requestBody": {
@@ -3707,7 +3715,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IAgreements_"
-							}
+							},
+							"example": "630ded831cb815c4d98d3df6"
 						}
 					}
 				}
@@ -3769,7 +3778,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "63124dffdcf1e4974079a441"
 					}
 				]
 			},
@@ -3805,7 +3814,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ertwerwryer45"
+						"example": "63124dffdcf1e4974079a441"
 					}
 				]
 			}
@@ -3824,7 +3833,6 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"_id": "63124dffdcf1e4974079a441",
 											"email": "nour@gmail.com",
 											"phoneNumber": "00352681531905",
 											"password": "00352681531905",
@@ -3910,7 +3918,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "63124dffdcf1e4974079a441"
 					}
 				],
 				"requestBody": {
@@ -3919,7 +3928,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IUsers_"
-							}
+							},
+							"example": "63124dffdcf1e4974079a441"
 						}
 					}
 				}
@@ -3981,7 +3991,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "631312818d796320172e58e5"
 					}
 				]
 			},
@@ -4017,7 +4027,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ertwerwryer45"
+						"example": "631312818d796320172e58e5"
 					}
 				]
 			}
@@ -4036,7 +4046,6 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"_id": "631312818d796320172e58e5",
 											"name": "Admin",
 											"users": [
 												"63124dffdcf1e4974079a441"
@@ -4098,7 +4107,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "631312818d796320172e58e5"
 					}
 				],
 				"requestBody": {
@@ -4107,7 +4117,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IRoles_"
-							}
+							},
+							"example": "631312818d796320172e58e5"
 						}
 					}
 				}
@@ -4169,7 +4180,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "       "
+						"example": "6313151791b8bbcc188d8e37"
 					}
 				]
 			},
@@ -4205,7 +4216,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "ertwerwryer45"
+						"example": "6313151791b8bbcc188d8e37"
 					}
 				]
 			}
@@ -4224,7 +4235,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"uID": "63124dffdcf1e4974079a441",
+											"uID": "63130ba28d796320172e58d6",
 											"roleID": "631312818d796320172e58e5",
 											"salary": 5000.5,
 											"attachments": [
@@ -4291,7 +4302,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "6313151791b8bbcc188d8e37"
 					}
 				],
 				"requestBody": {
@@ -4300,7 +4312,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IEmployees_"
-							}
+							},
+							"example": "6313151791b8bbcc188d8e37"
 						}
 					}
 				}
@@ -4417,7 +4430,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"uID": "ertewryrtuyr43535355543",
+											"uID": "63124dffdcf1e4974079a441",
 											"preferredServiceType": [
 												"online"
 											],
@@ -4482,7 +4495,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "6310750be8f4ab035351fb78"
 					}
 				],
 				"requestBody": {
@@ -4491,7 +4505,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IClients_"
-							}
+							},
+							"example": "6310750be8f4ab035351fb78"
 						}
 					}
 				}
@@ -4593,7 +4608,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "6300e18d3bbd975cf6459994"
+						"example": "63131c361ea32f520cb28bd6"
 					}
 				]
 			}
@@ -4612,13 +4627,14 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"sessionType": "group",
-											"serviceProvidersID": "6300e18d3bbd975cf6459994",
+											"sessionType": "individual",
+											"serviceProvidersID": "63107aae6bcd70f0f363847c",
 											"clientsIDs": [
-												"6300e18d3bbd975cf64599"
+												"6310750be8f4ab035351fb78",
+												"63107517e8f4ab035351fb7a"
 											],
-											"name": "therapist",
-											"details": "therapist",
+											"name": "math",
+											"details": "mathematical analysis",
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"duration": 50,
 											"serviceType": "Home",
@@ -4626,34 +4642,34 @@
 												"city": "Aleppo"
 											},
 											"attachments": {
-												"attachmentUrl": "attachmentUrl",
-												"attachmentName": "attachmentName",
-												"attachmentType": "attachmentType"
+												"attachmentUrl": "www.google.com",
+												"attachmentName": "cd",
+												"attachmentType": "pdf"
 											},
-											"requirements": "",
+											"requirements": "no requirement",
 											"ratings": [
 												{
-													"raterUID": "raterUID",
-													"ratingValue": "ratingValue",
+													"raterUID": "6310750be8f4ab035351fb78",
+													"ratingValue": "5",
 													"ratingDate": "2022-09-10T00:00:00.000Z"
 												}
 											],
 											"reviews": [
 												{
-													"reviewerUID": "reviewerUID",
-													"reviewDetails": "reviewDetails",
+													"reviewerUID": "6310750be8f4ab035351fb78",
+													"reviewDetails": "goooood",
 													"reviewDate": "2022-09-10T00:00:00.000Z"
 												}
 											],
-											"sessionFee": 25,
+											"sessionFee": 1500,
 											"payments": {
-												"discount": 10,
-												"paymentMethod": "paymentMethod",
-												"payerID": "payerID",
-												"amount": 10
+												"discount": 25,
+												"paymentMethod": "paypal",
+												"payerID": "6310750be8f4ab035351fb78",
+												"amount": 250
 											},
 											"status": "agreed",
-											"doctorReferral": "doctorReferral"
+											"doctorReferral": "no "
 										}
 									}
 								}
@@ -4822,7 +4838,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "6300e18d3bbd975cf6459994"
+						"example": "631330dbb5a0b3d3c3d6b0e7"
 					}
 				]
 			}
@@ -4841,9 +4857,8 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"_id": "6300e18b3bbd975cf6459983",
-											"referenceType": "Advertisement",
-											"referenceID": "11115555555555",
+											"referenceType": "Session",
+											"referenceID": "63131c361ea32f520cb28bd6",
 											"statues": "draft",
 											"topic": "new topic",
 											"details": "The announcement contain info ",
@@ -4854,7 +4869,8 @@
 												}
 											],
 											"receiversUIDs": [
-												"11111111166666660"
+												"63124dffdcf1e4974079a441",
+												"63130ba28d796320172e58d6"
 											]
 										}
 									}
@@ -4983,7 +4999,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "63133c886978820e456b8015"
 					}
 				]
 			},
@@ -5024,7 +5041,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "6300e18d3bbd975cf6459994"
+						"example": "63133c886978820e456b8015"
 					}
 				]
 			}
@@ -5044,8 +5061,8 @@
 									"Example 1": {
 										"value": {
 											"name": "new therapist",
-											"referenceType": "Dispute",
-											"referenceID": "155552222",
+											"referenceType": "Agreement",
+											"referenceID": "63131c361ea32f520cb28bd6",
 											"frequencyUnit": "Days",
 											"frequency": 15,
 											"active": true,
@@ -5108,7 +5125,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "63133c886978820e456b8015"
 					}
 				],
 				"requestBody": {
@@ -5117,7 +5135,8 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/Partial_IAlarms_"
-							}
+							},
+							"example": "63133c886978820e456b8015"
 						}
 					}
 				}
@@ -5219,7 +5238,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "6300e18d3bbd975cf6459994"
+						"example": "6313410084cfa62399551059"
 					}
 				]
 			}
@@ -5238,16 +5257,15 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"_id": "6300e18b3bbd975cf6459983",
-											"referenceType": "Agreement",
-											"referenceID": "11144411444411",
+											"referenceType": "Session",
+											"referenceID": "63131c361ea32f520cb28bd6",
 											"statues": "opened",
 											"title": "Warning",
-											"details": "this notification title",
-											"sentDate": "2022-10-09T21:00:00.000Z",
-											"receivedDate": "2022-09-09T21:00:00.000Z",
-											"openDate": "2022-11-09T21:00:00.000Z",
-											"receiverUID": "11155555555555"
+											"details": "this notification contain on new details",
+											"sentDate": "2022-09-10T00:00:00.000Z",
+											"receivedDate": "2022-09-10T00:00:00.000Z",
+											"openDate": "2022-09-10T00:00:00.000Z",
+											"receiverUID": "63130ba28d796320172e58d6"
 										}
 									}
 								}
@@ -5375,7 +5393,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "631370d58ec48bbce3f18fb6"
 					}
 				]
 			},
@@ -5416,7 +5435,7 @@
 						"schema": {
 							"type": "string"
 						},
-						"example": "6300e18d3bbd975cf6459994"
+						"example": "631370d58ec48bbce3f18fb6"
 					}
 				]
 			}
@@ -5437,7 +5456,8 @@
 										"value": {
 											"enumName": "session",
 											"enumValues": [
-												"first"
+												"first",
+												"second"
 											],
 											"enumNote": "test"
 										}
@@ -5497,7 +5517,8 @@
 						"required": true,
 						"schema": {
 							"type": "string"
-						}
+						},
+						"example": "631370d58ec48bbce3f18fb6"
 					}
 				],
 				"requestBody": {

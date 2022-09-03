@@ -52,16 +52,16 @@ export default class DisputeController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IDisputes>({
-    sessionID: "yuuruyyudde",
-    firstPartyUID: "rtyetyertwrqer",
-    secondUID: "werweryrtgerwer",
+    sessionID: "63130e088d796320172e58de",
+    firstPartyUID: "63130ba28d796320172e58d6",
+    secondUID: "63124dffdcf1e4974079a441",
     topic: "treatment",
     details: "more details",
     attachments: [
       { url: "http://localhost:8000/disputes", name: "file", disType: "pdf" },
     ], // name, url, type
     status: "sent",
-    resolverUID: "wertehterwrwrr",
+    resolverUID: "63124dffdcf1e4974079a441",
     inProgressDate: new Date("2022-09-10"),
     receivedDate: new Date("2022-09-10"),
     suspendedDate: new Date("2022-09-10"),
@@ -74,6 +74,7 @@ export default class DisputeController {
 
   /**
    * Update a dispute
+   * @example disputeId "63107cdf144972d5a75c14cb"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

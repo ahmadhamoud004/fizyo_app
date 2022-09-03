@@ -36,7 +36,7 @@ export default class RolesController {
 
   /**
    * Get role details
-   * @example roleId "       "
+   * @example roleId "631312818d796320172e58e5"
    */
   @Response(404, "The requested role is not found")
   @Get("{roleId}")
@@ -55,7 +55,7 @@ export default class RolesController {
 
   /**
    * Delete role
-   * @example roleId "ertwerwryer45"
+   * @example roleId "631312818d796320172e58e5"
    */
   @Response(404, "The requested role is not found")
   @SuccessResponse("200", "Deleted")
@@ -70,9 +70,7 @@ export default class RolesController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IRoles>({
-    _id: "631312818d796320172e58e5",
     name: "Admin",
-
     users: ["63124dffdcf1e4974079a441"],
   })
   @Post("create")
@@ -82,6 +80,7 @@ export default class RolesController {
 
   /**
    * Update role
+   * @example roleId "631312818d796320172e58e5"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Updated")

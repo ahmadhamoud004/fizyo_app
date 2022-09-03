@@ -27,7 +27,7 @@ export default class AlarmController {
 
   /**
    * Get a Alarm details
-   * @example AlarmId "6300e18d3bbd975cf6459994"
+   * @example alarmId "63133c886978820e456b8015"
    */
   @Response(404, "the requested Alarm in not found")
   @Get("{alarmId}")
@@ -37,7 +37,7 @@ export default class AlarmController {
 
   /**
    * Delete a alarm
-   * @example alarmId "6300e18d3bbd975cf6459994"
+   * @example alarmId "63133c886978820e456b8015"
    */
   @Response(404, "the requested alarm in not found")
   @SuccessResponse("200", "Deleted")
@@ -53,14 +53,14 @@ export default class AlarmController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAlarms>({
-    name: "new therpist",
-    referenceType: "Dispute",
-    referenceID: "6300e18b3bbd975cf6456666",
+    name: "new therapist",
+    referenceType: "Agreement",
+    referenceID: "63131c361ea32f520cb28bd6",
     frequencyUnit: "Days",
     frequency: 15,
     active: true,
-    startDate: new Date("10-11-2022"),
-    endDate: new Date("25-11-2022"),
+    startDate: new Date("2022-09-10"),
+    endDate: new Date("2022-09-10"),
   })
   @Post("create")
   public async createAlarm(@Body() alarm: IAlarms): Promise<IAlarms> {
@@ -69,9 +69,9 @@ export default class AlarmController {
     }).save();
   }
 
-
   /**
    * Update a alarm
+   * @example alarmId "63133c886978820e456b8015"
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "updated")
