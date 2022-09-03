@@ -11,16 +11,16 @@ describe("NotificationController", () => {
       expect(
         async () =>
           await controller.createNotification({
-            _id: "6300e18b3bbd975cf6459983",
+            _id: "6313197208b52ee1da804555",
             referenceType: "Agreement",
-            referenceID: "630ded831cb815c4d98d3du6",
+            referenceID: "6313197208b52ee1da804405",
             statues: "opened",
             title: "Warning",
             details: "this notification title",
-            sentDate: new Date("10-11-2022"),
-            receivedDate: new Date("11-11-2022"),
-            openDate: new Date("11-11-2022"),
-            receiverUID: "6300e18b3bbd975cf6459983",
+            sentDate: new Date("2022-10-11"),
+            receivedDate: new Date("2022-11-11"),
+            openDate: new Date("2022-11-11"),
+            receiverUID: "6313197208b52ee1da804405",
           })
       ).not.toThrow();
     });
@@ -36,7 +36,7 @@ describe("NotificationController", () => {
     it("should update a specific notification correctly", async () => {
       expect(
         async () =>
-          await controller.updateNotification("6300e18b3bbd975cf6459983", {
+          await controller.updateNotification("6313197208b52ee1da804405", {
             statues: "opened",
             details: "change information",
           })
@@ -47,7 +47,7 @@ describe("NotificationController", () => {
   describe("getNotification", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () => await controller.getNotification("6300e18b3bbd975cf6459983")
+        async () => await controller.getNotification("6313197208b52ee1da804405")
       ).not.toThrow();
     });
   });
@@ -56,7 +56,7 @@ describe("NotificationController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteNotification("6300e18b3bbd975cf6459983")
+          await controller.deleteNotification("6313197208b52ee1da804405")
       ).not.toThrow();
     });
   });

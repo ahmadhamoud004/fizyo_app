@@ -11,7 +11,7 @@ describe("AgreementsController", () => {
       expect(
         async () =>
           await controller.createAgreement({
-            _id: "630ded831cb815c4d98d3du6",
+            _id: "6313197208b52ee1da804222",
             name: "Ahmad",
             parties: ["certificate"],
             startDate: new Date("2022-09-10"),
@@ -34,7 +34,7 @@ describe("AgreementsController", () => {
     it("should update a specific agreement correctly", async () => {
       expect(
         async () =>
-          await controller.updateAgreement("630ded831cb815c4d98d3df6", {
+          await controller.updateAgreement("6313197208b52ee1da804222", {
             name: "Omar",
             details: "updated Agreement",
             // attachments: [{ name: "personal info" }],
@@ -47,7 +47,7 @@ describe("AgreementsController", () => {
   describe("getAgreement", () => {
     it("should get a specific agreement by Id", async () => {
       expect(
-        async () => await controller.getAgreement("630ded831cb815c4d98d3df6")
+        async () => await controller.getAgreement("6313197208b52ee1da804222")
       ).not.toThrow();
     });
   });
@@ -55,7 +55,7 @@ describe("AgreementsController", () => {
   describe("deleteAgreement", () => {
     it("should be deleted correctly", async () => {
       expect(
-        async () => await controller.deleteAgreement("630ded831cb815c4d98d3df6")
+        async () => await controller.deleteAgreement("6313197208b52ee1da804222")
       ).not.toThrow();
     });
   });
