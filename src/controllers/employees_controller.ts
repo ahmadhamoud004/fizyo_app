@@ -52,14 +52,14 @@ export default class EmployeesController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IEmployees>({
-    uID: "_",
-    roleID: "_",
+    uID: "63124dffdcf1e4974079a441",
+    roleID: "631312818d796320172e58e5",
     salary: 5000.5,
     attachments: [
       {
         name: "memo",
         url: "www.google.com",
-        type: "some type",
+        empType: "some type",
       },
     ],
   })

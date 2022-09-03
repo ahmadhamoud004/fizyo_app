@@ -256,7 +256,7 @@ export interface IEmployees {
   attachments?: {
     name: string;
     url: string;
-    type: string;
+    empType: string;
   }[];
   url?: string;
 }

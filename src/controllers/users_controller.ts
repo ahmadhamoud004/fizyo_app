@@ -52,7 +52,7 @@ export default class UsersController {
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
   @Example<IUsers>({
-    //uID: "43234erwrdfserwr",
+    _id: "63124dffdcf1e4974079a441",
     email: "nour@gmail.com",
     phoneNumber: "00352681531905",
     password: "00352681531905",
@@ -96,7 +96,8 @@ export default class UsersController {
       userDocument.email = user.email ?? userDocument.email;
       userDocument.phoneNumber = user.phoneNumber ?? userDocument.phoneNumber;
       userDocument.password = user.password ?? userDocument.password;
-      userDocument.profilePicture = user.profilePicture ?? userDocument.profilePicture;
+      userDocument.profilePicture =
+        user.profilePicture ?? userDocument.profilePicture;
       userDocument.firstName = user.firstName ?? userDocument.firstName;
       userDocument.lastName = user.lastName ?? userDocument.lastName;
       userDocument.gender = user.gender ?? userDocument.gender;
@@ -105,10 +106,13 @@ export default class UsersController {
       userDocument.verified = user.verified ?? userDocument.verified;
       userDocument.status = user.status ?? userDocument.status;
       userDocument.accountType = user.accountType ?? userDocument.accountType;
-      userDocument.lastLoginDate = user.lastLoginDate ?? userDocument.lastLoginDate;
-      userDocument.accountSetting = user.accountSetting ?? userDocument.accountSetting;
+      userDocument.lastLoginDate =
+        user.lastLoginDate ?? userDocument.lastLoginDate;
+      userDocument.accountSetting =
+        user.accountSetting ?? userDocument.accountSetting;
       userDocument.languages = user.languages ?? userDocument.languages;
-      userDocument.maritalStatus = user.maritalStatus ?? userDocument.maritalStatus;
+      userDocument.maritalStatus =
+        user.maritalStatus ?? userDocument.maritalStatus;
       return await userDocument.save();
     }
     return null;

@@ -11,7 +11,6 @@ describe("ClientController", () => {
       expect(
         async () =>
           await controller.createEmployee({
-            _id: "6310750be8f4ab035351fb78",
             uID: "6300e18b3bbd975cf6459983",
             roleID: "6300e18b3bbd975cf6459666",
             salary: 5000.5,
@@ -19,7 +18,7 @@ describe("ClientController", () => {
               {
                 name: "memo",
                 url: "www.google.com",
-                type: "some type",
+                empType: "some type",
               },
             ],
           })
