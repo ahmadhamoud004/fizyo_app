@@ -247,7 +247,7 @@ export interface IRoles {
 }
 
 export interface IEmployees {
-  _id?: Types.ObjectId;
+  _id?: string | Types.ObjectId;
   uID?: string | Types.ObjectId | IUsers;
   //user: PopulatedDoc<IUsers & Document>;
   roleID?: string | Types.ObjectId | IRoles;
