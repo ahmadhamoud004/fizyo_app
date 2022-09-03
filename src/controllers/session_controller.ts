@@ -52,44 +52,49 @@ export default class SessionController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<ISessions>({
-    sessionType: "group",
-    serviceProvidersID: "6300e18d3bbd975cf6459994",
-    clientsIDs: ["6300e18d3bbd975cf64599"],
-    name: "therapist",
-    details: "therapist",
-    startDate: new Date("2022-09-10"),
+    sessionType: "individual",
+    serviceProvidersID: "6300e18b3bbd975cf6459983",
+    clientsIDs: ["6310750be8f4ab035351fb78"],
+    name: "math",
+    details: "mathematical analysis",
+    startDate: new Date("10-11-2022"),
     duration: 50,
     serviceType: "Home",
     location: { city: "Aleppo" },
     attachments: {
-      attachmentUrl: "attachmentUrl",
-      attachmentName: "attachmentName",
-      attachmentType: "attachmentType",
+      attachmentUrl: "www.google.com",
+      attachmentName: "cd",
+      attachmentType: "pdf",
     },
-    requirements: "",
+    requirements: "no requirement",
     ratings: [
       {
-        raterUID: "raterUID",
-        ratingValue: "ratingValue",
-        ratingDate: new Date("2022-09-10"),
+        raterUID: "6300e18b3bbd975cf6459983",
+        ratingValue: "5",
+        ratingDate: new Date("10-11-2022"),
+      },
+      {
+        raterUID: "6300e18b3bbd975cf6459983",
+        ratingValue: "4",
+        ratingDate: new Date("10-11-2022"),
       },
     ],
     reviews: [
       {
-        reviewerUID: "reviewerUID",
-        reviewDetails: "reviewDetails",
-        reviewDate: new Date("2022-09-10"),
+        reviewerUID: "6300e18b3bbd975cf6459983",
+        reviewDetails: "goooood",
+        reviewDate: new Date("10-11-2022"),
       },
     ],
-    sessionFee: 25,
+    sessionFee: 1500,
     payments: {
-      discount: 10,
-      paymentMethod: "paymentMethod",
-      payerID: "payerID",
-      amount: 10,
+      discount: 25,
+      paymentMethod: "paypal",
+      payerID: "6300e18b3bbd975cf6459983",
+      amount: 250,
     },
     status: "agreed",
-    doctorReferral: "doctorReferral",
+    doctorReferral: "no ",
   })
   @Post("create")
   public async createSession(@Body() session: ISessions): Promise<ISessions> {
