@@ -51,6 +51,7 @@ export default class AnnouncementController {
   /**
    * Create a Announcement
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAnnouncements>({
@@ -72,6 +73,7 @@ export default class AnnouncementController {
       ...announcement,
     }).save();
   }
+
 
   /**
    * Update a announcement

@@ -49,6 +49,7 @@ export default class AlarmController {
   /**
    * Create a alarm
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IAlarms>({
@@ -67,6 +68,7 @@ export default class AlarmController {
       ...alarm,
     }).save();
   }
+
 
   /**
    * Update a alarm

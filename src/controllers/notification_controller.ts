@@ -51,6 +51,7 @@ export default class NotificationController {
   /**
    * Create a notification
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<INotifications>({
@@ -73,6 +74,7 @@ export default class NotificationController {
       ...notification,
     }).save();
   }
+
 
   /**
    * Update a notification

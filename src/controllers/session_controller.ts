@@ -49,6 +49,7 @@ export default class SessionController {
   /**
    * Create a session
    */
+
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<ISessions>({
@@ -102,6 +103,7 @@ export default class SessionController {
       ...session,
     }).save();
   }
+
 
   /**
    * Update a session
