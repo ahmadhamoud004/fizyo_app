@@ -36,7 +36,7 @@ describe("NotificationController", () => {
     it("should update a specific notification correctly", async () => {
       expect(
         async () =>
-          await controller.updateNotification("6313197208b52ee1da804405", {
+          await controller.updateNotification("6313197208b52ee1da804555", {
             statues: "opened",
             details: "change information",
           })
@@ -47,7 +47,7 @@ describe("NotificationController", () => {
   describe("getNotification", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () => await controller.getNotification("6313197208b52ee1da804405")
+        async () => await controller.getNotification("6313197208b52ee1da804555")
       ).not.toThrow();
     });
   });
@@ -56,7 +56,7 @@ describe("NotificationController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteNotification("6313197208b52ee1da804405")
+          await controller.deleteNotification("6313197208b52ee1da804555")
       ).not.toThrow();
     });
   });
