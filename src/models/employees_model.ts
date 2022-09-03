@@ -12,7 +12,7 @@ const EmployeesSchema = new Schema<IEmployees>({
       type: {
         name: { type: String, required: true },
         url: { type: String, required: true },
-        type: { type: String, required: true },
+        empType: { type: String, required: true },
       },
     },
   ],

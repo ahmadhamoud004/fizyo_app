@@ -1698,7 +1698,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"empType": {
 									"type": "string"
 								},
 								"url": {
@@ -1709,7 +1709,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"empType",
 								"url",
 								"name"
 							],
@@ -2006,7 +2006,7 @@
 					"attachments": {
 						"items": {
 							"properties": {
-								"type": {
+								"empType": {
 									"type": "string"
 								},
 								"url": {
@@ -2017,7 +2017,7 @@
 								}
 							},
 							"required": [
-								"type",
+								"empType",
 								"url",
 								"name"
 							],
@@ -3824,6 +3824,7 @@
 								"examples": {
 									"Example 1": {
 										"value": {
+											"_id": "63124dffdcf1e4974079a441",
 											"email": "nour@gmail.com",
 											"phoneNumber": "00352681531905",
 											"password": "00352681531905",
@@ -4035,30 +4036,10 @@
 								"examples": {
 									"Example 1": {
 										"value": {
+											"_id": "631312818d796320172e58e5",
 											"name": "Admin",
-											"employees": [
-												"ddd"
-											],
 											"users": [
-												"ddd"
-											],
-											"service_provider": [
-												"ddd"
-											],
-											"clients": [
-												"ddd"
-											],
-											"sessions": [
-												"ddd"
-											],
-											"communications": [
-												"ddd"
-											],
-											"disputes": [
-												"ddd"
-											],
-											"enum_values": [
-												"ddd"
+												"63124dffdcf1e4974079a441"
 											]
 										}
 									}
@@ -4243,14 +4224,14 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"uID": "_",
-											"roleID": "_",
+											"uID": "63124dffdcf1e4974079a441",
+											"roleID": "631312818d796320172e58e5",
 											"salary": 5000.5,
 											"attachments": [
 												{
 													"name": "memo",
 													"url": "www.google.com",
-													"type": "some type"
+													"empType": "some type"
 												}
 											]
 										}
