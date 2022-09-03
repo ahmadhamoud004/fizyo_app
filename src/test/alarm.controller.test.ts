@@ -14,7 +14,7 @@ describe("AlarmController", () => {
             _id: "6300e18b3bbd975cf645998i3",
             name: "new therpist",
             referenceType: "Dispute",
-            referenceID: "155552222",
+            referenceID: "6300e18b3bbd975cf6456666",
             frequencyUnit: "Days",
             frequency: 15,
             active: true,
@@ -36,7 +36,6 @@ describe("AlarmController", () => {
       expect(
         async () =>
           await controller.updateAlarm("6300e18b3bbd975cf645998i3", {
-            referenceType: "Agreement",
             frequencyUnit: "Hours",
             frequency: 25,
           })

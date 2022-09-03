@@ -1656,7 +1656,14 @@
 			"IEmployees": {
 				"properties": {
 					"_id": {
-						"$ref": "#/components/schemas/Types.ObjectId"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
 					},
 					"uID": {
 						"anyOf": [
@@ -1957,7 +1964,14 @@
 			"Partial_IEmployees_": {
 				"properties": {
 					"_id": {
-						"$ref": "#/components/schemas/Types.ObjectId"
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
 					},
 					"uID": {
 						"anyOf": [

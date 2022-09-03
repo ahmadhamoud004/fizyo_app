@@ -51,7 +51,7 @@ describe("UsersController", () => {
         async () =>
           await controller.updateUser("6300e18b3bbd975cf6459983", {
             email: "updates@email.com",
-            firstName: "updates"
+            firstName: "updates",
           })
       ).not.toThrow();
     });
@@ -60,8 +60,7 @@ describe("UsersController", () => {
   describe("getUser", () => {
     it("Should get a specific user by Id", async () => {
       expect(
-        async () =>
-          await controller.getUser("6300e18b3bbd975cf6459983")
+        async () => await controller.getUser("6300e18b3bbd975cf6459983")
       ).not.toThrow();
     });
   });
@@ -69,8 +68,7 @@ describe("UsersController", () => {
   describe("deleteUser", () => {
     it("Should be deleted correctly", async () => {
       expect(
-        async () =>
-          await controller.deleteUser("6300e18b3bbd975cf6459983")
+        async () => await controller.deleteUser("6300e18b3bbd975cf6459983")
       ).not.toThrow();
     });
   });

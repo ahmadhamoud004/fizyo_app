@@ -12,7 +12,7 @@ describe("ServiceProvidersController", () => {
         async () =>
           await controller.createServiceProvider({
             _id: "6300e18b3bbd975cf6459983",
-            uID: "123456845522",
+            uID: "6300e18b3bbd975cf6459983",
             bio: "this is the best",
             specialties: "Physiotherapist",
             preferredServiceType: ["online", "home", "office"],
@@ -23,11 +23,11 @@ describe("ServiceProvidersController", () => {
               name: "certificate",
               attType: "pdf",
             },
-            reviewerUIDs: ["123456123457", "123456"],
+            reviewerUIDs: ["6300e18b3bbd975cf6459983"],
             verificationStatus: "notSubmitted",
 
             verificationDate: new Date("2022-09-10"),
-            verifiedByUID: "123456845522",
+            verifiedByUID: "6300e18b3bbd975cf6459983",
           })
       ).not.toThrow();
     });

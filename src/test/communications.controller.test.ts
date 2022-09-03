@@ -14,13 +14,13 @@ describe("CommunicationsController", () => {
             _id: "6300e18b3bbd975rr6457777",
             referenceType: "Dispute",
             referenceID: "6300e18b3bbd975cf6456666",
-            partiesUIDs: ["6300e18b3bbd975cf6456666"],
+            partiesUIDs: ["6300e18b3bbd975cf6459983"],
             lastUpdate: new Date("2022-09-10"),
             messages: [
               {
                 messageType: "txt",
                 messageContent: "hello",
-                senderUID: "123456845522",
+                senderUID: "6300e18b3bbd975cf6459983",
                 sendDate: new Date("2022-09-10"),
                 deliveryDetails: [{ status: "done" }],
               },
@@ -41,12 +41,11 @@ describe("CommunicationsController", () => {
       expect(
         async () =>
           await controller.updateCommunication("6300e18b3bbd975rr6457777", {
-            referenceType: "Agreement",
             messages: [
               {
                 messageType: "voice",
                 messageContent: "hiii",
-                senderUID: "123456845522",
+                senderUID: "6300e18b3bbd975cf6459983",
                 sendDate: new Date("2022-09-10"),
                 deliveryDetails: [{ status: "updated" }],
               },

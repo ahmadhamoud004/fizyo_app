@@ -12,7 +12,7 @@ describe("ClientController", () => {
         async () =>
           await controller.createClient({
             _id: "6310750be8f4ab035351fb78",
-            uID: "ertewryrtuyr43535355543",
+            uID: "6300e18b3bbd975cf6459983",
             preferredServiceType: ["online"],
             diseases: "diseases",
             preferences: { pref: "pref test" },

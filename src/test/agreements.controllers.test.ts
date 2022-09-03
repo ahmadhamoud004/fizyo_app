@@ -11,7 +11,7 @@ describe("AgreementsController", () => {
       expect(
         async () =>
           await controller.createAgreement({
-            _id: "630ded831cb815c4d98d3df6",
+            _id: "630ded831cb815c4d98d3du6",
             name: "Ahmad",
             parties: ["certificate"],
             startDate: new Date("2022-09-10"),
