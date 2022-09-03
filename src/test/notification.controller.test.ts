@@ -47,7 +47,7 @@ describe("NotificationController", () => {
   describe("getNotification", () => {
     it("should get a specific notification by Id", async () => {
       expect(
-        async () => await controller.getNotification("6300e18b3bbd975cf6459983")
+        async () => await controller.getNotification("6313197208b52ee1da804405")
       ).not.toThrow();
     });
   });
@@ -56,7 +56,7 @@ describe("NotificationController", () => {
     it("should be deleted correctly", async () => {
       expect(
         async () =>
-          await controller.deleteNotification("6300e18b3bbd975cf6459983")
+          await controller.deleteNotification("6313197208b52ee1da804405")
       ).not.toThrow();
     });
   });
