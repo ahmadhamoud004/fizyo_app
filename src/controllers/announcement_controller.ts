@@ -22,7 +22,9 @@ export default class AnnouncementController {
    */
   @Get("/")
   public async getAnnouncements(): Promise<IAnnouncements[]> {
-    return await AnnouncementModel.find();
+    return await AnnouncementModel.find()
+      .populate("referenceID")
+      .populate("receiversUIDs");
   }
 
   /**
@@ -34,7 +36,9 @@ export default class AnnouncementController {
   public async getAnnouncement(
     announcementId: string
   ): Promise<IAnnouncements | null> {
-    return await AnnouncementModel.findById(announcementId);
+    return await AnnouncementModel.findById(announcementId)
+      .populate("referenceID")
+      .populate("receiversUIDs");
   }
 
   /**

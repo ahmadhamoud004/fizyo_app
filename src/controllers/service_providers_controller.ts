@@ -22,7 +22,10 @@ export default class ServiceProvidersController {
    */
   @Get("/")
   public async getServiceProviders(): Promise<IServiceProviders[]> {
-    return await ServiceProvidersModel.find();
+    return await ServiceProvidersModel.find()
+      .populate("uID")
+      .populate("reviewerUIDs")
+      .populate("verifiedByUID");
   }
 
   /**
@@ -34,7 +37,10 @@ export default class ServiceProvidersController {
   public async getServiceProvider(
     serviceProviderId: string
   ): Promise<IServiceProviders | null> {
-    return await ServiceProvidersModel.findById(serviceProviderId);
+    return await ServiceProvidersModel.findById(serviceProviderId)
+      .populate("uID")
+      .populate("reviewerUIDs")
+      .populate("verifiedByUID");
   }
 
   /**

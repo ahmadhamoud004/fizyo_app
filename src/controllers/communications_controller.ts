@@ -22,7 +22,7 @@ export default class CommunicationsController {
    */
   @Get("/")
   public async getCommunications(): Promise<ICommunications[]> {
-    return await CommunicationsModel.find();
+    return await CommunicationsModel.find().populate("referenceID");
   }
 
   /**
@@ -34,7 +34,9 @@ export default class CommunicationsController {
   public async getCommunication(
     communicationId: string
   ): Promise<ICommunications | null> {
-    return await CommunicationsModel.findById(communicationId);
+    return await CommunicationsModel.findById(communicationId).populate(
+      "referenceID"
+    );
   }
 
   /**
