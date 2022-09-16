@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IRoles } from "../types/interfaces";
+import { IRole } from "../types/interfaces";
 
-const RolesModel: Model<IRoles> = require("../models/roles_model");
+const RolesModel: Model<IRole> = require("../models/roles_model");
 
 @Route("roles")
 export default class RolesController {
@@ -21,7 +21,7 @@ export default class RolesController {
    * Get all of roles
    */
   @Get("/")
-  public async getRoles(): Promise<IRoles[]> {
+  public async getRoles(): Promise<IRole[]> {
     return await RolesModel.find();
   }
 
@@ -31,7 +31,7 @@ export default class RolesController {
    */
   @Response(404, "The requested role is not found")
   @Get("{roleId}")
-  public async getRole(roleId: string): Promise<IRoles | null> {
+  public async getRole(roleId: string): Promise<IRole | null> {
     return await RolesModel.findById(roleId);
   }
 
@@ -42,7 +42,7 @@ export default class RolesController {
   @Response(404, "The requested role is not found")
   @SuccessResponse("200", "Deleted")
   @Delete("{roleId}")
-  public async deleteRole(roleId: string): Promise<IRoles | null> {
+  public async deleteRole(roleId: string): Promise<IRole | null> {
     return await RolesModel.findByIdAndDelete(roleId);
   }
 
@@ -51,12 +51,12 @@ export default class RolesController {
    */
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
-  @Example<IRoles>({
+  @Example<IRole>({
     name: "Admin",
     users: ["63124dffdcf1e4974079a441"],
   })
   @Post("create")
-  public async createRole(@Body() role: IRoles): Promise<IRoles> {
+  public async createRole(@Body() role: IRole): Promise<IRole> {
     return await new RolesModel({ ...role }).save();
   }
 
@@ -69,8 +69,8 @@ export default class RolesController {
   @Put("update/{roleId}")
   public async updateRole(
     @Path() roleId: string,
-    @Body() role: Partial<IRoles>
-  ): Promise<IRoles | null> {
+    @Body() role: Partial<IRole>
+  ): Promise<IRole | null> {
     let roleDocument = await RolesModel.findById(roleId);
     if (roleDocument != null) {
       roleDocument.name = role.name ?? roleDocument.name;

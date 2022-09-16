@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IServiceProviders } from "../types/interfaces";
+import { IServiceProvider } from "../types/interfaces";
 
-const ServiceProvidersModel: Model<IServiceProviders> = require("../models/service_providers_model");
+const ServiceProvidersModel: Model<IServiceProvider> = require("../models/service_providers_model");
 
 @Route("serviceProviders")
 export default class ServiceProvidersController {
@@ -21,7 +21,7 @@ export default class ServiceProvidersController {
    * Get List of All serviceProviders
    */
   @Get("/")
-  public async getServiceProviders(): Promise<IServiceProviders[]> {
+  public async getServiceProviders(): Promise<IServiceProvider[]> {
     return await ServiceProvidersModel.find()
       .populate("uID")
       .populate("reviewerUIDs")
@@ -36,7 +36,7 @@ export default class ServiceProvidersController {
   @Get("{serviceProviderId}")
   public async getServiceProvider(
     serviceProviderId: string
-  ): Promise<IServiceProviders | null> {
+  ): Promise<IServiceProvider | null> {
     return await ServiceProvidersModel.findById(serviceProviderId)
       .populate("uID")
       .populate("reviewerUIDs")
@@ -52,7 +52,7 @@ export default class ServiceProvidersController {
   @Delete("{serviceProviderId}")
   public async deleteServiceProvider(
     serviceProviderId: string
-  ): Promise<IServiceProviders | null> {
+  ): Promise<IServiceProvider | null> {
     return await ServiceProvidersModel.findByIdAndDelete(serviceProviderId);
   }
 
@@ -62,7 +62,7 @@ export default class ServiceProvidersController {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IServiceProviders>({
+  @Example<IServiceProvider>({
     uID: "63124dffdcf1e4974079a441",
     bio: "this is the best",
     specialties: "Physiotherapist",
@@ -82,8 +82,8 @@ export default class ServiceProvidersController {
   })
   @Post("create")
   public async createServiceProvider(
-    @Body() serviceProvider: IServiceProviders
-  ): Promise<IServiceProviders> {
+    @Body() serviceProvider: IServiceProvider
+  ): Promise<IServiceProvider> {
     return await new ServiceProvidersModel({ ...serviceProvider }).save();
   }
 
@@ -96,8 +96,8 @@ export default class ServiceProvidersController {
   @Put("update/{serviceProviderId}")
   public async updateServiceProvider(
     @Path() serviceProviderId: string,
-    @Body() serviceProvider: Partial<IServiceProviders>
-  ): Promise<IServiceProviders | null> {
+    @Body() serviceProvider: Partial<IServiceProvider>
+  ): Promise<IServiceProvider | null> {
     let serviceProviderDocument = await ServiceProvidersModel.findById(
       serviceProviderId
     );

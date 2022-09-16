@@ -10,10 +10,10 @@ import {
   Path,
   Put,
 } from "tsoa";
-import { IAnnouncements } from "../types/interfaces";
+import { IAnnouncement } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const AnnouncementModel: Model<IAnnouncements> = require("../models/announcements_model");
+const AnnouncementModel: Model<IAnnouncement> = require("../models/announcements_model");
 
 @Route("announcements")
 export default class AnnouncementController {
@@ -21,7 +21,7 @@ export default class AnnouncementController {
    * Get List of All Announcements
    */
   @Get("/")
-  public async getAnnouncements(): Promise<IAnnouncements[]> {
+  public async getAnnouncements(): Promise<IAnnouncement[]> {
     return await AnnouncementModel.find()
       .populate("referenceID")
       .populate("receiversUIDs");
@@ -35,7 +35,7 @@ export default class AnnouncementController {
   @Get("{announcementId}")
   public async getAnnouncement(
     announcementId: string
-  ): Promise<IAnnouncements | null> {
+  ): Promise<IAnnouncement | null> {
     return await AnnouncementModel.findById(announcementId)
       .populate("referenceID")
       .populate("receiversUIDs");
@@ -58,7 +58,7 @@ export default class AnnouncementController {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IAnnouncements>({
+  @Example<IAnnouncement>({
     referenceType: "Session",
     referenceID: "63131c361ea32f520cb28bd6",
     statues: "draft",
@@ -70,8 +70,8 @@ export default class AnnouncementController {
   })
   @Post("create")
   public async createAnnouncement(
-    @Body() announcement: IAnnouncements
-  ): Promise<IAnnouncements> {
+    @Body() announcement: IAnnouncement
+  ): Promise<IAnnouncement> {
     return new AnnouncementModel({
       ...announcement,
     }).save();
@@ -86,8 +86,8 @@ export default class AnnouncementController {
   @Put("update/{announcementId}")
   public async updateAnnouncement(
     @Path() announcementId: string,
-    @Body() announcement: Partial<IAnnouncements>
-  ): Promise<IAnnouncements | null> {
+    @Body() announcement: Partial<IAnnouncement>
+  ): Promise<IAnnouncement | null> {
     let announcementDocument = await AnnouncementModel.findById(announcementId);
     if (announcementDocument != null) {
       announcementDocument.referenceType =

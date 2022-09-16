@@ -10,10 +10,10 @@ import {
   Path,
   Put,
 } from "tsoa";
-import { INotifications } from "../types/interfaces";
+import { INotification } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const NotificationModel: Model<INotifications> = require("../models/notifications_model");
+const NotificationModel: Model<INotification> = require("../models/notifications_model");
 
 @Route("notifications")
 export default class NotificationController {
@@ -21,7 +21,7 @@ export default class NotificationController {
    * Get List of All Notifications
    */
   @Get("/")
-  public async getNotifications(): Promise<INotifications[]> {
+  public async getNotifications(): Promise<INotification[]> {
     return await NotificationModel.find()
       .populate("referenceID")
       .populate("receiverUID");
@@ -35,7 +35,7 @@ export default class NotificationController {
   @Get("{notificationId}")
   public async getNotification(
     notificationId: string
-  ): Promise<INotifications | null> {
+  ): Promise<INotification | null> {
     return await NotificationModel.findById(notificationId)
       .populate("referenceID")
       .populate("receiverUID");
@@ -58,7 +58,7 @@ export default class NotificationController {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<INotifications>({
+  @Example<INotification>({
     referenceType: "Session",
     referenceID: "63131c361ea32f520cb28bd6",
     statues: "opened",
@@ -71,8 +71,8 @@ export default class NotificationController {
   })
   @Post("create")
   public async createNotification(
-    @Body() notification: INotifications
-  ): Promise<INotifications> {
+    @Body() notification: INotification
+  ): Promise<INotification> {
     return new NotificationModel({
       ...notification,
     }).save();
@@ -87,8 +87,8 @@ export default class NotificationController {
   @Put("update/{notificationId}")
   public async updateNotification(
     @Path() notificationId: string,
-    @Body() notification: Partial<INotifications>
-  ): Promise<INotifications | null> {
+    @Body() notification: Partial<INotification>
+  ): Promise<INotification | null> {
     let notificationDocument = await NotificationModel.findById(notificationId);
     if (notificationDocument != null) {
       notificationDocument.referenceType =

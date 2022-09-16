@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import SessionController from "../controllers/session_controller";
-import { ISessions } from "../types/interfaces";
+import { ISession } from "../types/interfaces";
 
 describe("SessionController", () => {
-  const SessionModel: Model<ISessions> = require("../models/sessions_model");
+  const SessionModel: Model<ISession> = require("../models/sessions_model");
   const controller = new SessionController();
 
   describe("createSession", () => {

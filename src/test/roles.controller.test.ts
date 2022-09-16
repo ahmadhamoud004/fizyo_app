@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
 import RolesController from "../controllers/roles_controller";
-import { IRoles } from "../types/interfaces";
+import { IRole } from "../types/interfaces";
 
 describe("RolesController", () => {
-  const RolesModel: Model<IRoles> = require("../models/roles_model");
+  const RolesModel: Model<IRole> = require("../models/roles_model");
   const controller = new RolesController();
 
   describe("createRole", () => {
@@ -46,8 +46,7 @@ describe("RolesController", () => {
   describe("getRole", () => {
     it("Should get a specific role by Id", async () => {
       expect(
-        async () =>
-          await controller.getRole("6300e18b3bbd975cf6459666")
+        async () => await controller.getRole("6300e18b3bbd975cf6459666")
       ).not.toThrow();
     });
   });
@@ -55,8 +54,7 @@ describe("RolesController", () => {
   describe("deleteUseRole", () => {
     it("Should be deleted correctly", async () => {
       expect(
-        async () =>
-          await controller.deleteRole("6300e18b3bbd975cf6459666")
+        async () => await controller.deleteRole("6300e18b3bbd975cf6459666")
       ).not.toThrow();
     });
   });

@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import DisputeController from "../controllers/dispute_controller";
-import { IDisputes } from "../types/interfaces";
+import { IDispute } from "../types/interfaces";
 
 describe("DisputeController", () => {
-  const DisputeModel: Model<IDisputes> = require("../models/dispute_model");
+  const DisputeModel: Model<IDispute> = require("../models/dispute_model");
   const controller = new DisputeController();
 
   describe("createDispute", () => {

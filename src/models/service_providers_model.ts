@@ -1,11 +1,11 @@
 import { Schema, model } from "mongoose";
-import { IServiceProviders } from "../types/interfaces";
+import { IServiceProvider } from "../types/interfaces";
 
-const ServiceProvidersSchema = new Schema<IServiceProviders>({
+const ServiceProvidersSchema = new Schema<IServiceProvider>({
   uID: { type: Schema.Types.ObjectId, ref: "User" },
   // uID: { type: String },
   bio: { type: String, required: true },
-  specialties: { type: String, required: true },
+  specialties: [{ type: String, required: true }],
   preferredServiceType: [
     {
       type: String,
@@ -14,8 +14,8 @@ const ServiceProvidersSchema = new Schema<IServiceProviders>({
       default: "online",
     },
   ],
-  minSessionFee: { type: Number, required: true },
-  maxSessionFee: { type: Number, required: true },
+  minSessionFee: { type: Number },
+  maxSessionFee: { type: Number },
 
   documents: {
     type: {
@@ -32,7 +32,7 @@ const ServiceProvidersSchema = new Schema<IServiceProviders>({
     enum: ["notSubmitted", "pendingReview", "inReview", "verified", "rejected"],
     default: "notSubmitted",
   },
-  verificationDate: { type: Date, required: true },
+  verificationDate: { type: Date },
   verifiedByUID: { type: Schema.Types.ObjectId, ref: "User" },
   // verifiedByUID: { type: String },
 });
@@ -41,7 +41,7 @@ ServiceProvidersSchema.virtual("url").get(function () {
   return "serviceProviders/" + this._id;
 });
 
-module.exports = model<IServiceProviders>(
+module.exports = model<IServiceProvider>(
   "ServiceProvider",
   ServiceProvidersSchema
 );

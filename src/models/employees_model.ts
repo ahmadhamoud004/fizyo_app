@@ -1,11 +1,9 @@
 import { Schema, model } from "mongoose";
-import { IEmployees } from "../types/interfaces";
+import { IEmployee } from "../types/interfaces";
 
-const EmployeesSchema = new Schema<IEmployees>({
+const EmployeesSchema = new Schema<IEmployee>({
   uID: { type: Schema.Types.ObjectId, ref: "User" },
-  //uID: { type: String, required: true },
   roleID: { type: Schema.Types.ObjectId, ref: "Role" },
-  //roleID: { type: String, required: true },
   salary: { type: Number, required: true },
   attachments: [
     {
@@ -22,4 +20,4 @@ EmployeesSchema.virtual("url").get(function () {
   return "employees/" + this._id;
 });
 
-module.exports = model<IEmployees>("Employee", EmployeesSchema);
+module.exports = model<IEmployee>("Employee", EmployeesSchema);

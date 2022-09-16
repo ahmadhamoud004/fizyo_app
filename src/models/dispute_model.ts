@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IDisputes } from "../types/interfaces";
+import { IDispute } from "../types/interfaces";
 
-const DisputeSchema = new Schema<IDisputes>({
+const DisputeSchema = new Schema<IDispute>({
   sessionID: { type: Schema.Types.ObjectId, ref: "Session" },
   firstPartyUID: { type: Schema.Types.ObjectId, ref: "User" },
   secondUID: { type: Schema.Types.ObjectId, ref: "User" },
@@ -32,14 +32,14 @@ const DisputeSchema = new Schema<IDisputes>({
 
   // resolverUID: { type: Schema.Types.ObjectId, ref: 'User' },
   resolverUID: { type: Schema.Types.ObjectId, ref: "User" },
-  inProgressDate: { type: Date, required: true },
-  receivedDate: { type: Date, required: true },
-  suspendedDate: { type: Date, required: true },
-  closedDate: { type: Date, required: true },
+  inProgressDate: { type: Date },
+  receivedDate: { type: Date },
+  suspendedDate: { type: Date },
+  closedDate: { type: Date },
 });
 
 DisputeSchema.virtual("url").get(function () {
   return "disputes/" + this._id;
 });
 
-module.exports = model<IDisputes>("Dispute", DisputeSchema);
+module.exports = model<IDispute>("Dispute", DisputeSchema);

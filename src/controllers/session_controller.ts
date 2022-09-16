@@ -10,10 +10,10 @@ import {
   Path,
   Put,
 } from "tsoa";
-import { ISessions } from "../types/interfaces";
+import { ISession } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const SessionModel: Model<ISessions> = require("../models/sessions_model");
+const SessionModel: Model<ISession> = require("../models/sessions_model");
 
 @Route("sessions")
 export default class SessionController {
@@ -21,7 +21,7 @@ export default class SessionController {
    * Get List of All Sessions
    */
   @Get("/")
-  public async getSessions(): Promise<ISessions[]> {
+  public async getSessions(): Promise<ISession[]> {
     return await SessionModel.find()
       .populate("serviceProvidersID")
       .populate("clientsIDs")
@@ -36,7 +36,7 @@ export default class SessionController {
    */
   @Response(404, "the requested session in not found")
   @Get("{sessionId}")
-  public async getSession(sessionId: string): Promise<ISessions | null> {
+  public async getSession(sessionId: string): Promise<ISession | null> {
     return await SessionModel.findById(sessionId)
       .populate("serviceProvidersID")
       .populate("clientsIDs")
@@ -62,7 +62,7 @@ export default class SessionController {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<ISessions>({
+  @Example<ISession>({
     sessionType: "individual",
     serviceProvidersID: "63107aae6bcd70f0f363847c",
     clientsIDs: ["6310750be8f4ab035351fb78", "63107517e8f4ab035351fb7a"],
@@ -103,7 +103,7 @@ export default class SessionController {
     doctorReferral: "no ",
   })
   @Post("create")
-  public async createSession(@Body() session: ISessions): Promise<ISessions> {
+  public async createSession(@Body() session: ISession): Promise<ISession> {
     return new SessionModel({
       ...session,
     }).save();
@@ -118,8 +118,8 @@ export default class SessionController {
   @Put("update/{sessionId}")
   public async updateSession(
     @Path() sessionId: string,
-    @Body() session: Partial<ISessions>
-  ): Promise<ISessions | null> {
+    @Body() session: Partial<ISession>
+  ): Promise<ISession | null> {
     let sessionDocument = await SessionModel.findById(sessionId);
     if (sessionDocument != null) {
       sessionDocument.sessionType =

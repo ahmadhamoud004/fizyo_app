@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IClients } from "../types/interfaces";
+import { IClient } from "../types/interfaces";
 
-const ClientsModel: Model<IClients> = require("../models/clients_model");
+const ClientsModel: Model<IClient> = require("../models/clients_model");
 
 @Route("clients")
 export default class ClientControllers {
@@ -21,7 +21,7 @@ export default class ClientControllers {
    * Get List of All clients
    */
   @Get("/")
-  public async getClients(): Promise<IClients[]> {
+  public async getClients(): Promise<IClient[]> {
     return await ClientsModel.find();
   }
 
@@ -31,7 +31,7 @@ export default class ClientControllers {
    */
   @Response(404, "The requested client is not found")
   @Get("{clientId}")
-  public async getClient(clientId: string): Promise<IClients | null> {
+  public async getClient(clientId: string): Promise<IClient | null> {
     return await ClientsModel.findById(clientId);
   }
 
@@ -42,7 +42,7 @@ export default class ClientControllers {
   @Response(404, "The requested client is not found")
   @SuccessResponse("200", "Deleted")
   @Delete("{clientId}")
-  public async deleteClient(clientId: string): Promise<IClients | null> {
+  public async deleteClient(clientId: string): Promise<IClient | null> {
     return await ClientsModel.findByIdAndDelete(clientId);
   }
 
@@ -52,14 +52,14 @@ export default class ClientControllers {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IClients>({
+  @Example<IClient>({
     uID: "63124dffdcf1e4974079a441",
     preferredServiceType: ["online"],
     diseases: "diseases",
     preferences: { pref: "pref test" },
   })
   @Post("create")
-  public async createClient(@Body() client: IClients): Promise<IClients> {
+  public async createClient(@Body() client: IClient): Promise<IClient> {
     return await new ClientsModel({ ...client }).save();
   }
 
@@ -72,8 +72,8 @@ export default class ClientControllers {
   @Put("update/{clientId}")
   public async updateClient(
     @Path() clientId: string,
-    @Body() client: Partial<IClients>
-  ): Promise<IClients | null> {
+    @Body() client: Partial<IClient>
+  ): Promise<IClient | null> {
     let clientDocument = await ClientsModel.findById(clientId);
     if (clientDocument != null) {
       clientDocument.uID = client.uID ?? clientDocument.uID;

@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import ClientsController from "../controllers/clients_controller";
-import { IClients } from "../types/interfaces";
+import { IClient } from "../types/interfaces";
 
 describe("ClientController", () => {
-  const ClientModel: Model<IClients> = require("../models/clients_model");
+  const ClientModel: Model<IClient> = require("../models/clients_model");
   const controller = new ClientsController();
 
   describe("createClient", () => {

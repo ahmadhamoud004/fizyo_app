@@ -1,23 +1,19 @@
 import { Schema, model } from "mongoose";
-import { IUsers, IEnumValues } from "../types/interfaces";
+import { IUser, IEnumValues } from "../types/interfaces";
 
-const UsersSchema = new Schema<IUsers>({
+const UsersSchema = new Schema<IUser>({
   // Example on String
-  email: { type: String, required: true },
+  email: { type: String },
   password: { type: String, required: true },
-  profilePicture: { type: String, required: false },
+  profilePicture: { type: String },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  // Example on Enum
   gender: {
     type: String,
     required: true,
-    // enum: IEnu,
-    // default: "Male",
+    enum: ["male", "female"],
   },
-  // Example on Date
   DOB: { type: Date, required: false },
-  // Example on object[] with attributes
   address: [
     {
       country: { type: String, required: true },
@@ -60,4 +56,4 @@ UsersSchema.virtual("url").get(function () {
   return "users/" + this._id;
 });
 
-module.exports = model<IUsers>("User", UsersSchema);
+module.exports = model<IUser>("User", UsersSchema);

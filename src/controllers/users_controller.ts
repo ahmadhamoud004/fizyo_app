@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IUsers } from "../types/interfaces";
+import { IUser } from "../types/interfaces";
 
-const UsersModel: Model<IUsers> = require("../models/users_model");
+const UsersModel: Model<IUser> = require("../models/users_model");
 
 @Route("users")
 export default class UsersController {
@@ -21,7 +21,7 @@ export default class UsersController {
    * Get all of users
    */
   @Get("/")
-  public async getUsers(): Promise<IUsers[]> {
+  public async getUsers(): Promise<IUser[]> {
     return await UsersModel.find();
   }
 
@@ -31,7 +31,7 @@ export default class UsersController {
    */
   @Response(404, "The requested user is not found")
   @Get("{userId}")
-  public async getUser(userId: string): Promise<IUsers | null> {
+  public async getUser(userId: string): Promise<IUser | null> {
     return await UsersModel.findById(userId);
   }
 
@@ -42,7 +42,7 @@ export default class UsersController {
   @Response(404, "The requested user is not found")
   @SuccessResponse("200", "Deleted")
   @Delete("{userId}")
-  public async deleteUser(userId: string): Promise<IUsers | null> {
+  public async deleteUser(userId: string): Promise<IUser | null> {
     return await UsersModel.findByIdAndDelete(userId);
   }
 
@@ -51,14 +51,14 @@ export default class UsersController {
    */
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
-  @Example<IUsers>({
+  @Example<IUser>({
     email: "nour@gmail.com",
     phoneNumber: "00352681531905",
     password: "00352681531905",
     profilePicture: "main.png",
     firstName: "Muhammad",
     lastName: "Nour",
-    gender: "Male",
+    gender: "male",
     DOB: new Date("2022-09-10"),
     address: [
       {
@@ -76,7 +76,7 @@ export default class UsersController {
     maritalStatus: "single",
   })
   @Post("create")
-  public async createUser(@Body() user: IUsers): Promise<IUsers> {
+  public async createUser(@Body() user: IUser): Promise<IUser> {
     return await new UsersModel({ ...user }).save();
   }
 
@@ -89,8 +89,8 @@ export default class UsersController {
   @Put("update/{userId}")
   public async updateUser(
     @Path() userId: string,
-    @Body() user: Partial<IUsers>
-  ): Promise<IUsers | null> {
+    @Body() user: Partial<IUser>
+  ): Promise<IUser | null> {
     let userDocument = await UsersModel.findById(userId);
     if (userDocument != null) {
       userDocument.email = user.email ?? userDocument.email;

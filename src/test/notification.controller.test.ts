@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import NotificationController from "../controllers/notification_controller";
-import { INotifications } from "../types/interfaces";
+import { INotification } from "../types/interfaces";
 
 describe("NotificationController", () => {
-  const NotificationModel: Model<INotifications> = require("../models/notifications_model");
+  const NotificationModel: Model<INotification> = require("../models/notifications_model");
   const controller = new NotificationController();
 
   describe("createNotification", () => {

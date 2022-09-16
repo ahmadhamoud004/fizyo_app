@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import ServiceProvidersController from "../controllers/service_providers_controller";
-import { IServiceProviders } from "../types/interfaces";
+import { IServiceProvider } from "../types/interfaces";
 
 describe("ServiceProvidersController", () => {
-  const ServiceProvidersModel: Model<IServiceProviders> = require("../models/service_providers_model");
+  const ServiceProvidersModel: Model<IServiceProvider> = require("../models/service_providers_model");
   const controller = new ServiceProvidersController();
 
   describe("createServiceProvider", () => {

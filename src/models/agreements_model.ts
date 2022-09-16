@@ -1,18 +1,18 @@
 import { Schema, model } from "mongoose";
-import { IAgreements } from "../types/interfaces";
+import { IAgreement } from "../types/interfaces";
 
-const AgreementsSchema = new Schema<IAgreements>({
+const AgreementsSchema = new Schema<IAgreement>({
   name: { type: String, required: true },
   parties: [{ type: String, required: true }],
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
   details: { type: String, required: true },
   attachments: [{ type: Object }],
-  reminder: { type: Boolean, required: true },
+  reminder: { type: Boolean },
 });
 
 AgreementsSchema.virtual("url").get(function () {
   return "agreements/" + this._id;
 });
 
-module.exports = model<IAgreements>("Agreement", AgreementsSchema);
+module.exports = model<IAgreement>("Agreement", AgreementsSchema);

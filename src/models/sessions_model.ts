@@ -1,30 +1,30 @@
 import { Schema, model } from "mongoose";
 import { type } from "os";
-import { ISessions } from "../types/interfaces";
+import { ISession } from "../types/interfaces";
 
-const SessionsSchema = new Schema<ISessions>({
+const SessionsSchema = new Schema<ISession>({
   sessionType: {
     type: String,
     enum: ["group", "individual"],
     default: "individual",
     required: true,
   },
-  serviceProvidersID: { type: Schema.Types.ObjectId, ref: "ServiceProvider" },
+  serviceProviderID: { type: Schema.Types.ObjectId, ref: "ServiceProvider" },
   // serviceProvidersID: { type: String },
 
-  clientsIDs: [{ type: Schema.Types.ObjectId, ref: "Client" }],
+  clientsID: [{ type: Schema.Types.ObjectId, ref: "Client" }],
   // clientsIDs: { type: String },
 
   name: { type: String, required: true },
   details: { type: String, required: true },
-  startDate: { type: Date, required: true },
-  duration: { type: Number, required: true },
+  startDate: { type: Date },
+  duration: { type: Number },
   serviceType: {
     type: String,
-    enum: ["Home", "Office", "Online"],
-    default: "Office",
+    enum: ["home", "office", "online"],
+    default: "office",
   },
-  location: { type: Object, required: true },
+  location: { type: Object },
   attachments: {
     type: {
       attachmentUrl: { type: String, required: true },
@@ -32,12 +32,11 @@ const SessionsSchema = new Schema<ISessions>({
       attachmentType: { type: String, required: true },
     },
   },
-  requirements: { type: String, required: true },
+  requirements: { type: String },
   ratings: [
     {
       type: {
         raterUID: { type: Schema.Types.ObjectId, ref: "User" },
-        // raterUID: { type: String, required: true },
         ratingValue: { type: String, required: true },
         ratingDate: { type: Date, required: true },
       },
@@ -47,7 +46,6 @@ const SessionsSchema = new Schema<ISessions>({
     {
       type: {
         reviewerUID: { type: Schema.Types.ObjectId, ref: "User" },
-        // reviewerUID: { type: String, required: true },
         reviewDetails: { type: String, required: true },
         reviewDate: { type: Date, required: true },
       },
@@ -55,13 +53,19 @@ const SessionsSchema = new Schema<ISessions>({
   ],
   sessionFee: { type: Number, required: true },
   payments: {
-    type: {
-      discount: { type: Number, required: true },
-      paymentMethod: { type: String, required: true },
-      payerID: { type: Schema.Types.ObjectId, ref: "Client", required: false },
-      // payerID: { type: String, required: true },
-      amount: { type: Number, required: true },
-    },
+    type: [
+      {
+        discount: { type: Number, required: true },
+        paymentMethod: { type: String, required: true },
+        payerID: {
+          type: Schema.Types.ObjectId,
+          ref: "Client",
+          required: false,
+        },
+        // payerID: { type: String, required: true },
+        amount: { type: Number, required: true },
+      },
+    ],
   },
   status: {
     type: String,
@@ -69,9 +73,9 @@ const SessionsSchema = new Schema<ISessions>({
     default: "initiated",
     required: true,
   },
-  doctorReferral: { type: String, required: true },
+  doctorReferral: { type: String },
 });
 SessionsSchema.virtual("url").get(function () {
   return "sessions/" + this._id;
 });
-module.exports = model<ISessions>("Session", SessionsSchema);
+module.exports = model<ISession>("Session", SessionsSchema);

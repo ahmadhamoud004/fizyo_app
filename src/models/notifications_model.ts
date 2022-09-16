@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { INotifications } from "../types/interfaces";
+import { INotification } from "../types/interfaces";
 
-const NotificationsSchema = new Schema<INotifications>({
+const NotificationsSchema = new Schema<INotification>({
   referenceType: {
     type: String,
     enum: [
@@ -17,7 +17,7 @@ const NotificationsSchema = new Schema<INotifications>({
     required: true,
   },
   referenceID: { type: Schema.Types.ObjectId, ref: "referenceType" },
-  statues: {
+  status: {
     type: String,
     enum: ["sent", "delivered", "opened"],
     default: "sent",
@@ -26,12 +26,11 @@ const NotificationsSchema = new Schema<INotifications>({
   title: { type: String, required: true },
   details: { type: String, required: true },
   sentDate: { type: Date, required: true },
-  receivedDate: { type: Date, required: true },
-  openDate: { type: Date, required: true },
+  receivedDate: { type: Date },
+  openDate: { type: Date },
   receiverUID: { type: Schema.Types.ObjectId, ref: "User" },
-  // receiverUID: { type: String },
 });
 NotificationsSchema.virtual("url").get(function () {
   return "notifications/" + this._id;
 });
-module.exports = model<INotifications>("Notification", NotificationsSchema);
+module.exports = model<INotification>("Notification", NotificationsSchema);

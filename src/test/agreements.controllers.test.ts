@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import AgreementsController from "../controllers/agreements_controller";
-import { IAgreements } from "../types/interfaces";
+import { IAgreement } from "../types/interfaces";
 
 describe("AgreementsController", () => {
-  const AgreementModel: Model<IAgreements> = require("../models/agreements_model");
+  const AgreementModel: Model<IAgreement> = require("../models/agreements_model");
   const controller = new AgreementsController();
 
   describe("createAgreement", () => {

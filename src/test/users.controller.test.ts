@@ -1,9 +1,9 @@
 import { Model } from "mongoose";
 import UsersController from "../controllers/users_controller";
-import { IUsers } from "../types/interfaces";
+import { IUser } from "../types/interfaces";
 
 describe("UsersController", () => {
-  const UsersModel: Model<IUsers> = require("../models/users_model");
+  const UsersModel: Model<IUser> = require("../models/users_model");
   const controller = new UsersController();
 
   describe("createUser", () => {

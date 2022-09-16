@@ -37,7 +37,10 @@ router.post("/create", async (req, res) => {
   await controller
     .createUser(req.body)
     .then((response) => res.send(response))
-    .catch((err) => res.status(422).send(err));
+    .catch((err) => {
+      console.log(err);
+      res.status(422).send(err);
+    });
 });
 
 router.put("/update/:userId", async (req, res) => {

@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IDisputes } from "../types/interfaces";
+import { IDispute } from "../types/interfaces";
 
-const DisputeModel: Model<IDisputes> = require("../models/dispute_model");
+const DisputeModel: Model<IDispute> = require("../models/dispute_model");
 
 @Route("disputes")
 export default class DisputeController {
@@ -21,7 +21,7 @@ export default class DisputeController {
    * Get List of All disputes
    */
   @Get("/")
-  public async getDisputes(): Promise<IDisputes[]> {
+  public async getDisputes(): Promise<IDispute[]> {
     return await DisputeModel.find()
       .populate("sessionID")
       .populate("firstPartyUID")
@@ -35,7 +35,7 @@ export default class DisputeController {
    */
   @Response(404, "The requested dispute is not found")
   @Get("{disputeId}")
-  public async getDispute(disputeId: string): Promise<IDisputes | null> {
+  public async getDispute(disputeId: string): Promise<IDispute | null> {
     return await DisputeModel.findById(disputeId)
       .populate("sessionID")
       .populate("firstPartyUID")
@@ -50,7 +50,7 @@ export default class DisputeController {
   @Response(404, "The requested dispute is not found")
   @SuccessResponse("200", "Deleted")
   @Delete("{disputeId}")
-  public async deleteDispute(disputeId: string): Promise<IDisputes | null> {
+  public async deleteDispute(disputeId: string): Promise<IDispute | null> {
     return await DisputeModel.findByIdAndDelete(disputeId);
   }
 
@@ -59,7 +59,7 @@ export default class DisputeController {
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IDisputes>({
+  @Example<IDispute>({
     sessionID: "63130e088d796320172e58de",
     firstPartyUID: "63130ba28d796320172e58d6",
     secondUID: "63124dffdcf1e4974079a441",
@@ -76,7 +76,7 @@ export default class DisputeController {
     closedDate: new Date("2022-09-10"),
   })
   @Post("create")
-  public async createDispute(@Body() dispute: IDisputes): Promise<IDisputes> {
+  public async createDispute(@Body() dispute: IDispute): Promise<IDispute> {
     return await new DisputeModel({ ...dispute }).save();
   }
 
@@ -89,8 +89,8 @@ export default class DisputeController {
   @Put("update/{disputeId}")
   public async updateDispute(
     @Path() disputeId: string,
-    @Body() dispute: Partial<IDisputes>
-  ): Promise<IDisputes | null> {
+    @Body() dispute: Partial<IDispute>
+  ): Promise<IDispute | null> {
     let disputeDocument = await DisputeModel.findById(disputeId);
     if (disputeDocument != null) {
       disputeDocument.sessionID =

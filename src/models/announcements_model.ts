@@ -1,9 +1,9 @@
 import { Schema, model } from "mongoose";
 import { type } from "os";
 
-import { IAnnouncements } from "../types/interfaces";
+import { IAnnouncement } from "../types/interfaces";
 
-const AnnouncementSchema = new Schema<IAnnouncements>({
+const AnnouncementSchema = new Schema<IAnnouncement>({
   referenceType: {
     type: String,
     enum: ["Session", "Advertisement"],
@@ -11,19 +11,27 @@ const AnnouncementSchema = new Schema<IAnnouncements>({
     required: true,
   },
   referenceID: { type: Schema.Types.ObjectId, refPath: "referenceType" },
-  statues: {
+  status: {
     type: String,
-    enum: ["published", "published"],
+    enum: ["draft", "published"],
     default: "published",
   },
   topic: { type: String, required: true },
   details: { type: String, required: true },
   sentDate: { type: Date, required: true },
-  attachments: [{ type: Object }],
+  attachments: [
+    {
+      type: {
+        name: { type: String, required: true },
+        url: { type: String, required: true },
+        type: { type: String, required: true },
+      },
+    },
+  ],
   receiversUIDs: [{ type: Schema.Types.ObjectId, ref: "User" }],
   // receiversUIDs: [{ type: String, required: true }],
 });
 AnnouncementSchema.virtual("url").get(function () {
   return "announcements/" + this._id;
 });
-module.exports = model<IAnnouncements>("Announcement", AnnouncementSchema);
+module.exports = model<IAnnouncement>("Announcement", AnnouncementSchema);

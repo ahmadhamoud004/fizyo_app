@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import AlarmController from "../controllers/alarm_controller";
-import { IAlarms } from "../types/interfaces";
+import { IAlarm } from "../types/interfaces";
 
 describe("AlarmController", () => {
-  const AlarmModel: Model<IAlarms> = require("../models/alarms_model");
+  const AlarmModel: Model<IAlarm> = require("../models/alarms_model");
   const controller = new AlarmController();
 
   describe("createAlarm", () => {

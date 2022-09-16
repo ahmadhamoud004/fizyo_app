@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { IClients } from "../types/interfaces";
+import { IClient } from "../types/interfaces";
 
-const ClientsSchema = new Schema<IClients>({
+const ClientsSchema = new Schema<IClient>({
   uID: { type: Schema.Types.ObjectId, ref: "User" },
   preferredServiceType: [
     {
@@ -11,7 +11,7 @@ const ClientsSchema = new Schema<IClients>({
       default: "online",
     },
   ],
-  diseases: { type: String, required: true },
+  diseases: [{ type: String, required: true }],
   preferences: { type: Object, required: true },
 });
 
@@ -19,4 +19,4 @@ ClientsSchema.virtual("url").get(function () {
   return "clients/" + this._id;
 });
 
-module.exports = model<IClients>("Client", ClientsSchema);
+module.exports = model<IClient>("Client", ClientsSchema);

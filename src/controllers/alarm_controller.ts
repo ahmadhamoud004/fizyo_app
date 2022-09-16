@@ -10,10 +10,10 @@ import {
   Path,
   Put,
 } from "tsoa";
-import { IAlarms } from "../types/interfaces";
+import { IAlarm } from "../types/interfaces";
 import { Model } from "mongoose";
 
-const AlarmModel: Model<IAlarms> = require("../models/alarms_model");
+const AlarmModel: Model<IAlarm> = require("../models/alarms_model");
 
 @Route("alarms")
 export default class AlarmController {
@@ -21,7 +21,7 @@ export default class AlarmController {
    * Get List of All Alarms
    */
   @Get("/")
-  public async getAlarms(): Promise<IAlarms[]> {
+  public async getAlarms(): Promise<IAlarm[]> {
     return await AlarmModel.find().populate("referenceID");
   }
 
@@ -31,7 +31,7 @@ export default class AlarmController {
    */
   @Response(404, "the requested Alarm in not found")
   @Get("{alarmId}")
-  public async getAlarm(alarmId: string): Promise<IAlarms | null> {
+  public async getAlarm(alarmId: string): Promise<IAlarm | null> {
     return await AlarmModel.findById(alarmId).populate("referenceID");
   }
 
@@ -52,7 +52,7 @@ export default class AlarmController {
 
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IAlarms>({
+  @Example<IAlarm>({
     name: "new therapist",
     referenceType: "Agreement",
     referenceID: "63131c361ea32f520cb28bd6",
@@ -63,7 +63,7 @@ export default class AlarmController {
     endDate: new Date("2022-09-10"),
   })
   @Post("create")
-  public async createAlarm(@Body() alarm: IAlarms): Promise<IAlarms> {
+  public async createAlarm(@Body() alarm: IAlarm): Promise<IAlarm> {
     return new AlarmModel({
       ...alarm,
     }).save();
@@ -78,8 +78,8 @@ export default class AlarmController {
   @Put("update/{alarmId}")
   public async updateAlarm(
     @Path() alarmId: string,
-    @Body() alarm: Partial<IAlarms>
-  ): Promise<IAlarms | null> {
+    @Body() alarm: Partial<IAlarm>
+  ): Promise<IAlarm | null> {
     let alarmDocument = await AlarmModel.findById(alarmId);
     if (alarmDocument != null) {
       alarmDocument.name = alarm.name ?? alarmDocument.name;

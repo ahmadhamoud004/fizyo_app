@@ -11,9 +11,9 @@ import {
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
-import { IAgreements } from "../types/interfaces";
+import { IAgreement } from "../types/interfaces";
 
-const AgreementsModel: Model<IAgreements> = require("../models/agreements_model");
+const AgreementsModel: Model<IAgreement> = require("../models/agreements_model");
 
 @Route("agreements")
 export default class AgreementsController {
@@ -21,7 +21,7 @@ export default class AgreementsController {
    * Get List of All agreements
    */
   @Get("/")
-  public async getAgreements(): Promise<IAgreements[]> {
+  public async getAgreements(): Promise<IAgreement[]> {
     return await AgreementsModel.find();
   }
 
@@ -31,7 +31,7 @@ export default class AgreementsController {
    */
   @Response(404, "The requested agreement is not found")
   @Get("{agreementId}")
-  public async getAgreement(agreementId: string): Promise<IAgreements | null> {
+  public async getAgreement(agreementId: string): Promise<IAgreement | null> {
     return await AgreementsModel.findById(agreementId);
   }
 
@@ -44,7 +44,7 @@ export default class AgreementsController {
   @Delete("{agreementId}")
   public async deleteAgreement(
     agreementId: string
-  ): Promise<IAgreements | null> {
+  ): Promise<IAgreement | null> {
     return await AgreementsModel.findByIdAndDelete(agreementId);
   }
 
@@ -53,7 +53,7 @@ export default class AgreementsController {
    */
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
-  @Example<IAgreements>({
+  @Example<IAgreement>({
     name: "Ahmad",
     parties: ["63124dffdcf1e4974079a441"],
     startDate: new Date("2022-09-10"),
@@ -64,8 +64,8 @@ export default class AgreementsController {
   })
   @Post("create")
   public async createAgreement(
-    @Body() agreement: IAgreements
-  ): Promise<IAgreements> {
+    @Body() agreement: IAgreement
+  ): Promise<IAgreement> {
     return await new AgreementsModel({ ...agreement }).save();
   }
 
@@ -78,8 +78,8 @@ export default class AgreementsController {
   @Put("update/{agreementId}")
   public async updateAgreement(
     @Path() agreementId: string,
-    @Body() agreement: Partial<IAgreements>
-  ): Promise<IAgreements | null> {
+    @Body() agreement: Partial<IAgreement>
+  ): Promise<IAgreement | null> {
     let agreementDocument = await AgreementsModel.findById(agreementId);
     if (agreementDocument != null) {
       agreementDocument.name = agreement.name ?? agreementDocument.name;

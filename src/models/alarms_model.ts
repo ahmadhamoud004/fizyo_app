@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 
-import { IAlarms } from "../types/interfaces";
+import { IAlarm } from "../types/interfaces";
 
-const AlarmsSchema = new Schema<IAlarms>({
+const AlarmsSchema = new Schema<IAlarm>({
   name: { type: String, required: true },
   referenceType: {
     type: String,
@@ -10,8 +10,11 @@ const AlarmsSchema = new Schema<IAlarms>({
     default: "Session",
     required: true,
   },
-  referenceID: { type: [Schema.Types.ObjectId], refPath: "referenceType" },
-
+  referenceID: {
+    type: [Schema.Types.ObjectId],
+    refPath: "referenceType",
+    required: true,
+  },
   frequencyUnit: {
     type: String,
     enum: ["Days", "Hours"],
@@ -26,4 +29,4 @@ const AlarmsSchema = new Schema<IAlarms>({
 AlarmsSchema.virtual("url").get(function () {
   return "alarms/" + this._id;
 });
-module.exports = model<IAlarms>("Alarm", AlarmsSchema);
+module.exports = model<IAlarm>("Alarm", AlarmsSchema);

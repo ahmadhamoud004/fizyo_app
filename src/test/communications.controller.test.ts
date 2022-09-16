@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import CommunicationsController from "../controllers/communications_controller";
-import { ICommunications } from "../types/interfaces";
+import { ICommunication } from "../types/interfaces";
 
 describe("CommunicationsController", () => {
-  const CommunicationModel: Model<ICommunications> = require("../models/communications_model");
+  const CommunicationModel: Model<ICommunication> = require("../models/communications_model");
   const controller = new CommunicationsController();
 
   describe("createCommunication", () => {

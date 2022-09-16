@@ -1,20 +1,20 @@
 import { Schema, model } from "mongoose";
-import { IRoles } from "../types/interfaces";
+import { IRole } from "../types/interfaces";
 
-const RolesSchema = new Schema<IRoles>({
+const RolesSchema = new Schema<IRole>({
   name: { type: String, required: true },
-  employees: [{ type: Schema.Types.ObjectId, ref: "Employee" }],
-  users: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  service_provider: [{ type: Schema.Types.ObjectId, ref: "ServiceProvider" }],
-  clients: [{ type: Schema.Types.ObjectId, ref: "Client" }],
-  sessions: [{ type: Schema.Types.ObjectId, ref: "Session" }],
-  communications: [{ type: Schema.Types.ObjectId, ref: "Communication" }],
-  disputes: [{ type: Schema.Types.ObjectId, ref: "Dispute" }],
-  enum_values: [{ type: Schema.Types.ObjectId, ref: "EnumValue" }],
+  employees: [{ type: String }],
+  users: [{ type: String }],
+  service_provider: [{ type: String }],
+  clients: [{ type: String }],
+  sessions: [{ type: String }],
+  communications: [{ type: String }],
+  disputes: [{ type: String }],
+  enum_values: [{ type: String }],
 });
 
 RolesSchema.virtual("url").get(function () {
   return "roles/" + this._id;
 });
 
-module.exports = model<IRoles>("Role", RolesSchema);
+module.exports = model<IRole>("Role", RolesSchema);

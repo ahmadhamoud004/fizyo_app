@@ -1,9 +1,9 @@
 import { Model, Types } from "mongoose";
 import AnnouncementController from "../controllers/announcement_controller";
-import { IAnnouncements } from "../types/interfaces";
+import { IAnnouncement } from "../types/interfaces";
 
 describe("AnnouncementController", () => {
-  const AnnouncementModel: Model<IAnnouncements> = require("../models/announcements_model");
+  const AnnouncementModel: Model<IAnnouncement> = require("../models/announcements_model");
   const controller = new AnnouncementController();
 
   describe("createAnnouncement", () => {
