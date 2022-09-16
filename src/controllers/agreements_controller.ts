@@ -59,7 +59,7 @@ export default class AgreementsController {
     startDate: new Date("2022-09-10"),
     endDate: new Date("2022-09-10"),
     details: "first Agreement",
-    attachments: [{ name: "personal information" }],
+    attachments: [],
     reminder: true,
   })
   @Post("create")

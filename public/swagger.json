@@ -9,7 +9,7 @@
 			"Types.ObjectId": {
 				"type": "string"
 			},
-			"IUsers": {
+			"IUser": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -40,7 +40,11 @@
 						"type": "string"
 					},
 					"gender": {
-						"type": "string"
+						"type": "string",
+						"enum": [
+							"male",
+							"female"
+						]
 					},
 					"DOB": {
 						"type": "string",
@@ -122,10 +126,7 @@
 					}
 				},
 				"required": [
-					"email",
-					"phoneNumber",
 					"password",
-					"profilePicture",
 					"firstName",
 					"lastName",
 					"gender",
@@ -133,15 +134,12 @@
 					"verified",
 					"status",
 					"accountType",
-					"lastLoginDate",
-					"accountSetting",
-					"languages",
 					"maritalStatus"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"IServiceProviders": {
+			"IServiceProvider": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -162,7 +160,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -170,7 +168,10 @@
 						"type": "string"
 					},
 					"specialties": {
-						"type": "string"
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"preferredServiceType": {
 						"anyOf": [
@@ -202,23 +203,26 @@
 						"format": "double"
 					},
 					"documents": {
-						"properties": {
-							"attType": {
-								"type": "string"
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
 							},
-							"name": {
-								"type": "string"
-							},
-							"url": {
-								"type": "string"
-							}
+							"required": [
+								"type",
+								"name",
+								"url"
+							],
+							"type": "object"
 						},
-						"required": [
-							"attType",
-							"name",
-							"url"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"reviewerUIDs": {
 						"anyOf": [
@@ -236,7 +240,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -265,7 +269,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -274,18 +278,14 @@
 					}
 				},
 				"required": [
-					"bio",
 					"specialties",
 					"preferredServiceType",
-					"minSessionFee",
-					"maxSessionFee",
-					"verificationStatus",
-					"verificationDate"
+					"verificationStatus"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IServiceProviders_": {
+			"Partial_IServiceProvider_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -306,7 +306,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -314,7 +314,10 @@
 						"type": "string"
 					},
 					"specialties": {
-						"type": "string"
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"preferredServiceType": {
 						"anyOf": [
@@ -346,23 +349,26 @@
 						"format": "double"
 					},
 					"documents": {
-						"properties": {
-							"attType": {
-								"type": "string"
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
 							},
-							"name": {
-								"type": "string"
-							},
-							"url": {
-								"type": "string"
-							}
+							"required": [
+								"type",
+								"name",
+								"url"
+							],
+							"type": "object"
 						},
-						"required": [
-							"attType",
-							"name",
-							"url"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"reviewerUIDs": {
 						"anyOf": [
@@ -380,7 +386,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -409,7 +415,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -420,7 +426,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IClients": {
+			"IClient": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -441,7 +447,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -467,7 +473,10 @@
 						]
 					},
 					"diseases": {
-						"type": "string"
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"preferences": {
 						"additionalProperties": false,
@@ -485,7 +494,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ISessions": {
+			"ISession": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -504,7 +513,7 @@
 							"individual"
 						]
 					},
-					"serviceProvidersID": {
+					"serviceProviderID": {
 						"anyOf": [
 							{
 								"type": "string"
@@ -513,11 +522,11 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IServiceProviders"
+								"$ref": "#/components/schemas/IServiceProvider"
 							}
 						]
 					},
-					"clientsIDs": {
+					"clientsID": {
 						"anyOf": [
 							{
 								"items": {
@@ -533,7 +542,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IClients"
+									"$ref": "#/components/schemas/IClient"
 								},
 								"type": "array"
 							}
@@ -556,9 +565,9 @@
 					"serviceType": {
 						"type": "string",
 						"enum": [
-							"Online",
-							"Home",
-							"Office"
+							"online",
+							"home",
+							"office"
 						]
 					},
 					"location": {
@@ -566,23 +575,26 @@
 						"type": "object"
 					},
 					"attachments": {
-						"properties": {
-							"attachmentType": {
-								"type": "string"
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
 							},
-							"attachmentName": {
-								"type": "string"
-							},
-							"attachmentUrl": {
-								"type": "string"
-							}
+							"required": [
+								"type",
+								"name",
+								"url"
+							],
+							"type": "object"
 						},
-						"required": [
-							"attachmentType",
-							"attachmentName",
-							"attachmentUrl"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"requirements": {
 						"type": "string"
@@ -606,7 +618,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								}
@@ -639,7 +651,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								}
@@ -658,39 +670,42 @@
 						"format": "double"
 					},
 					"payments": {
-						"properties": {
-							"amount": {
-								"type": "number",
-								"format": "double"
+						"items": {
+							"properties": {
+								"amount": {
+									"type": "number",
+									"format": "double"
+								},
+								"payerID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUser"
+										}
+									]
+								},
+								"paymentMethod": {
+									"type": "string"
+								},
+								"discount": {
+									"type": "number",
+									"format": "double"
+								}
 							},
-							"payerID": {
-								"anyOf": [
-									{
-										"type": "string"
-									},
-									{
-										"$ref": "#/components/schemas/Types.ObjectId"
-									},
-									{
-										"$ref": "#/components/schemas/IUsers"
-									}
-								]
-							},
-							"paymentMethod": {
-								"type": "string"
-							},
-							"discount": {
-								"type": "number",
-								"format": "double"
-							}
+							"required": [
+								"amount",
+								"payerID",
+								"paymentMethod",
+								"discount"
+							],
+							"type": "object"
 						},
-						"required": [
-							"amount",
-							"payerID",
-							"paymentMethod",
-							"discount"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"status": {
 						"type": "string",
@@ -711,9 +726,6 @@
 				"required": [
 					"sessionType",
 					"name",
-					"details",
-					"startDate",
-					"duration",
 					"serviceType",
 					"location",
 					"requirements",
@@ -723,7 +735,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"IDisputes": {
+			"IDispute": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -744,7 +756,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							}
 						]
 					},
@@ -757,7 +769,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -770,7 +782,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -822,7 +834,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -849,16 +861,12 @@
 				"required": [
 					"topic",
 					"details",
-					"status",
-					"inProgressDate",
-					"receivedDate",
-					"suspendedDate",
-					"closedDate"
+					"status"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IDisputes_": {
+			"Partial_IDispute_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -879,7 +887,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							}
 						]
 					},
@@ -892,7 +900,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -905,7 +913,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -957,7 +965,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -984,7 +992,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IAgreements": {
+			"IAgreement": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1018,7 +1026,22 @@
 					},
 					"attachments": {
 						"items": {
-							"additionalProperties": false,
+							"properties": {
+								"disType": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"disType",
+								"name",
+								"url"
+							],
 							"type": "object"
 						},
 						"type": "array"
@@ -1035,13 +1058,12 @@
 					"parties",
 					"startDate",
 					"endDate",
-					"details",
-					"reminder"
+					"details"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ICommunications": {
+			"ICommunication": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1071,16 +1093,16 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -1100,7 +1122,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -1133,7 +1155,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								},
@@ -1167,7 +1189,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_ICommunications_": {
+			"Partial_ICommunication_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1197,16 +1219,16 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -1226,7 +1248,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -1259,7 +1281,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								},
@@ -1288,7 +1310,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_IAgreements_": {
+			"Partial_IAgreement_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1322,7 +1344,22 @@
 					},
 					"attachments": {
 						"items": {
-							"additionalProperties": false,
+							"properties": {
+								"disType": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"disType",
+								"name",
+								"url"
+							],
 							"type": "object"
 						},
 						"type": "array"
@@ -1337,7 +1374,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_IUsers_": {
+			"Partial_IUser_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1368,7 +1405,11 @@
 						"type": "string"
 					},
 					"gender": {
-						"type": "string"
+						"type": "string",
+						"enum": [
+							"male",
+							"female"
+						]
 					},
 					"DOB": {
 						"type": "string",
@@ -1452,7 +1493,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IRoles": {
+			"IRole": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1468,302 +1509,68 @@
 						"type": "string"
 					},
 					"employees": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IEmployees"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"users": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IUsers"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"service_provider": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IServiceProviders"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"clients": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IClients"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"sessions": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/ISessions"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"communications": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/ICommunications"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"disputes": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IDisputes"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"enum_values": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IEnumValues"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"url": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"IEmployees": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							}
-						]
-					},
-					"uID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"$ref": "#/components/schemas/IUsers"
-							}
-						]
-					},
-					"roleID": {
-						"anyOf": [
-							{
-								"type": "string"
-							},
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"$ref": "#/components/schemas/IRoles"
-							}
-						]
-					},
-					"salary": {
-						"type": "number",
-						"format": "double"
-					},
-					"attachments": {
-						"items": {
-							"properties": {
-								"empType": {
-									"type": "string"
-								},
-								"url": {
-									"type": "string"
-								},
-								"name": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"empType",
-								"url",
-								"name"
-							],
-							"type": "object"
-						},
-						"type": "array"
-					},
-					"url": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"salary"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"IEnumValues": {
-				"properties": {
-					"_id": {
-						"anyOf": [
-							{
-								"$ref": "#/components/schemas/Types.ObjectId"
-							},
-							{
-								"type": "string"
-							}
-						]
-					},
-					"enumName": {
-						"type": "string"
-					},
-					"enumValues": {
 						"items": {
 							"type": "string"
 						},
 						"type": "array"
 					},
-					"enumNote": {
-						"type": "string"
+					"users": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
-					"url": {
-						"type": "string"
+					"service_provider": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"clients": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"sessions": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"communications": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"disputes": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"enum_values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
-					"enumName",
-					"enumValues",
-					"enumNote"
+					"name",
+					"employees",
+					"users",
+					"clients",
+					"sessions",
+					"communications",
+					"disputes",
+					"enum_values"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IRoles_": {
+			"Partial_IRole_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1779,189 +1586,58 @@
 						"type": "string"
 					},
 					"employees": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IEmployees"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"users": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IUsers"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"service_provider": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IServiceProviders"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"clients": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IClients"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"sessions": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/ISessions"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"communications": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/ICommunications"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"disputes": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IDisputes"
-								},
-								"type": "array"
-							}
-						]
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"enum_values": {
-						"anyOf": [
-							{
-								"items": {
-									"type": "string"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/Types.ObjectId"
-								},
-								"type": "array"
-							},
-							{
-								"items": {
-									"$ref": "#/components/schemas/IEnumValues"
-								},
-								"type": "array"
-							}
-						]
-					},
-					"url": {
-						"type": "string"
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_IEmployees_": {
+			"IEmployee": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -1982,7 +1658,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -1995,7 +1671,78 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IRoles"
+								"$ref": "#/components/schemas/IRole"
+							}
+						]
+					},
+					"salary": {
+						"type": "number",
+						"format": "double"
+					},
+					"attachments": {
+						"items": {
+							"properties": {
+								"empType": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"empType",
+								"url",
+								"name"
+							],
+							"type": "object"
+						},
+						"type": "array"
+					},
+					"url": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_IEmployee_": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							}
+						]
+					},
+					"uID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IUser"
+							}
+						]
+					},
+					"roleID": {
+						"anyOf": [
+							{
+								"type": "string"
+							},
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"$ref": "#/components/schemas/IRole"
 							}
 						]
 					},
@@ -2032,7 +1779,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_IClients_": {
+			"Partial_IClient_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2053,7 +1800,7 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
 					},
@@ -2079,7 +1826,10 @@
 						]
 					},
 					"diseases": {
-						"type": "string"
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					},
 					"preferences": {
 						"additionalProperties": false,
@@ -2105,7 +1855,7 @@
 				"type": "object",
 				"description": "Make all properties in T required"
 			},
-			"Partial_ISessions_": {
+			"Partial_ISession_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2124,7 +1874,7 @@
 							"individual"
 						]
 					},
-					"serviceProvidersID": {
+					"serviceProviderID": {
 						"anyOf": [
 							{
 								"type": "string"
@@ -2133,11 +1883,11 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IServiceProviders"
+								"$ref": "#/components/schemas/IServiceProvider"
 							}
 						]
 					},
-					"clientsIDs": {
+					"clientsID": {
 						"anyOf": [
 							{
 								"items": {
@@ -2153,7 +1903,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IClients"
+									"$ref": "#/components/schemas/IClient"
 								},
 								"type": "array"
 							}
@@ -2176,9 +1926,9 @@
 					"serviceType": {
 						"type": "string",
 						"enum": [
-							"Online",
-							"Home",
-							"Office"
+							"online",
+							"home",
+							"office"
 						]
 					},
 					"location": {
@@ -2186,23 +1936,26 @@
 						"type": "object"
 					},
 					"attachments": {
-						"properties": {
-							"attachmentType": {
-								"type": "string"
+						"items": {
+							"properties": {
+								"type": {
+									"type": "string"
+								},
+								"name": {
+									"type": "string"
+								},
+								"url": {
+									"type": "string"
+								}
 							},
-							"attachmentName": {
-								"type": "string"
-							},
-							"attachmentUrl": {
-								"type": "string"
-							}
+							"required": [
+								"type",
+								"name",
+								"url"
+							],
+							"type": "object"
 						},
-						"required": [
-							"attachmentType",
-							"attachmentName",
-							"attachmentUrl"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"requirements": {
 						"type": "string"
@@ -2226,7 +1979,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								}
@@ -2259,7 +2012,7 @@
 											"$ref": "#/components/schemas/Types.ObjectId"
 										},
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									]
 								}
@@ -2278,39 +2031,42 @@
 						"format": "double"
 					},
 					"payments": {
-						"properties": {
-							"amount": {
-								"type": "number",
-								"format": "double"
+						"items": {
+							"properties": {
+								"amount": {
+									"type": "number",
+									"format": "double"
+								},
+								"payerID": {
+									"anyOf": [
+										{
+											"type": "string"
+										},
+										{
+											"$ref": "#/components/schemas/Types.ObjectId"
+										},
+										{
+											"$ref": "#/components/schemas/IUser"
+										}
+									]
+								},
+								"paymentMethod": {
+									"type": "string"
+								},
+								"discount": {
+									"type": "number",
+									"format": "double"
+								}
 							},
-							"payerID": {
-								"anyOf": [
-									{
-										"type": "string"
-									},
-									{
-										"$ref": "#/components/schemas/Types.ObjectId"
-									},
-									{
-										"$ref": "#/components/schemas/IUsers"
-									}
-								]
-							},
-							"paymentMethod": {
-								"type": "string"
-							},
-							"discount": {
-								"type": "number",
-								"format": "double"
-							}
+							"required": [
+								"amount",
+								"payerID",
+								"paymentMethod",
+								"discount"
+							],
+							"type": "object"
 						},
-						"required": [
-							"amount",
-							"payerID",
-							"paymentMethod",
-							"discount"
-						],
-						"type": "object"
+						"type": "array"
 					},
 					"status": {
 						"type": "string",
@@ -2331,7 +2087,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"IAlarms": {
+			"IAlarm": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2361,16 +2117,16 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IServiceProviders"
+								"$ref": "#/components/schemas/IServiceProvider"
 							}
 						]
 					},
@@ -2395,14 +2151,12 @@
 					"endDate": {
 						"type": "string",
 						"format": "date-time"
-					},
-					"url": {
-						"type": "string"
 					}
 				},
 				"required": [
 					"name",
 					"referenceType",
+					"referenceID",
 					"frequencyUnit",
 					"frequency",
 					"active",
@@ -2412,7 +2166,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"IAnnouncements": {
+			"IAnnouncement": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2437,14 +2191,14 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/INotifications"
+								"$ref": "#/components/schemas/INotification"
 							}
 						]
 					},
-					"statues": {
+					"status": {
 						"type": "string",
 						"enum": [
 							"draft",
@@ -2463,7 +2217,22 @@
 					},
 					"attachments": {
 						"items": {
-							"additionalProperties": false,
+							"properties": {
+								"attachmentType": {
+									"type": "string"
+								},
+								"attachmentName": {
+									"type": "string"
+								},
+								"attachmentUrl": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"attachmentType",
+								"attachmentName",
+								"attachmentUrl"
+							],
 							"type": "object"
 						},
 						"type": "array"
@@ -2484,7 +2253,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -2496,16 +2265,15 @@
 				},
 				"required": [
 					"referenceType",
-					"statues",
+					"status",
 					"topic",
 					"details",
-					"sentDate",
 					"attachments"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"INotifications": {
+			"INotification": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2535,29 +2303,29 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IAlarms"
+								"$ref": "#/components/schemas/IAlarm"
 							},
 							{
-								"$ref": "#/components/schemas/IAnnouncements"
+								"$ref": "#/components/schemas/IAnnouncement"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							},
 							{
-								"$ref": "#/components/schemas/ICommunications"
+								"$ref": "#/components/schemas/ICommunication"
 							}
 						]
 					},
-					"statues": {
+					"status": {
 						"type": "string",
 						"enum": [
 							"sent",
@@ -2592,29 +2360,24 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
-					},
-					"url": {
-						"type": "string"
 					}
 				},
 				"required": [
 					"referenceType",
 					"referenceID",
-					"statues",
+					"status",
 					"title",
 					"details",
 					"sentDate",
-					"receivedDate",
-					"openDate",
 					"receiverUID"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Partial_IAnnouncements_": {
+			"Partial_IAnnouncement_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2639,14 +2402,14 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/INotifications"
+								"$ref": "#/components/schemas/INotification"
 							}
 						]
 					},
-					"statues": {
+					"status": {
 						"type": "string",
 						"enum": [
 							"draft",
@@ -2665,7 +2428,22 @@
 					},
 					"attachments": {
 						"items": {
-							"additionalProperties": false,
+							"properties": {
+								"attachmentType": {
+									"type": "string"
+								},
+								"attachmentName": {
+									"type": "string"
+								},
+								"attachmentUrl": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"attachmentType",
+								"attachmentName",
+								"attachmentUrl"
+							],
 							"type": "object"
 						},
 						"type": "array"
@@ -2686,7 +2464,7 @@
 							},
 							{
 								"items": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"type": "array"
 							}
@@ -2699,7 +2477,7 @@
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_IAlarms_": {
+			"Partial_IAlarm_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2729,16 +2507,16 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IServiceProviders"
+								"$ref": "#/components/schemas/IServiceProvider"
 							}
 						]
 					},
@@ -2763,15 +2541,12 @@
 					"endDate": {
 						"type": "string",
 						"format": "date-time"
-					},
-					"url": {
-						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"Partial_INotifications_": {
+			"Partial_INotification_": {
 				"properties": {
 					"_id": {
 						"anyOf": [
@@ -2801,29 +2576,29 @@
 								"type": "string"
 							},
 							{
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							},
 							{
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							},
 							{
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							},
 							{
-								"$ref": "#/components/schemas/IAlarms"
+								"$ref": "#/components/schemas/IAlarm"
 							},
 							{
-								"$ref": "#/components/schemas/IAnnouncements"
+								"$ref": "#/components/schemas/IAnnouncement"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							},
 							{
-								"$ref": "#/components/schemas/ICommunications"
+								"$ref": "#/components/schemas/ICommunication"
 							}
 						]
 					},
-					"statues": {
+					"status": {
 						"type": "string",
 						"enum": [
 							"sent",
@@ -2858,16 +2633,46 @@
 								"$ref": "#/components/schemas/Types.ObjectId"
 							},
 							{
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						]
-					},
-					"url": {
-						"type": "string"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
+			},
+			"IEnumValues": {
+				"properties": {
+					"_id": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/Types.ObjectId"
+							},
+							{
+								"type": "string"
+							}
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"values": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"note": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"values",
+					"note"
+				],
+				"type": "object",
+				"additionalProperties": false
 			},
 			"Partial_IEnumValues_": {
 				"properties": {
@@ -2881,19 +2686,16 @@
 							}
 						]
 					},
-					"enumName": {
+					"name": {
 						"type": "string"
 					},
-					"enumValues": {
+					"values": {
 						"items": {
 							"type": "string"
 						},
 						"type": "array"
 					},
-					"enumNote": {
-						"type": "string"
-					},
-					"url": {
+					"note": {
 						"type": "string"
 					}
 				},
@@ -2919,7 +2721,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IServiceProviders"
+										"$ref": "#/components/schemas/IServiceProvider"
 									},
 									"type": "array"
 								}
@@ -2943,7 +2745,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IServiceProviders"
+											"$ref": "#/components/schemas/IServiceProvider"
 										}
 									],
 									"nullable": true
@@ -2979,7 +2781,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IServiceProviders"
+											"$ref": "#/components/schemas/IServiceProvider"
 										}
 									],
 									"nullable": true
@@ -3015,14 +2817,16 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IServiceProviders"
+									"$ref": "#/components/schemas/IServiceProvider"
 								},
 								"examples": {
 									"Example 1": {
 										"value": {
 											"uID": "63124dffdcf1e4974079a441",
 											"bio": "this is the best",
-											"specialties": "Physiotherapist",
+											"specialties": [
+												"Physiotherapist"
+											],
 											"preferredServiceType": [
 												"online",
 												"home",
@@ -3030,11 +2834,13 @@
 											],
 											"minSessionFee": 100,
 											"maxSessionFee": 150,
-											"documents": {
-												"url": "http://localhost:8000/documents",
-												"name": "certificate",
-												"attType": "pdf"
-											},
+											"documents": [
+												{
+													"url": "http://localhost:8000/documents",
+													"name": "certificate",
+													"type": "pdf"
+												}
+											],
 											"reviewerUIDs": [
 												"63124dffdcf1e4974079a441",
 												"63130ba28d796320172e58d6"
@@ -3060,7 +2866,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IServiceProviders"
+								"$ref": "#/components/schemas/IServiceProvider"
 							}
 						}
 					}
@@ -3078,7 +2884,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IServiceProviders"
+											"$ref": "#/components/schemas/IServiceProvider"
 										}
 									],
 									"nullable": true
@@ -3108,7 +2914,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IServiceProviders_"
+								"$ref": "#/components/schemas/Partial_IServiceProvider_"
 							},
 							"example": "63107aae6bcd70f0f363847c"
 						}
@@ -3126,7 +2932,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IDisputes"
+										"$ref": "#/components/schemas/IDispute"
 									},
 									"type": "array"
 								}
@@ -3150,7 +2956,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDisputes"
+											"$ref": "#/components/schemas/IDispute"
 										}
 									],
 									"nullable": true
@@ -3186,7 +2992,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDisputes"
+											"$ref": "#/components/schemas/IDispute"
 										}
 									],
 									"nullable": true
@@ -3222,7 +3028,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IDisputes"
+									"$ref": "#/components/schemas/IDispute"
 								},
 								"examples": {
 									"Example 1": {
@@ -3263,7 +3069,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IDisputes"
+								"$ref": "#/components/schemas/IDispute"
 							}
 						}
 					}
@@ -3281,7 +3087,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IDisputes"
+											"$ref": "#/components/schemas/IDispute"
 										}
 									],
 									"nullable": true
@@ -3311,7 +3117,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IDisputes_"
+								"$ref": "#/components/schemas/Partial_IDispute_"
 							},
 							"example": "63107cdf144972d5a75c14cb"
 						}
@@ -3329,7 +3135,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/ICommunications"
+										"$ref": "#/components/schemas/ICommunication"
 									},
 									"type": "array"
 								}
@@ -3353,7 +3159,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/ICommunications"
+											"$ref": "#/components/schemas/ICommunication"
 										}
 									],
 									"nullable": true
@@ -3389,7 +3195,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/ICommunications"
+											"$ref": "#/components/schemas/ICommunication"
 										}
 									],
 									"nullable": true
@@ -3425,7 +3231,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ICommunications"
+									"$ref": "#/components/schemas/ICommunication"
 								},
 								"examples": {
 									"Example 1": {
@@ -3468,7 +3274,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ICommunications"
+								"$ref": "#/components/schemas/ICommunication"
 							}
 						}
 					}
@@ -3486,7 +3292,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/ICommunications"
+											"$ref": "#/components/schemas/ICommunication"
 										}
 									],
 									"nullable": true
@@ -3516,7 +3322,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_ICommunications_"
+								"$ref": "#/components/schemas/Partial_ICommunication_"
 							},
 							"example": "631371b43719f1a073ee6342"
 						}
@@ -3534,7 +3340,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IAgreements"
+										"$ref": "#/components/schemas/IAgreement"
 									},
 									"type": "array"
 								}
@@ -3558,7 +3364,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAgreements"
+											"$ref": "#/components/schemas/IAgreement"
 										}
 									],
 									"nullable": true
@@ -3594,7 +3400,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAgreements"
+											"$ref": "#/components/schemas/IAgreement"
 										}
 									],
 									"nullable": true
@@ -3630,7 +3436,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IAgreements"
+									"$ref": "#/components/schemas/IAgreement"
 								},
 								"examples": {
 									"Example 1": {
@@ -3642,11 +3448,7 @@
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"endDate": "2022-09-10T00:00:00.000Z",
 											"details": "first Agreement",
-											"attachments": [
-												{
-													"name": "personal information"
-												}
-											],
+											"attachments": [],
 											"reminder": true
 										}
 									}
@@ -3666,7 +3468,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IAgreements"
+								"$ref": "#/components/schemas/IAgreement"
 							}
 						}
 					}
@@ -3684,7 +3486,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAgreements"
+											"$ref": "#/components/schemas/IAgreement"
 										}
 									],
 									"nullable": true
@@ -3714,7 +3516,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IAgreements_"
+								"$ref": "#/components/schemas/Partial_IAgreement_"
 							},
 							"example": "630ded831cb815c4d98d3df6"
 						}
@@ -3732,7 +3534,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IUsers"
+										"$ref": "#/components/schemas/IUser"
 									},
 									"type": "array"
 								}
@@ -3756,7 +3558,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									],
 									"nullable": true
@@ -3792,7 +3594,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									],
 									"nullable": true
@@ -3828,7 +3630,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IUsers"
+									"$ref": "#/components/schemas/IUser"
 								},
 								"examples": {
 									"Example 1": {
@@ -3839,7 +3641,7 @@
 											"profilePicture": "main.png",
 											"firstName": "Muhammad",
 											"lastName": "Nour",
-											"gender": "Male",
+											"gender": "male",
 											"DOB": "2022-09-10T00:00:00.000Z",
 											"address": [
 												{
@@ -3879,7 +3681,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IUsers"
+								"$ref": "#/components/schemas/IUser"
 							}
 						}
 					}
@@ -3897,7 +3699,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IUsers"
+											"$ref": "#/components/schemas/IUser"
 										}
 									],
 									"nullable": true
@@ -3927,7 +3729,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IUsers_"
+								"$ref": "#/components/schemas/Partial_IUser_"
 							},
 							"example": "63124dffdcf1e4974079a441"
 						}
@@ -3945,7 +3747,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IRoles"
+										"$ref": "#/components/schemas/IRole"
 									},
 									"type": "array"
 								}
@@ -3969,7 +3771,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IRoles"
+											"$ref": "#/components/schemas/IRole"
 										}
 									],
 									"nullable": true
@@ -4005,7 +3807,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IRoles"
+											"$ref": "#/components/schemas/IRole"
 										}
 									],
 									"nullable": true
@@ -4041,17 +3843,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IRoles"
-								},
-								"examples": {
-									"Example 1": {
-										"value": {
-											"name": "Admin",
-											"users": [
-												"63124dffdcf1e4974079a441"
-											]
-										}
-									}
+									"$ref": "#/components/schemas/IRole"
 								}
 							}
 						}
@@ -4068,7 +3860,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IRoles"
+								"$ref": "#/components/schemas/IRole"
 							}
 						}
 					}
@@ -4086,7 +3878,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IRoles"
+											"$ref": "#/components/schemas/IRole"
 										}
 									],
 									"nullable": true
@@ -4116,7 +3908,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IRoles_"
+								"$ref": "#/components/schemas/Partial_IRole_"
 							},
 							"example": "631312818d796320172e58e5"
 						}
@@ -4134,7 +3926,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IEmployees"
+										"$ref": "#/components/schemas/IEmployee"
 									},
 									"type": "array"
 								}
@@ -4158,7 +3950,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IEmployees"
+											"$ref": "#/components/schemas/IEmployee"
 										}
 									],
 									"nullable": true
@@ -4194,7 +3986,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IEmployees"
+											"$ref": "#/components/schemas/IEmployee"
 										}
 									],
 									"nullable": true
@@ -4230,7 +4022,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IEmployees"
+									"$ref": "#/components/schemas/IEmployee"
 								},
 								"examples": {
 									"Example 1": {
@@ -4263,7 +4055,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IEmployees"
+								"$ref": "#/components/schemas/IEmployee"
 							}
 						}
 					}
@@ -4281,7 +4073,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IEmployees"
+											"$ref": "#/components/schemas/IEmployee"
 										}
 									],
 									"nullable": true
@@ -4311,7 +4103,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IEmployees_"
+								"$ref": "#/components/schemas/Partial_IEmployee_"
 							},
 							"example": "6313151791b8bbcc188d8e37"
 						}
@@ -4329,7 +4121,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IClients"
+										"$ref": "#/components/schemas/IClient"
 									},
 									"type": "array"
 								}
@@ -4353,7 +4145,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IClient"
 										}
 									],
 									"nullable": true
@@ -4389,7 +4181,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IClient"
 										}
 									],
 									"nullable": true
@@ -4425,7 +4217,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IClients"
+									"$ref": "#/components/schemas/IClient"
 								},
 								"examples": {
 									"Example 1": {
@@ -4434,7 +4226,9 @@
 											"preferredServiceType": [
 												"online"
 											],
-											"diseases": "diseases",
+											"diseases": [
+												"diseases"
+											],
 											"preferences": {
 												"pref": "pref test"
 											}
@@ -4456,7 +4250,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IClients"
+								"$ref": "#/components/schemas/IClient"
 							}
 						}
 					}
@@ -4474,7 +4268,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IClients"
+											"$ref": "#/components/schemas/IClient"
 										}
 									],
 									"nullable": true
@@ -4504,7 +4298,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IClients_"
+								"$ref": "#/components/schemas/Partial_IClient_"
 							},
 							"example": "6310750be8f4ab035351fb78"
 						}
@@ -4522,7 +4316,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/ISessions"
+										"$ref": "#/components/schemas/ISession"
 									},
 									"type": "array"
 								}
@@ -4546,7 +4340,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/ISessions"
+											"$ref": "#/components/schemas/ISession"
 										}
 									],
 									"nullable": true
@@ -4584,7 +4378,7 @@
 											"$ref": "#/components/schemas/Document_any.any.any_"
 										},
 										{
-											"$ref": "#/components/schemas/ISessions"
+											"$ref": "#/components/schemas/ISession"
 										},
 										{
 											"$ref": "#/components/schemas/Required_any_"
@@ -4622,14 +4416,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ISessions"
+									"$ref": "#/components/schemas/ISession"
 								},
 								"examples": {
 									"Example 1": {
 										"value": {
 											"sessionType": "individual",
-											"serviceProvidersID": "63107aae6bcd70f0f363847c",
-											"clientsIDs": [
+											"serviceProviderID": "63107aae6bcd70f0f363847c",
+											"clientsID": [
 												"6310750be8f4ab035351fb78",
 												"63107517e8f4ab035351fb7a"
 											],
@@ -4637,15 +4431,17 @@
 											"details": "mathematical analysis",
 											"startDate": "2022-09-10T00:00:00.000Z",
 											"duration": 50,
-											"serviceType": "Home",
+											"serviceType": "home",
 											"location": {
 												"city": "Aleppo"
 											},
-											"attachments": {
-												"attachmentUrl": "www.google.com",
-												"attachmentName": "cd",
-												"attachmentType": "pdf"
-											},
+											"attachments": [
+												{
+													"url": "www.google.com",
+													"name": "cd",
+													"type": "pdf"
+												}
+											],
 											"requirements": "no requirement",
 											"ratings": [
 												{
@@ -4662,12 +4458,14 @@
 												}
 											],
 											"sessionFee": 1500,
-											"payments": {
-												"discount": 25,
-												"paymentMethod": "paypal",
-												"payerID": "6310750be8f4ab035351fb78",
-												"amount": 250
-											},
+											"payments": [
+												{
+													"discount": 25,
+													"paymentMethod": "paypal",
+													"payerID": "6310750be8f4ab035351fb78",
+													"amount": 250
+												}
+											],
 											"status": "agreed",
 											"doctorReferral": "no "
 										}
@@ -4688,7 +4486,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/ISessions"
+								"$ref": "#/components/schemas/ISession"
 							}
 						}
 					}
@@ -4706,7 +4504,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/ISessions"
+											"$ref": "#/components/schemas/ISession"
 										}
 									],
 									"nullable": true
@@ -4735,7 +4533,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_ISessions_"
+								"$ref": "#/components/schemas/Partial_ISession_"
 							}
 						}
 					}
@@ -4752,7 +4550,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IAnnouncements"
+										"$ref": "#/components/schemas/IAnnouncement"
 									},
 									"type": "array"
 								}
@@ -4776,7 +4574,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAnnouncements"
+											"$ref": "#/components/schemas/IAnnouncement"
 										}
 									],
 									"nullable": true
@@ -4814,7 +4612,7 @@
 											"$ref": "#/components/schemas/Document_any.any.any_"
 										},
 										{
-											"$ref": "#/components/schemas/IAnnouncements"
+											"$ref": "#/components/schemas/IAnnouncement"
 										},
 										{
 											"$ref": "#/components/schemas/Required_any_"
@@ -4852,22 +4650,18 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IAnnouncements"
+									"$ref": "#/components/schemas/IAnnouncement"
 								},
 								"examples": {
 									"Example 1": {
 										"value": {
 											"referenceType": "Session",
 											"referenceID": "63131c361ea32f520cb28bd6",
-											"statues": "draft",
+											"status": "draft",
 											"topic": "new topic",
 											"details": "The announcement contain info ",
 											"sentDate": "2022-09-10T00:00:00.000Z",
-											"attachments": [
-												{
-													"name": "personal information"
-												}
-											],
+											"attachments": [],
 											"receiversUIDs": [
 												"63124dffdcf1e4974079a441",
 												"63130ba28d796320172e58d6"
@@ -4890,7 +4684,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IAnnouncements"
+								"$ref": "#/components/schemas/IAnnouncement"
 							}
 						}
 					}
@@ -4908,7 +4702,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAnnouncements"
+											"$ref": "#/components/schemas/IAnnouncement"
 										}
 									],
 									"nullable": true
@@ -4937,7 +4731,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IAnnouncements_"
+								"$ref": "#/components/schemas/Partial_IAnnouncement_"
 							}
 						}
 					}
@@ -4954,7 +4748,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/IAlarms"
+										"$ref": "#/components/schemas/IAlarm"
 									},
 									"type": "array"
 								}
@@ -4978,7 +4772,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAlarms"
+											"$ref": "#/components/schemas/IAlarm"
 										}
 									],
 									"nullable": true
@@ -5017,7 +4811,7 @@
 											"$ref": "#/components/schemas/Document_any.any.any_"
 										},
 										{
-											"$ref": "#/components/schemas/IAlarms"
+											"$ref": "#/components/schemas/IAlarm"
 										},
 										{
 											"$ref": "#/components/schemas/Required_any_"
@@ -5055,7 +4849,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/IAlarms"
+									"$ref": "#/components/schemas/IAlarm"
 								},
 								"examples": {
 									"Example 1": {
@@ -5086,7 +4880,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/IAlarms"
+								"$ref": "#/components/schemas/IAlarm"
 							}
 						}
 					}
@@ -5104,7 +4898,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/IAlarms"
+											"$ref": "#/components/schemas/IAlarm"
 										}
 									],
 									"nullable": true
@@ -5134,7 +4928,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_IAlarms_"
+								"$ref": "#/components/schemas/Partial_IAlarm_"
 							},
 							"example": "63133c886978820e456b8015"
 						}
@@ -5152,7 +4946,7 @@
 							"application/json": {
 								"schema": {
 									"items": {
-										"$ref": "#/components/schemas/INotifications"
+										"$ref": "#/components/schemas/INotification"
 									},
 									"type": "array"
 								}
@@ -5176,7 +4970,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/INotifications"
+											"$ref": "#/components/schemas/INotification"
 										}
 									],
 									"nullable": true
@@ -5214,7 +5008,7 @@
 											"$ref": "#/components/schemas/Document_any.any.any_"
 										},
 										{
-											"$ref": "#/components/schemas/INotifications"
+											"$ref": "#/components/schemas/INotification"
 										},
 										{
 											"$ref": "#/components/schemas/Required_any_"
@@ -5252,14 +5046,14 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/INotifications"
+									"$ref": "#/components/schemas/INotification"
 								},
 								"examples": {
 									"Example 1": {
 										"value": {
 											"referenceType": "Session",
 											"referenceID": "63131c361ea32f520cb28bd6",
-											"statues": "opened",
+											"status": "opened",
 											"title": "Warning",
 											"details": "this notification contain on new details",
 											"sentDate": "2022-09-10T00:00:00.000Z",
@@ -5284,7 +5078,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/INotifications"
+								"$ref": "#/components/schemas/INotification"
 							}
 						}
 					}
@@ -5302,7 +5096,7 @@
 								"schema": {
 									"allOf": [
 										{
-											"$ref": "#/components/schemas/INotifications"
+											"$ref": "#/components/schemas/INotification"
 										}
 									],
 									"nullable": true
@@ -5331,7 +5125,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Partial_INotifications_"
+								"$ref": "#/components/schemas/Partial_INotification_"
 							}
 						}
 					}
@@ -5454,12 +5248,12 @@
 								"examples": {
 									"Example 1": {
 										"value": {
-											"enumName": "session",
-											"enumValues": [
+											"name": "session",
+											"values": [
 												"first",
 												"second"
 											],
-											"enumNote": "test"
+											"note": "test"
 										}
 									}
 								}

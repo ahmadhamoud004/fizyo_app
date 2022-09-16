@@ -64,19 +64,21 @@ export default class SessionController {
   @SuccessResponse("200", "Created")
   @Example<ISession>({
     sessionType: "individual",
-    serviceProvidersID: "63107aae6bcd70f0f363847c",
-    clientsIDs: ["6310750be8f4ab035351fb78", "63107517e8f4ab035351fb7a"],
+    serviceProviderID: "63107aae6bcd70f0f363847c",
+    clientsID: ["6310750be8f4ab035351fb78", "63107517e8f4ab035351fb7a"],
     name: "math",
     details: "mathematical analysis",
     startDate: new Date("2022-09-10"),
     duration: 50,
-    serviceType: "Home",
+    serviceType: "home",
     location: { city: "Aleppo" },
-    attachments: {
-      attachmentUrl: "www.google.com",
-      attachmentName: "cd",
-      attachmentType: "pdf",
-    },
+    attachments: [
+      {
+        url: "www.google.com",
+        name: "cd",
+        type: "pdf",
+      },
+    ],
     requirements: "no requirement",
     ratings: [
       {
@@ -93,12 +95,14 @@ export default class SessionController {
       },
     ],
     sessionFee: 1500,
-    payments: {
-      discount: 25,
-      paymentMethod: "paypal",
-      payerID: "6310750be8f4ab035351fb78",
-      amount: 250,
-    },
+    payments: [
+      {
+        discount: 25,
+        paymentMethod: "paypal",
+        payerID: "6310750be8f4ab035351fb78",
+        amount: 250,
+      },
+    ],
     status: "agreed",
     doctorReferral: "no ",
   })
@@ -124,10 +128,10 @@ export default class SessionController {
     if (sessionDocument != null) {
       sessionDocument.sessionType =
         session.sessionType ?? sessionDocument.sessionType;
-      sessionDocument.serviceProvidersID =
-        session.serviceProvidersID ?? sessionDocument.serviceProvidersID;
-      sessionDocument.clientsIDs =
-        session.clientsIDs ?? sessionDocument.clientsIDs;
+      sessionDocument.serviceProviderID =
+        session.serviceProviderID ?? sessionDocument.serviceProviderID;
+      sessionDocument.clientsID =
+        session.clientsID ?? sessionDocument.clientsID;
       sessionDocument.name = session.name ?? sessionDocument.name;
       sessionDocument.details = session.details ?? sessionDocument.details;
 

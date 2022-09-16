@@ -61,11 +61,11 @@ export default class AnnouncementController {
   @Example<IAnnouncement>({
     referenceType: "Session",
     referenceID: "63131c361ea32f520cb28bd6",
-    statues: "draft",
+    status: "draft",
     topic: "new topic",
     details: "The announcement contain info ",
     sentDate: new Date("2022-09-10"),
-    attachments: [{ name: "personal information" }],
+    attachments: [],
     receiversUIDs: ["63124dffdcf1e4974079a441", "63130ba28d796320172e58d6"],
   })
   @Post("create")
@@ -94,8 +94,8 @@ export default class AnnouncementController {
         announcement.referenceType ?? announcementDocument.referenceType;
       announcementDocument.referenceID =
         announcement.referenceID ?? announcementDocument.referenceID;
-      announcementDocument.statues =
-        announcement.statues ?? announcementDocument.statues;
+      announcementDocument.status =
+        announcement.status ?? announcementDocument.status;
       announcementDocument.topic =
         announcement.topic ?? announcementDocument.topic;
       announcementDocument.details =

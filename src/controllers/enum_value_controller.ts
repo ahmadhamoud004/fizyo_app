@@ -52,9 +52,9 @@ export default class EnumController {
   @Response(422, "Validation Failed")
   @SuccessResponse("200", "Created")
   @Example<IEnumValues>({
-    enumName: "session",
-    enumValues: ["first", "second"],
-    enumNote: "test",
+    name: "session",
+    values: ["first", "second"],
+    note: "test",
   })
   @Post("create")
   public async createEnum(@Body() enums: IEnumValues): Promise<IEnumValues> {
@@ -76,9 +76,9 @@ export default class EnumController {
   ): Promise<IEnumValues | null> {
     let enumDocument = await EnumModel.findById(enumId);
     if (enumDocument != null) {
-      enumDocument.enumName = enums.enumName ?? enumDocument.enumName;
-      enumDocument.enumValues = enums.enumValues ?? enumDocument.enumValues;
-      enumDocument.enumNote = enums.enumNote ?? enumDocument.enumNote;
+      enumDocument.name = enums.name ?? enumDocument.name;
+      enumDocument.values = enums.values ?? enumDocument.values;
+      enumDocument.note = enums.note ?? enumDocument.note;
 
       return await enumDocument.save();
     }

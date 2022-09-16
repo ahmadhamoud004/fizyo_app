@@ -61,7 +61,7 @@ export default class NotificationController {
   @Example<INotification>({
     referenceType: "Session",
     referenceID: "63131c361ea32f520cb28bd6",
-    statues: "opened",
+    status: "opened",
     title: "Warning",
     details: "this notification contain on new details",
     sentDate: new Date("2022-09-10"),
@@ -95,8 +95,8 @@ export default class NotificationController {
         notification.referenceType ?? notificationDocument.referenceType;
       notificationDocument.referenceID =
         notification.referenceID ?? notificationDocument.referenceID;
-      notificationDocument.statues =
-        notification.statues ?? notificationDocument.statues;
+      notificationDocument.status =
+        notification.status ?? notificationDocument.status;
       notificationDocument.title =
         notification.title ?? notificationDocument.title;
       notificationDocument.details =

@@ -21,6 +21,10 @@ import AnnouncementRoute from "./routes/announcement_routes";
 import AlarmRoute from "./routes/alarm_routes";
 import NotificationRoute from "./routes/notification_routes";
 import EnumRoute from "./routes/enum_routes";
+const { validateJWT } = require("./auth/validate_jwt");
+
+const passport = require("passport");
+require("./auth/auth");
 
 dotenv.config();
 
@@ -61,7 +65,9 @@ app.use(bodyParser.json());
 
 app.use(morgan("tiny"));
 app.use(express.static("public"));
+app.use(passport.initialize());
 
+app.use(validateJWT);
 app.use("/sessions", SessionRoute);
 app.use("/announcements", AnnouncementRoute);
 app.use("/alarms", AlarmRoute);
@@ -79,7 +85,9 @@ app.use("/employees", EmployeesRoutes);
 app.use("/clients", ClientsRoutes);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("<div style='background-color:#00ff105e;display: flex;height: 100%;width: 100%;font-size: xxx-large;font-family: arial;text-align: center;justify-content: center;'><div style='display: inline-block;top: 50%;position: absolute;'>Hello World!</div></div>");
+  res.send(
+    "<div style='background-color:#00ff105e;display: flex;height: 100%;width: 100%;font-size: xxx-large;font-family: arial;text-align: center;justify-content: center;'><div style='display: inline-block;top: 50%;position: absolute;'>Hello World!</div></div>"
+  );
 });
 
 app.use(

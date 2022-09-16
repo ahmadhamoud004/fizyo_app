@@ -27,9 +27,9 @@ const SessionsSchema = new Schema<ISession>({
   location: { type: Object },
   attachments: {
     type: {
-      attachmentUrl: { type: String, required: true },
-      attachmentName: { type: String, required: true },
-      attachmentType: { type: String, required: true },
+      url: { type: String, required: true },
+      name: { type: String, required: true },
+      type: { type: String, required: true },
     },
   },
   requirements: { type: String },

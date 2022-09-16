@@ -11,9 +11,9 @@ export interface ISession {
   serviceType: "online" | "home" | "office"; //enum
   location: object;
   attachments?: {
-    attachmentUrl: string;
-    attachmentName: string;
-    attachmentType: string;
+    url: string;
+    name: string;
+    type: string;
   }[];
   requirements: string;
   ratings?: {

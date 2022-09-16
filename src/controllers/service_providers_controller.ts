@@ -65,15 +65,17 @@ export default class ServiceProvidersController {
   @Example<IServiceProvider>({
     uID: "63124dffdcf1e4974079a441",
     bio: "this is the best",
-    specialties: "Physiotherapist",
+    specialties: ["Physiotherapist"],
     preferredServiceType: ["online", "home", "office"],
     minSessionFee: 100.0,
     maxSessionFee: 150.0,
-    documents: {
-      url: "http://localhost:8000/documents",
-      name: "certificate",
-      attType: "pdf",
-    },
+    documents: [
+      {
+        url: "http://localhost:8000/documents",
+        name: "certificate",
+        type: "pdf",
+      },
+    ],
     reviewerUIDs: ["63124dffdcf1e4974079a441", "63130ba28d796320172e58d6"],
     verificationStatus: "notSubmitted",
 

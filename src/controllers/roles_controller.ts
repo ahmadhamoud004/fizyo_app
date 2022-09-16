@@ -51,10 +51,10 @@ export default class RolesController {
    */
   @Response(422, "Validation failed")
   @SuccessResponse("200", "Created")
-  @Example<IRole>({
-    name: "Admin",
-    users: ["63124dffdcf1e4974079a441"],
-  })
+  // @Example<IRole>({
+  //   name: "Admin",
+  //   users: [""],
+  // })
   @Post("create")
   public async createRole(@Body() role: IRole): Promise<IRole> {
     return await new RolesModel({ ...role }).save();

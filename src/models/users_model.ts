@@ -1,5 +1,6 @@
 import { Schema, model } from "mongoose";
 import { IUser, IEnumValues } from "../types/interfaces";
+const bcrypt = require("bcrypt");
 
 const UsersSchema = new Schema<IUser>({
   // Example on String
@@ -51,6 +52,19 @@ const UsersSchema = new Schema<IUser>({
     default: "single",
   },
 });
+UsersSchema.pre("save", async function (next) {
+  const user = this;
+  const hash = await bcrypt.hash(this.password, 10);
+
+  this.password = hash;
+  next();
+});
+UsersSchema.methods.isValidPassword = async function (password: string) {
+  const user = this;
+  const compare = await bcrypt.compare(password, user.password);
+
+  return compare;
+};
 
 UsersSchema.virtual("url").get(function () {
   return "users/" + this._id;

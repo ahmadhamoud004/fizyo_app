@@ -55,7 +55,7 @@ export default class ClientControllers {
   @Example<IClient>({
     uID: "63124dffdcf1e4974079a441",
     preferredServiceType: ["online"],
-    diseases: "diseases",
+    diseases: ["diseases"],
     preferences: { pref: "pref test" },
   })
   @Post("create")
