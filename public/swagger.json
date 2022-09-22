@@ -2706,7 +2706,12 @@
 		"securitySchemes": {}
 	},
 	"info": {
-		"title": "",
+		"title": "fizyo_app",
+		"version": "1.0.0",
+		"description": "Interfaces: \r 1.\tIEmployees\r 2.\tIUsers\r 3.\tIClients\r 4.\tIServiceProviders\r 5.\tIRoles\r 6.\tIDispute\r 7.\tISessions\r 8.\tICommunications\r 9.\tIAnnouncements\r 10.\tIAlarms\r 11.\tINotifications\r 12.\tIAgreements\r 13.\tIEnumValues",
+		"license": {
+			"name": "ISC"
+		},
 		"contact": {}
 	},
 	"openapi": "3.0.0",
