@@ -14,7 +14,7 @@ describe("ClientController", () => {
             _id: "6310750be8f4ab035351fb78",
             uID: "6300e18b3bbd975cf6459983",
             preferredServiceType: ["online"],
-            diseases: "diseases",
+            diseases:[ "diseases"],
             preferences: { pref: "pref test" },
           })
       ).not.toThrow();
@@ -33,7 +33,7 @@ describe("ClientController", () => {
         async () =>
           await controller.updateClient("6310750be8f4ab035351fb78", {
             preferredServiceType: ["home"],
-            diseases: "diseases updated",
+            diseases: ["diseases updated"],
           })
       ).not.toThrow();
     });

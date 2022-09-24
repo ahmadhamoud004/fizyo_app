@@ -13,19 +13,21 @@ describe("SessionController", () => {
           await controller.createSession({
             _id: "6300e18b3bbd975cf6459943",
             sessionType: "individual",
-            serviceProvidersID: "6300e18b3bbd975cf6459983",
-            clientsIDs: ["6310750be8f4ab035351fb78"],
+            serviceProviderID: "6300e18b3bbd975cf6459983",
+            clientsID: ["6310750be8f4ab035351fb78"],
             name: "math",
             details: "mathematical analysis",
             startDate: new Date("10-11-2022"),
             duration: 50,
-            serviceType: "Home",
+            serviceType: "home",
             location: { city: "Aleppo" },
-            attachments: {
-              attachmentUrl: "www.google.com",
-              attachmentName: "cd",
-              attachmentType: "pdf",
-            },
+            attachments: [
+              {
+                url: "www.google.com",
+                name: "cd",
+                type: "pdf",
+              },
+            ],
             requirements: "no requirement",
             ratings: [
               {
@@ -47,12 +49,14 @@ describe("SessionController", () => {
               },
             ],
             sessionFee: 1500,
-            payments: {
-              discount: 25,
-              paymentMethod: "paypal",
-              payerID: "6300e18b3bbd975cf6459983",
-              amount: 250,
-            },
+            payments: [
+              {
+                discount: 25,
+                paymentMethod: "paypal",
+                payerID: "6300e18b3bbd975cf6459983",
+                amount: 250,
+              },
+            ],
             status: "agreed",
             doctorReferral: "no ",
           })
@@ -73,7 +77,7 @@ describe("SessionController", () => {
           await controller.updateSession("6310d1e9f2d63b32d0c306ba", {
             sessionType: "group",
             duration: 120,
-            serviceType: "Online",
+            serviceType: "online",
           })
       ).not.toThrow();
     });

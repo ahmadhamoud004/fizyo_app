@@ -14,11 +14,17 @@ describe("AnnouncementController", () => {
             _id: "6313197208b52ee1da804333",
             referenceType: "Session",
             referenceID: "6313197208b52ee1da804405",
-            statues: "published",
+            status: "published",
             topic: "new topic",
             details: "The announcement contain info ",
             sentDate: new Date("2022-10-11"),
-            attachments: [{ name: "personal information" }],
+            attachments: [
+              {
+                attachmentUrl: "",
+                attachmentName: "personal information",
+                attachmentType: "",
+              },
+            ],
             receiversUIDs: ["6313197208b52ee1da804405"],
           })
       ).not.toThrow();
@@ -37,8 +43,14 @@ describe("AnnouncementController", () => {
         async () =>
           await controller.updateAnnouncement("6313197208b52ee1da804333", {
             referenceType: "Session",
-            statues: "published",
-            attachments: [{ name: "public information" }],
+            status: "published",
+            attachments: [
+              {
+                attachmentUrl: "",
+                attachmentName: "personal information",
+                attachmentType: "",
+              },
+            ],
             details: "change information",
           })
       ).not.toThrow();

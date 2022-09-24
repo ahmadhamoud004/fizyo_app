@@ -17,7 +17,9 @@ describe("AgreementsController", () => {
             startDate: new Date("2022-09-10"),
             endDate: new Date("2022-09-10"),
             details: "first Agreement",
-            attachments: [{ name: "personal information" }],
+            attachments: [
+              { url: "", name: "personal information", disType: "" },
+            ],
             reminder: true,
           })
       ).not.toThrow();

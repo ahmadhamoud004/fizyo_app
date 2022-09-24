@@ -14,15 +14,17 @@ describe("ServiceProvidersController", () => {
             _id: "6300e18b3bbd975cf6459983",
             uID: "6300e18b3bbd975cf6459983",
             bio: "this is the best",
-            specialties: "Physiotherapist",
+            specialties: ["Physiotherapist"],
             preferredServiceType: ["online", "home", "office"],
             minSessionFee: 100.0,
             maxSessionFee: 150.0,
-            documents: {
-              url: "http://localhost:8000/documents",
-              name: "certificate",
-              attType: "pdf",
-            },
+            documents: [
+              {
+                url: "http://localhost:8000/documents",
+                name: "certificate",
+                type: "pdf",
+              },
+            ],
             reviewerUIDs: ["6300e18b3bbd975cf6459983"],
             verificationStatus: "notSubmitted",
 
@@ -45,7 +47,7 @@ describe("ServiceProvidersController", () => {
         async () =>
           await controller.updateServiceProvider("6300e18b3bbd975cf6459983", {
             bio: "updated",
-            specialties: "Physio",
+            specialties: ["Physio"],
             verificationStatus: "verified",
           })
       ).not.toThrow();

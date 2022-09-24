@@ -14,7 +14,7 @@ describe("NotificationController", () => {
             _id: "6313197208b52ee1da804555",
             referenceType: "Agreement",
             referenceID: "6313197208b52ee1da804405",
-            statues: "opened",
+            status: "opened",
             title: "Warning",
             details: "this notification title",
             sentDate: new Date("2022-10-11"),
@@ -37,7 +37,7 @@ describe("NotificationController", () => {
       expect(
         async () =>
           await controller.updateNotification("6313197208b52ee1da804405", {
-            statues: "opened",
+            status: "opened",
             details: "change information",
           })
       ).not.toThrow();
