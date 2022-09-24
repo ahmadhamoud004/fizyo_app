@@ -21,6 +21,9 @@ import AnnouncementRoute from "./routes/announcement_routes";
 import AlarmRoute from "./routes/alarm_routes";
 import NotificationRoute from "./routes/notification_routes";
 import EnumRoute from "./routes/enum_routes";
+
+import cors from "cors";
+import { use } from "passport";
 const { validateJWT } = require("./auth/validate_jwt");
 
 const passport = require("passport");
@@ -60,7 +63,7 @@ app.use(
     extended: false,
   })
 );
-
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(morgan("tiny"));
