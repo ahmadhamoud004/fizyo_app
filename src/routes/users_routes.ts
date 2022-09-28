@@ -19,6 +19,20 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.get("/by-email", (req, res) => {
+  const controller = new UsersController();
+  // console.log("start");
+  controller
+    .getUserbyemail(req.query.email?.toString())
+    .then(async (response) => {
+      console.log(response);
+      await res.send(response);
+    })
+    .catch((err) => {
+      // console.log(err);
+      res.status(404).send(err);
+    });
+});
 router.get("/:userId", (req, res) => {
   const controller = new UsersController();
   controller
@@ -32,7 +46,9 @@ router.delete("/:userId", (req, res) => {
   controller
     .deleteUser(req.params.userId)
     .then(async (response) => await res.send(response))
-    .catch((err) => res.status(404).send(err));
+    .catch((err) => {
+      res.status(404).send(err);
+    });
 });
 
 router.post("/create", async (req, res) => {

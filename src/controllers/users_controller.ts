@@ -6,13 +6,15 @@ import {
   Route,
   SuccessResponse,
   Body,
+  Query,
   Response,
   Example,
   Path,
 } from "tsoa";
 import { Model } from "mongoose";
 import { IUser } from "../types/interfaces";
-
+import { query } from "express";
+``;
 const UsersModel: Model<IUser> = require("../models/users_model");
 
 @Route("users")
@@ -33,6 +35,24 @@ export default class UsersController {
   @Get("{userId}")
   public async getUser(userId: string): Promise<IUser | null> {
     return await UsersModel.findById(userId);
+  }
+
+  /**
+   * Get a user details by email
+   * @example email "haitham.his@gmail.com"
+   */
+
+  @Response(404, "The requested user is not found")
+  @Get("/by-email")
+  public async getUserbyemail(@Query() email?: string): Promise<IUser | null> {
+    try{  
+      return await UsersModel.findOne({ email: email });
+    }catch(err){
+      console.log("error:=====", err);
+      return null
+    }
+
+   
   }
 
   /**
