@@ -9,7 +9,7 @@ const validateJWT = async (req: any, res: any, next: any) => {
   if (
     req.path.includes("/users/login") ||
     req.path.includes("/users/create") ||
-    req.path.includes("/users?") ||
+    //req.path.includes("/users?") ||
     req.path.includes("/users") ||
     req.path.includes("/docs") ||
     req.path == "/" ||

@@ -17,13 +17,13 @@ const ServiceProvidersSchema = new Schema<IServiceProvider>({
   minSessionFee: { type: Number },
   maxSessionFee: { type: Number },
 
-  documents: {
-    type: {
-      url: { type: String, required: true },
+  documents: [
+    {
       name: { type: String, required: true },
-      attType: { type: String, required: true },
+      url: { type: String, required: true },
+      type: { type: String, required: true },
     },
-  },
+  ],
   reviewerUIDs: [{ type: Schema.Types.ObjectId, ref: "User" }],
   // reviewerUIDs: [{ type: String, required: true }],
   verificationStatus: {
